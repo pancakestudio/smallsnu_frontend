@@ -17,12 +17,11 @@ function boundCheck(pos, json){
   }return false;
 }
 
-export function retBuilding_no(curPos){
+export function getBldgNo(curPos){
   for(let i = 0; i<json.length;i++){
     if(boundCheck(curPos, json[i])){
       curPos.lat = (json[i].coord_1[0]+json[i].coord_2[0]+json[i].coord_3[0]+json[i].coord_4[0])/4;
       curPos.lng = (json[i].coord_1[1]+json[i].coord_2[1]+json[i].coord_3[1]+json[i].coord_4[1])/4;
-      console.log("building No "+json[i].building_no);
       return json[i].building_no;
     }
   }return ("0");

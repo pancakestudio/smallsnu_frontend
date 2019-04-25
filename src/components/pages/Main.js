@@ -1,29 +1,19 @@
 import React from 'react'
-import Map from '../organisms/Map'
+import Map from '../../containers/Map'
 import Header from '../organisms/Header'
-import Modal from '../organisms/Modal'
+import BuildingModal from '../../containers/BuildingModal'
+import Sidebar from '../organisms/Sidebar'
 import './Main.css'
-import { connect } from 'react-redux'
 
 const Main = (props) => {
-  console.log("main rerendering!");
-  console.log(props.building_no);
   return (
-  <div className = "MainPage">
-    <Header className = "Header"/>
-    <Map className = "Map"/>
-    <Modal className = "buildingModal"
-      modalShow={props.modalShow}
-      building_no={props.building_no}
-      />
-  </div>
-)
+    <div className = "mainPage">
+      <Sidebar />
+      <Header />
+      <Map />
+      <BuildingModal />
+    </div>
+  )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    modalShow: state.buildingButton.modalShow,
-    building_no : state.buildingButton.building_no,
-}}
-
-export default connect(mapStateToProps)(Main)
+export default Main

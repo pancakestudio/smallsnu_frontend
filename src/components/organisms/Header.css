@@ -1,20 +1,20 @@
-.Header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 5vh;
-  width: 100%;
-  vertical-align: middle;
-  line-height: 5vh;
-  background-color: white;
+.header {
+  border-radius: 5px;
+  height: 50px;
+  margin: 10px;
   box-shadow: 0 4px 10px 0 rgba(0,0,0,0.4);
 }
 
-.Header .menu {
-  vertical-align: middle;
-  margin: 3px;
+.header .title {
+  margin: 0 10px;
 }
 
-.Header .title {
-  font-size: calc(10px + 1.0vmin);
+.header .menu {
+  padding: 1px 10px 5px 10px;
+}
+
+@media(max-width: 575px){
+  .header {
+    height: 100px;
+  }
 }
