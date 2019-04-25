@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "leaflet": "^1.4.0",
+    "leaflet-freedraw": "^2.10.0",
+    "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.2.1",
+    "react-leaflet-freedraw": "^0.1.2",
     "react-redux": "^7.0.2",
     "react-scripts": "3.0.0"
   },

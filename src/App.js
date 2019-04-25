@@ -4,7 +4,7 @@ import Main from './components/pages/Main'
 import './App.css';
 
 class App extends React.Component {
-  componentDidMount(){ 
+  componentDidMount(){
     document.title = "SMALL SNU"
   }
   render() {
