@@ -10,8 +10,10 @@
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.2.1",
     "react-leaflet-freedraw": "^0.1.2",
+    "react-modal": "^3.8.1",
     "react-redux": "^7.0.2",
-    "react-scripts": "3.0.0"
+    "react-scripts": "3.0.0",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,5 +35,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }
