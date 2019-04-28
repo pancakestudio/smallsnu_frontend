@@ -6,3 +6,10 @@ export function buildingClick(e){
     e
   };
 }
+
+export function modalHide(modalFlag){
+  return{
+    type: types.MODAL_HIDE,
+    modalFlag
+  };
+}
