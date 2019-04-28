@@ -13,3 +13,10 @@ export function modalHide(){
     type: types.MODAL_HIDE,
   };
 }
+
+export function zoomChanged(zoomLevel){
+  return {
+    type: types.ZOOM_CHANGED,
+    zoomLevel
+  }
+}
