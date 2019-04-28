@@ -14,7 +14,9 @@ export const Map = ({currentPos, onMapClick}) => {
   return (
       <LeafletMap className = "leafletMap"
         center = {currentPos}
-        maxZoom = {19}
+        maxZoom = {18}
+        minZoom = {16}
+        maxBounds = {[[37.4468,126.9429],[37.4692,126.9621]]}
         zoom = {17}
         zoomControl = {false}
         onClick = {onClick}
