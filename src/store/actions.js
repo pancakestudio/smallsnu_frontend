@@ -13,3 +13,18 @@ export function modalHide(){
     type: types.MODAL_HIDE,
   };
 }
+
+export function searchBuildingState(bldgNo){
+  return{
+    type: types.SEARCH_BUILDING_STATE,
+    bldgNo
+  };
+}
+
+export function searchBuildingClick(bldgNo, curPos){
+  return{
+    type: types.SEARCH_BUILDING_CLICK,
+    bldgNo,
+    curPos
+  };
+}

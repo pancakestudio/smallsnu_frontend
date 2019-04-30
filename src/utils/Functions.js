@@ -10,8 +10,10 @@ for(let i = 0; i<json.length;i++){
 }
 
 function boundCheck(pos, json){
-  if((pos.lat >= json.coord_1[0] || pos.lat >= json.coord_2[0])&&(pos.lat <= json.coord_3[0] || pos.lat <= json.coord_4[0])){
-    if((pos.lng >= json.coord_1[1] || pos.lng >= json.coord_4[1])&&(pos.lng<=json.coord_2[1] || pos.lng <= json.coord_3[1])){
+  if((pos.lat >= json.coord_1[0] || pos.lat >= json.coord_2[0])
+    &&(pos.lat <= json.coord_3[0] || pos.lat <= json.coord_4[0])){
+    if((pos.lng >= json.coord_1[1] || pos.lng >= json.coord_4[1])
+      &&(pos.lng<=json.coord_2[1] || pos.lng <= json.coord_3[1])){
       return true;
     }
   }return false;
@@ -25,4 +27,14 @@ export function getBldgNo(curPos){
       return json[i].building_no;
     }
   }return ("0");
+}
+
+export function getBldgCoord(bldgNo){
+  for(let i=0; i<json.length;i++){
+    if(String(json[i].building_no) === String(bldgNo)){
+      let retLat = (json[i].coord_1[0]+json[i].coord_2[0]+json[i].coord_3[0]+json[i].coord_4[0])/4;
+      let retLng = (json[i].coord_1[1]+json[i].coord_2[1]+json[i].coord_3[1]+json[i].coord_4[1])/4;
+      return [retLat, retLng]
+    }
+  }return([37.459, 126.952]);
 }

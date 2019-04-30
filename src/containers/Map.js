@@ -5,7 +5,7 @@ import { getBldgNo } from '../utils/Functions'
 
 const mapStateToProps = (state) => {
   return {
-    currentPos: state.currentPos
+    currentPos: state.currentPos,
   }
 }
 

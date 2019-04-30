@@ -5,6 +5,8 @@ function currentPos(state = {lat: 37.459, lng: 126.952}, action){
   switch(action.type){
     case types.BUILDING_CLICK:
       return action.curPos
+    case types.SEARCH_BUILDING_CLICK:
+      return action.curPos
     default:
       return state
   }
@@ -14,6 +16,10 @@ function selectedBldg(state = "0", action){
   switch(action.type){
     case types.BUILDING_CLICK:
       return action.bldgNo
+    case types.SEARCH_BUILDING_STATE:
+      return action.bldgNo
+    case types.SEARCH_BUILDING_CLICK:
+      return state
     case types.MODAL_HIDE:
       return "0"
     default:
@@ -25,6 +31,8 @@ function showBldgModal(state = false, action){
   switch(action.type){
     case types.BUILDING_CLICK:
       return true
+    case types.SEARCH_BUILDING_CLICK:
+      return false
     case types.MODAL_HIDE:
       return false
     default:
@@ -32,10 +40,11 @@ function showBldgModal(state = false, action){
   }
 }
 
+
 const reducers = combineReducers({
   currentPos,
   selectedBldg,
-  showBldgModal
+  showBldgModal,
 });
 
 export default reducers;
