@@ -13,14 +13,25 @@ for(let i = 0; i<json.length;i++){
 }
 
 function boundCheck(pos, json){
-  if((pos.lat >= json.coord_1[0] || pos.lat >= json.coord_2[0])
-    &&(pos.lat <= json.coord_3[0] || pos.lat <= json.coord_4[0])){
-    if((pos.lng >= json.coord_1[1] || pos.lng >= json.coord_4[1])
-      &&(pos.lng<=json.coord_2[1] || pos.lng <= json.coord_3[1])){
-      return true;
-    }
+  var s1 = Math.abs(json.coord_1[0]*json.coord_2[1] + json.coord_2[0]*json.coord_3[1] + json.coord_3[0]*json.coord_1[1]
+    - json.coord_1[1]*json.coord_2[0] - json.coord_2[1]*json.coord_3[0] - json.coord_3[1]*json.coord_1[0]);
+  var s2 = Math.abs(json.coord_4[0]*json.coord_1[1] + json.coord_1[0]*json.coord_3[1] + json.coord_3[0]*json.coord_4[1]
+    - json.coord_4[1]*json.coord_1[0] - json.coord_1[1]*json.coord_3[0] - json.coord_3[1]*json.coord_4[0]);
+  var s3 = Math.abs(json.coord_1[0]*json.coord_2[1] + json.coord_2[0]*pos.lng + pos.lat*json.coord_1[1]
+    - json.coord_1[1]*json.coord_2[0] - json.coord_2[1]*pos.lat - pos.lng*json.coord_1[0]);
+  var s4 = Math.abs(json.coord_2[0]*json.coord_3[1] + json.coord_3[0]*pos.lng + pos.lat*json.coord_2[1]
+    - json.coord_2[1]*json.coord_3[0] - json.coord_3[1]*pos.lat - pos.lng*json.coord_2[0]);
+  var s5 = Math.abs(json.coord_3[0]*json.coord_4[1] + json.coord_4[0]*pos.lng + pos.lat*json.coord_3[1]
+    - json.coord_3[1]*json.coord_4[0] - json.coord_4[1]*pos.lat - pos.lng*json.coord_3[0]);
+  var s6 = Math.abs(json.coord_4[0]*json.coord_1[1] + json.coord_1[0]*pos.lng + pos.lat*json.coord_4[1]
+    - json.coord_4[1]*json.coord_1[0] - json.coord_1[1]*pos.lat - pos.lng*json.coord_4[0]);
+  
+  if(s1 + s2 < s3 + s4 + s5 + s6) {
+    return false
   }
-  return false;
+  else {
+    return true;
+  }
 }
 
 export function getBldgNo(curPos){
