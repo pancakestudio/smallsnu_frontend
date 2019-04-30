@@ -40,11 +40,21 @@ function showBldgModal(state = false, action){
   }
 }
 
+function zoom(state = 17, action) {
+  switch(action.type){
+    case types.ZOOM_CHANGED:
+      return action.zoomLevel
+    default:
+      return state
+  }
+}
 
 const reducers = combineReducers({
   currentPos,
   selectedBldg,
   showBldgModal,
+  zoom
 });
 
 export default reducers;
+  console.log(currentPos)
