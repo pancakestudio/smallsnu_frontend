@@ -5,8 +5,17 @@ function currentPos(state = {lat: 37.459, lng: 126.952}, action){
   switch(action.type){
     case types.BUILDING_CLICK:
       return action.curPos
-    case types.SEARCH_BUILDING_CLICK:
-      return action.curPos
+    case types.SEARCH:
+      return action.bldgPos
+    default:
+      return state
+  }
+}
+
+function searchingBldg(state = "0", action){
+  switch(action.type){
+    case types.SEARCH_VALUE_CHANGE:
+      return action.bldgNo
     default:
       return state
   }
@@ -16,12 +25,8 @@ function selectedBldg(state = "0", action){
   switch(action.type){
     case types.BUILDING_CLICK:
       return action.bldgNo
-    case types.SEARCH_BUILDING_STATE:
+    case types.SEARCH:
       return action.bldgNo
-    case types.SEARCH_BUILDING_CLICK:
-      return state
-    case types.MODAL_HIDE:
-      return "0"
     default:
       return state
   }
@@ -31,7 +36,7 @@ function showBldgModal(state = false, action){
   switch(action.type){
     case types.BUILDING_CLICK:
       return true
-    case types.SEARCH_BUILDING_CLICK:
+    case types.SEARCH:
       return false
     case types.MODAL_HIDE:
       return false
@@ -49,12 +54,22 @@ function zoom(state = 17, action) {
   }
 }
 
+function showMarker(state = false, action){
+  switch(action.type){
+    case types.SEARCH:
+      return true
+    default:
+      return false
+  }
+}
+
 const reducers = combineReducers({
   currentPos,
+  searchingBldg,
   selectedBldg,
   showBldgModal,
-  zoom
+  zoom,
+  showMarker
 });
 
 export default reducers;
-  console.log(currentPos)

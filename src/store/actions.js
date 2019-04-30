@@ -14,20 +14,21 @@ export function modalHide(){
   };
 }
 
-export function searchBuildingState(bldgNo){
+export function searchValueChange(bldgNo){
   return{
-    type: types.SEARCH_BUILDING_STATE,
+    type: types.SEARCH_VALUE_CHANGE,
     bldgNo
   };
 }
 
-export function searchBuildingClick(bldgNo, curPos){
+export function search(bldgNo, bldgPos){
   return{
-    type: types.SEARCH_BUILDING_CLICK,
+    type: types.SEARCH,
     bldgNo,
-    curPos
+    bldgPos
   }
 }
+
 export function zoomChanged(zoomLevel){
   return {
     type: types.ZOOM_CHANGED,

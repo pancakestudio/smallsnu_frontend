@@ -1,12 +1,15 @@
 // ------------- Building Info ---------------//
 // get the json Data about Buildings information
 var json = require('./BuildingCoordinate.json');
-var info = new Array(500);
+var info = {}
 var info_building = [];
 // get all the building info
 for(let i = 0; i<json.length;i++){
-  info[i] = [json[i].coord_1, json[i].coord_2, json[i].coord_3, json[i].coord_4];
-  info_building.push(info[i]);
+  info[json[i].building_no] = {
+    center: 
+      [(json[i].coord_1[0]+json[i].coord_2[0]+json[i].coord_3[0]+json[i].coord_4[0])/4,
+      (json[i].coord_1[1]+json[i].coord_2[1]+json[i].coord_3[1]+json[i].coord_4[1])/4]
+  }
 }
 
 function boundCheck(pos, json){
@@ -16,7 +19,8 @@ function boundCheck(pos, json){
       &&(pos.lng<=json.coord_2[1] || pos.lng <= json.coord_3[1])){
       return true;
     }
-  }return false;
+  }
+  return false;
 }
 
 export function getBldgNo(curPos){
@@ -26,15 +30,13 @@ export function getBldgNo(curPos){
       curPos.lng = (json[i].coord_1[1]+json[i].coord_2[1]+json[i].coord_3[1]+json[i].coord_4[1])/4;
       return json[i].building_no;
     }
-  }return ("0");
+  }
+  return ("0");
 }
 
 export function getBldgCoord(bldgNo){
-  for(let i=0; i<json.length;i++){
-    if(String(json[i].building_no) === String(bldgNo)){
-      let retLat = (json[i].coord_1[0]+json[i].coord_2[0]+json[i].coord_3[0]+json[i].coord_4[0])/4;
-      let retLng = (json[i].coord_1[1]+json[i].coord_2[1]+json[i].coord_3[1]+json[i].coord_4[1])/4;
-      return [retLat, retLng]
-    }
-  }return([37.459, 126.952]);
+  if(bldgNo in info){
+    return info[bldgNo].center;
+  }
+  return undefined;
 }

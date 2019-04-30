@@ -1,6 +1,6 @@
 import React from 'react'
 import Map from '../../containers/Map'
-import Header from '../../containers/Header'
+import { Header } from '../../components/organisms/Header'
 import BuildingModal from '../../containers/BuildingModal'
 import Sidebar from '../organisms/Sidebar'
 import './Main.css'
