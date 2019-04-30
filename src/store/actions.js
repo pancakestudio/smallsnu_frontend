@@ -26,7 +26,8 @@ export function searchBuildingClick(bldgNo, curPos){
     type: types.SEARCH_BUILDING_CLICK,
     bldgNo,
     curPos
-  };
+  }
+}
 export function zoomChanged(zoomLevel){
   return {
     type: types.ZOOM_CHANGED,
