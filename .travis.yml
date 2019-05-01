@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "stable"
+before_install:
+  - npm install
+script:
+  - npm test -- --coverage
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  local_dir: build
+  on:
+    branch: master
