@@ -1,13 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { FaBars } from 'react-icons/fa'
+import { getBldgCoord } from '../../utils/Functions'
+import SearchBar from '../../containers/SearchBar'
 import './Header.css'
 
-const Header = () => (
-  <div className = "Header">
-    <button className = "menu"> </button>
-    <span className = "title"> SMALL SNU </span>
-    <span className = "search"> </span>
-  </div>
-)
+export const Header = () => {
+  return (
+  <Navbar className="header" collapseOnSelect bg="light" variant="light" expand="lg" fixed="top">
+    <Button id="sidebarCollapse" className="menu" variant="light"><FaBars /></Button>
+    <Navbar.Brand href="#home" className="title"> SMALL SNU </Navbar.Brand>
+    <Nav className="mr-auto"> </Nav>
+    <SearchBar />
+  </Navbar>
+  )
+}
 
-export default Header

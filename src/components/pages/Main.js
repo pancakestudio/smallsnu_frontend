@@ -1,13 +1,19 @@
 import React from 'react'
-import Map from '../organisms/Map'
-import Header from '../organisms/Header'
+import Map from '../../containers/Map'
+import { Header } from '../../components/organisms/Header'
+import BuildingModal from '../../containers/BuildingModal'
+import Sidebar from '../organisms/Sidebar'
 import './Main.css'
 
-const Main = () => (
-  <div className = "MainPage">
-    <Header className = "Header"/>
-    <Map className = "Map"/>
-  </div>
-)
+const Main = (props) => {
+  return (
+    <div className = "mainPage">
+      <Sidebar />
+      <Header />
+      <Map />
+      <BuildingModal />
+    </div>
+  )
+}
 
 export default Main

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectedSearchBar matches snapshot 1`] = `ReactWrapper {}`;
+
+exports[`SearchBar matches snapshot 1`] = `ShallowWrapper {}`;

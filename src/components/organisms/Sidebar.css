@@ -1,0 +1,26 @@
+#sidebar {
+  border-radius: 5px;
+  height: calc(100vh - 80px);
+  min-width: 250px;
+  max-width: 250px;
+  padding: 10px;
+  position: fixed;
+  top: 60px;
+  margin: 10px;
+  left: -300px;
+  z-index: 9999;
+  transition: all 0.3s;
+  overflow-y: scroll;
+  box-shadow: 0 4px 10px 0 rgba(0,0,0,0.4);
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+@media(max-width: 575px){
+  #sidebar {
+    top: 110px;
+    height: calc(100vh - 130px);
+  }
+}
