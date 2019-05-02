@@ -8,8 +8,6 @@ import './Map.css'
 import { getBldgNo } from '../../utils/Functions'
 
 export const Map = ({currentPos, zoom, showMarker, onMapClick, onZoom}) => {
-  let map
-
   const handleClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
     if(bldgNo!=="0"){
@@ -18,19 +16,18 @@ export const Map = ({currentPos, zoom, showMarker, onMapClick, onZoom}) => {
   }
 
   const handleZoomEnd = (e) => {
-    const zoomLevel = map.viewport.zoom
+    const zoomLevel = e.target._zoom
     onZoom(zoomLevel)
   }
 
   let marker
 
   if(showMarker){
-    marker = <Marker position = {currentPos}> </Marker>
+    marker = <Marker className="marker" position = {currentPos}> </Marker>
   }
     
   return (
       <LeafletMap className = "leafletMap"
-        ref = {(ref) => {map = ref}}
         center = {currentPos}
         maxZoom = {18}
         minZoom = {16}
