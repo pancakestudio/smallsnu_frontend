@@ -10,7 +10,8 @@ import { getBldgNo } from '../../utils/Functions'
 export const Map = ({currentPos, zoom, showMarker, onMapClick, onZoom}) => {
   const handleClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
-    if(bldgNo!=="0"){
+    if(bldgNo && bldgNo!=="0"){
+      console.log('click!')
       onMapClick(bldgNo, e.latlng)
     }
   }

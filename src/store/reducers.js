@@ -21,12 +21,19 @@ function searchingBldg(state = "0", action){
   }
 }
 
-function selectedBldg(state = "0", action){
+function selectedBldg(state = {bldgNo: "0"}, action){
   switch(action.type){
     case types.BUILDING_CLICK:
-      return action.bldgNo
+      return {bldgNo: action.bldgNo}
     case types.SEARCH:
-      return action.bldgNo
+      return {bldgNo: action.bldgNo}
+    case types.GET_BUILDING_SUCCESS:
+      return Object.assign({}, state, {
+        info: action.info,
+        restaurants: action.restaurants,
+        seminars: action.seminars,
+        posts: action.posts
+      })
     default:
       return state
   }
@@ -63,13 +70,23 @@ function showMarker(state = false, action){
   }
 }
 
+function error(state = "", action){
+  switch(action.type){
+    case types.GET_BUILDING_FAILURE:
+      return action.error
+    default:
+      return ""
+  }
+}
+
 const reducers = combineReducers({
   currentPos,
   searchingBldg,
   selectedBldg,
   showBldgModal,
   zoom,
-  showMarker
+  showMarker,
+  error
 });
 
 export default reducers;

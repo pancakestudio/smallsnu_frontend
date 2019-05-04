@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.0",
     "jest": "^24.7.1",
+    "jquery": "^3.4.0",
     "leaflet": "^1.4.0",
     "leaflet-freedraw": "^2.10.0",
     "ramda": "^0.26.1",
@@ -18,7 +19,8 @@
     "react-modal": "^3.8.1",
     "react-redux": "^7.0.2",
     "react-scripts": "3.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
