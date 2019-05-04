@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Main from './components/pages/Main'
+import { connect } from 'react-redux'
 import './App.css';
 
-class App extends React.Component {
-  render() {
-    return (
-      <Main/>
-    );
+const App = ({error}) => {
+  if(error.length !== 0){
+    alert(error)
   }
+  return (
+    <Main/>
+  );
 }
 
-export default App;
+export default connect(
+  state => ({
+    error: state.error
+  })
+)(App);

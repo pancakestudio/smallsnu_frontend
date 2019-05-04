@@ -8,6 +8,24 @@ export function buildingClick(bldgNo, curPos){
   };
 }
 
+export function getBuildingSuccess(info, restaurants, seminars, lectures, posts){
+  return{
+    type: types.GET_BUILDING_SUCCESS,
+    info,
+    restaurants,
+    seminars,
+    lectures,
+    posts
+  }
+}
+
+export function getBuildingFailure(error){
+  return{
+    type: types.GET_BUILDING_FAILURE,
+    error
+  }
+}
+
 export function modalHide(){
   return{
     type: types.MODAL_HIDE,
