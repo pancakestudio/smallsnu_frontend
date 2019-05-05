@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
+import { getBldgCoord } from '../utils/Functions'
 import * as types from './actionTypes'
+
 
 function currentPos(state = {lat: 37.459, lng: 126.952}, action){
   switch(action.type){
@@ -61,7 +63,7 @@ function zoom(state = 17, action) {
   }
 }
 
-function showMarker(state = false, action){
+function showSearchMarker(state = false, action){
   switch(action.type){
     case types.SEARCH:
       return true
@@ -70,9 +72,48 @@ function showMarker(state = false, action){
   }
 }
 
+function showSideResMarker(state = false, action){
+  switch(action.type){
+    case types.GET_RESTAURANT_SUCCESS:
+      return true
+    default:
+      return false
+  }
+}
+
+function sideResInfo(state = null, action){
+  switch(action.type){
+    case types.GET_RESTAURANT_SUCCESS:
+      let res = action.data
+      var resArr = new Array
+      for(let i = 0;i<res.length;i++){
+        resArr.push(res[i])
+      }
+    default :
+      return state
+  }
+}
+
+function sideResLocation(state = [[0,0]] , action){
+  switch(action.type){
+    case types.GET_RESTAURANT_SUCCESS:
+      let res = action.data
+      var resArr = new Array
+      for(let i = 0; i<res.length;i++){
+        resArr.push(getBldgCoord(res[i].id))
+      }
+      return resArr
+
+    default:
+      return state
+  }
+}
+
 function error(state = "", action){
   switch(action.type){
     case types.GET_BUILDING_FAILURE:
+      return action.error
+    case types.GET_RESTAURANT_FAILURE:
       return action.error
     default:
       return ""
@@ -85,7 +126,10 @@ const reducers = combineReducers({
   selectedBldg,
   showBldgModal,
   zoom,
-  showMarker,
+  showSearchMarker,
+  showSideResMarker,
+  sideResInfo,
+  sideResLocation,
   error
 });
 

@@ -5,8 +5,11 @@ import { buildingClick, zoomChanged } from '../store/actions'
 const mapStateToProps = (state) => {
   return {
     currentPos: state.currentPos,
+    resPos : state.sideResLocation,
+    resData : state.sideResinfo,
     zoom: state.zoom,
-    showMarker: state.showMarker
+    showSearchMarker: state.showSearchMarker,
+    showSideResMarker: state.showSideResMarker
   }
 }
 
