@@ -2,18 +2,18 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import './BuildingModal.css'
 
-export const BuildingModal = ({bldgNo, show, onModalHide}) => {
+export const BuildingModal = ({bldg, show, onModalHide}) => {
   return(
     <Modal
       show = {show}
       onHide = {onModalHide}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Building No.{bldgNo}</Modal.Title>
+        <Modal.Title>Building No.{bldg.bldgNo}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <p>Modal body text goes here.</p>
+        <p>{bldg.info}</p>
       </Modal.Body>
 
       <Modal.Footer>

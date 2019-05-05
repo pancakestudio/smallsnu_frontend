@@ -13,7 +13,7 @@ describe('BuildingModal', ()=>{
   it('renders correctly', ()=>{
     component = shallow(
       <BuildingModal
-        bldgNo={'301'}
+        bldg={{bldgNo: '301'}}
         show={true}
         onModalHide={mockModalHide}
       />)
@@ -38,7 +38,7 @@ describe('BuildingModal', ()=>{
 })
 
 describe('ConnectedBuilingModal', ()=>{
-  const initialState = {selectedBldg: '300', showBldgModal: true}
+  const initialState = {selectedBldg: {bldgNo: '300'}, showBldgModal: true}
   const mockStore = configureStore()
   let store, component
 

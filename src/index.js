@@ -6,11 +6,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery'
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import reducers from './store/reducers';
 import { Provider } from 'react-redux';
+import rootSaga from './store/sagas'
+import createSagaMiddleware from 'redux-saga'
 
-const store = createStore(reducers);
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
   <Provider store={store}>
