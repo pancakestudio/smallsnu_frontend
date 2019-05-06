@@ -17,4 +17,8 @@
   .header {
     height: 100px;
   }
+  .header .title {
+    width: 70px;
+    word-wrap: break-word;
+  }
 }

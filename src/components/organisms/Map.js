@@ -1,8 +1,7 @@
 import React from 'react'
 import {
    Map as LeafletMap, TileLayer,
-   Marker, Popup, ZoomControl, Polygon,
-   PolygonMarker
+   Marker, ZoomControl
  } from 'react-leaflet'
 import './Map.css'
 import { getBldgNo } from '../../utils/Functions'

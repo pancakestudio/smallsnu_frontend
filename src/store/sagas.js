@@ -13,8 +13,7 @@ function* handleRequestBldgInfo(){
       const rests = data.restaurants
       const semis = data.seminars
       const lecs = data.lectures
-      const posts = data.posts.slice(-3)
-      console.log(posts)
+      const posts = data.posts.slice(-3).reverse()
       yield put(actions.getBuildingSuccess(info, rests, semis, lecs, posts))
     } else {
       const errormsg = '건물 정보를 받아오지 못했습니다.'

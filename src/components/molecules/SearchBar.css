@@ -1,5 +1,11 @@
 @media(max-width: 575px){
   .searchBar {
-    width: 60px !important;
+    width: 150px !important;
+  }
+  .searchBar .search {
+    width: 90px !important;
+  }
+  .searchBar .submitButton{
+    width: 150px !important;
   }
 }
