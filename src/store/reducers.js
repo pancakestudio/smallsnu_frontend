@@ -54,6 +54,17 @@ function showBldgModal(state = false, action){
   }
 }
 
+function showResModal(state = false, action){
+  switch(action.type){
+    case types.MAP_RESTAURANT_CLICK:
+      return true
+    case types.MODAL_HIDE:
+      return false
+    default:
+      return state
+  }
+}
+
 function zoom(state = 17, action) {
   switch(action.type){
     case types.ZOOM_CHANGED:
@@ -75,6 +86,9 @@ function showSearchMarker(state = false, action){
 function showSideResMarker(state = false, action){
   switch(action.type){
     case types.GET_RESTAURANT_SUCCESS:
+    case types.ZOOM_CHANGED:
+    case types.MAP_RESTAURANT_CLICK:
+    case types.MODAL_HIDE:
       return true
     default:
       return false
@@ -87,23 +101,17 @@ function sideResInfo(state = null, action){
       let res = action.data
       var resArr = new Array
       for(let i = 0;i<res.length;i++){
-        resArr.push(res[i])
-      }
+        resArr.push(res[i])}
+      return resArr
     default :
       return state
   }
 }
 
-function sideResLocation(state = [[0,0]] , action){
+function mapResInfo(state = null, action){
   switch(action.type){
-    case types.GET_RESTAURANT_SUCCESS:
-      let res = action.data
-      var resArr = new Array
-      for(let i = 0; i<res.length;i++){
-        resArr.push(getBldgCoord(res[i].id))
-      }
-      return resArr
-
+    case types.MAP_RESTAURANT_CLICK:
+      return action.data
     default:
       return state
   }
@@ -125,11 +133,12 @@ const reducers = combineReducers({
   searchingBldg,
   selectedBldg,
   showBldgModal,
+  showResModal,
   zoom,
   showSearchMarker,
   showSideResMarker,
   sideResInfo,
-  sideResLocation,
+  mapResInfo,
   error
 });
 

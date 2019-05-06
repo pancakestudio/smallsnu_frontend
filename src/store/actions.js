@@ -14,6 +14,13 @@ export function sideResClick(){
   }
 }
 
+export function mapResClick(data){
+  return{
+    type: types.MAP_RESTAURANT_CLICK,
+    data,
+  }
+}
+
 export function getBuildingSuccess(info, restaurants, seminars, lectures, posts){
   return{
     type: types.GET_BUILDING_SUCCESS,
@@ -21,7 +28,7 @@ export function getBuildingSuccess(info, restaurants, seminars, lectures, posts)
     restaurants,
     seminars,
     lectures,
-    posts
+    posts,
   }
 }
 

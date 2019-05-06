@@ -28,8 +28,8 @@ function* handleRequestResInfo(){
     const action = yield take(types.SIDE_RESTAURANT_CLICK)
     const {data, error} = yield call(api.getRestaurantInfo)
     if(data && !error){
-      console.log(data);
       yield put(actions.getRestaurantSucess(data))
+      console.log(data);
     }else{
       const errormsg = '식당 정보를 받아오지 못했습니다.'
       yield put(actions.getRestaurantFailure(errormsg))

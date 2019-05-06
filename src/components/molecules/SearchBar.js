@@ -21,7 +21,7 @@ export const SearchBar = ({onSearchValueChange, onSearchBuilding, onSearchRestau
       onSearchRestaurant()
     }
     else {
-      alert("해당 번호를 가진 건물이 없습니다.")
+      alert("잘못된 검색어 형식입니다.")
     }
   }
 
@@ -31,7 +31,7 @@ export const SearchBar = ({onSearchValueChange, onSearchBuilding, onSearchRestau
         ref = {(ref)=>{input=ref}}
         onChange = {handleChange}
         type="text"
-        placeholder="건물 번호"
+        placeholder="건물 번호 / 식당"
         className="mr-sm-2"
       />
       <Button variant="outline-secondary" type="submit">검색</Button>
