@@ -8,9 +8,10 @@ export function buildingClick(bldgNo, curPos){
   };
 }
 
-export function sideResClick(){
+export function sideResClick(sideResToggle){
   return{
     type: types.SIDE_RESTAURANT_CLICK,
+    sideResToggle
   }
 }
 
@@ -39,10 +40,11 @@ export function getBuildingFailure(error){
   }
 }
 
-export function getRestaurantSucess(data){
+export function getRestaurantSucess(data, sideResToggle){
   return{
     type : types.GET_RESTAURANT_SUCCESS,
     data,
+    sideResToggle
   }
 }
 

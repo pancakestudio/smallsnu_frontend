@@ -2,9 +2,9 @@ import React from 'react'
 import { Nav, ListGroup } from 'react-bootstrap'
 import './Sidebar.css'
 
-export const Sidebar = ({onResClick}) => {
+export const Sidebar = ({onResClick, sideResToggle}) => {
   const handleResClick = () => {
-    onResClick()
+    onResClick(sideResToggle)
   }
 
   return(

@@ -86,12 +86,17 @@ function showSearchMarker(state = false, action){
 function showSideResMarker(state = false, action){
   switch(action.type){
     case types.GET_RESTAURANT_SUCCESS:
+    case types.SIDE_RESTAURANT_CLICK:
+      console.log(action.type)
+      console.log(action.sideResToggle)
+      if(action.sideResToggle) return false
+      return true
     case types.ZOOM_CHANGED:
     case types.MAP_RESTAURANT_CLICK:
     case types.MODAL_HIDE:
-      return true
+      return state
     default:
-      return false
+      return state
   }
 }
 
@@ -103,6 +108,15 @@ function sideResInfo(state = null, action){
       for(let i = 0;i<res.length;i++){
         resArr.push(res[i])}
       return resArr
+    default :
+      return state
+  }
+}
+
+function sideResToggle(state = false, action){
+  switch(action.type){
+    case types.SIDE_RESTAURANT_CLICK:
+      return !action.sideResToggle
     default :
       return state
   }
@@ -138,6 +152,7 @@ const reducers = combineReducers({
   showSearchMarker,
   showSideResMarker,
   sideResInfo,
+  sideResToggle,
   mapResInfo,
   error
 });
