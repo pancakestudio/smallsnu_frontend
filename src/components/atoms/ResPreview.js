@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
-import './BuildingRes.css'
+import './ResPreview.css'
 
-export const BuildingRes = ({kr_name, operating_hours}) => {
+export const ResPreview = ({kr_name, operating_hours}) => {
   return(
     <Card className="buildingRes border-right-0 border-left-0 rounded-0">
       <Card.Header as="h5">{kr_name}</Card.Header>

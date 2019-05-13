@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Tabs, Tab, Button } from 'react-bootstrap'
-import { BuildingRes } from '../atoms/BuildingRes'
-import { BuildingPost } from '../atoms/BuildingPost'
+import { ResPreview } from '../atoms/ResPreview'
+import { PostPreview } from '../atoms/PostPreview'
 import './BuildingInfo.css'
 
 export const BuildingInfo = ({rests, semis, posts}) => {
@@ -10,7 +10,7 @@ export const BuildingInfo = ({rests, semis, posts}) => {
     resList = (
       <Card className="resList">
         {rests.map((rest, index) => (
-          <BuildingRes key={rest.id} {...rest}/>
+          <ResPreview key={rest.id} {...rest}/>
         ))}
       </Card>
     )
@@ -27,7 +27,7 @@ export const BuildingInfo = ({rests, semis, posts}) => {
     postList = (
       <Card className="postList">
         {posts.map((post, index) => (
-          <BuildingPost key={post.id} {...post}/>
+          <PostPreview key={post.id} {...post}/>
         ))}
         <Card.Footer> <Button variant="link">게시판 바로가기</Button> </Card.Footer>
       </Card>
