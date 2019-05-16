@@ -34,7 +34,7 @@ export const SearchBar = ({onSearchValueChange, onSearchBuilding, onSearchRestau
         placeholder="건물 번호 / 식당"
         className="mr-sm-2"
       />
-      <Button variant="outline-secondary" type="submit">검색</Button>
+      <Button className="submitButton" variant="outline-secondary" type="submit">검색</Button>
     </Form>
   )
 }

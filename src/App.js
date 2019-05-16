@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Main from './components/pages/Main'
 import { connect } from 'react-redux'
 import './App.css';
