@@ -31,15 +31,16 @@ export const Map = ({
   let searchMarker, sideResMarker
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {currentPos}> </Marker>
-  }else if(showSideResMarker){
+  }
+  if(showSideResMarker){
     if(resData !== null){
       sideResMarker = resData.map(
-        pos => <Marker
+        data => <Marker
         className="sideResMarker"
-        position = {[pos.building.spot.latitude, pos.building.spot.longitude]}
-        onClick = {() =>{handleResClick(pos)}}>
+        position = {[data.building.spot.latitude, data.building.spot.longitude]}
+        onClick = {() =>{handleResClick(data)}}>
           <Tooltip permanent >
-            {pos.kr_name}
+            {data.kr_name}
           </Tooltip>
         </Marker>
       )

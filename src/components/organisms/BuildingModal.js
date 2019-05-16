@@ -3,6 +3,8 @@ import { Modal, Button } from 'react-bootstrap'
 import './BuildingModal.css'
 
 export const BuildingModal = ({bldg, show, onModalHide}) => {
+  console.log("building");
+  console.log(bldg)
   return(
     <Modal
       show = {show}

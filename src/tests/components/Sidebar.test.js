@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../../components/organisms/Sidebar'
+import { Sidebar } from '../../components/organisms/Sidebar'
 import { shallow } from 'enzyme'
 
 describe('Sidebar', ()=>{

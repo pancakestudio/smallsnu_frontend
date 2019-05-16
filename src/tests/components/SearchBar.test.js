@@ -68,6 +68,6 @@ describe('ConnectedSearchBar', ()=>{
     window.alert = jest.fn()
     component.find('input').instance().value = '0'
     component.find('Button').simulate('submit')
-    expect(window.alert).toHaveBeenCalledWith("해당 번호를 가진 건물이 없습니다.")
+    expect(window.alert).toHaveBeenCalledWith("잘못된 검색어 형식입니다.")
   })
 })
