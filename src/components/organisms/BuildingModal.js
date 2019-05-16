@@ -1,5 +1,6 @@
 import React from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
+import { BuildingInfo } from '../molecules/BuildingInfo'
 import './BuildingModal.css'
 
 export const BuildingModal = ({bldg, show, onModalHide}) => {
@@ -7,18 +8,23 @@ export const BuildingModal = ({bldg, show, onModalHide}) => {
     <Modal
       show = {show}
       onHide = {onModalHide}
+      dialogClassName = "building-modal"
+      centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>Building No.{bldg.bldgNo}</Modal.Title>
+        <Modal.Title>{bldg.bldgNo}동</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
+        <h5>건물 정보</h5>
         <p>{bldg.info}</p>
+        <BuildingInfo 
+          rests={bldg.restaurants}
+          semis={bldg.seminars}
+          posts={bldg.posts}
+        />
       </Modal.Body>
 
-      <Modal.Footer>
-        <Button variant="secondary" onClick = {onModalHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
     )
 }

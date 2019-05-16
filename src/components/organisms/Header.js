@@ -1,7 +1,6 @@
 import React from 'react'
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, Button } from 'react-bootstrap'
 import { FaBars } from 'react-icons/fa'
-import { getBldgCoord } from '../../utils/Functions'
 import SearchBar from '../../containers/SearchBar'
 import './Header.css'
 
