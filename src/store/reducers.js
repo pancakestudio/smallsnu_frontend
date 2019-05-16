@@ -43,10 +43,8 @@ function selectedBldg(state = {bldgNo: "0"}, action){
 
 function showBldgModal(state = false, action){
   switch(action.type){
-    case types.BUILDING_CLICK:
+    case types.GET_BUILDING_SUCCESS:
       return true
-    case types.SEARCH:
-      return false
     case types.MODAL_HIDE:
       return false
     default:

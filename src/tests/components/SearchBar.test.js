@@ -6,6 +6,8 @@ import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
 import { getBldgCoord } from '../../utils/Functions'
 import * as actions from '../../store/actions'
+import reducers from '../../store/reducers'
+import { createStore } from 'redux'
 
 describe('SearchBar', ()=>{
   let component
@@ -69,5 +71,14 @@ describe('ConnectedSearchBar', ()=>{
     component.find('input').instance().value = '0'
     component.find('Button').simulate('submit')
     expect(window.alert).toHaveBeenCalledWith("잘못된 검색어 형식입니다.")
+  })
+
+  it('reducers', ()=>{
+    store = createStore(reducers)
+    store.dispatch(actions.searchValueChange('62'))
+    expect(store.getState().searchingBldg).toBe('62')
+    store.dispatch(actions.search('200', getBldgCoord('200')))
+    expect(store.getState().selectedBldg.bldgNo).toBe('200')
+    expect(store.getState().currentPos).toBe(getBldgCoord('200'))
   })
 })
