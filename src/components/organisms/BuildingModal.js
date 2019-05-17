@@ -1,15 +1,14 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
-import { BuildingInfo } from '../molecules/BuildingInfo'
+import BuildingInfo from '../../containers/BuildingInfo'
 import './BuildingModal.css'
 
 export const BuildingModal = ({bldg, show, onModalHide}) => {
-  console.log(bldg)
   return(
     <Modal
       show = {show}
       onHide = {onModalHide}
-      dialogClassName = "building-modal"
+      dialogClassName = "buildingModal"
       centered
     >
       <Modal.Header closeButton>
@@ -27,5 +26,5 @@ export const BuildingModal = ({bldg, show, onModalHide}) => {
       </Modal.Body>
 
     </Modal>
-    )
+  )
 }

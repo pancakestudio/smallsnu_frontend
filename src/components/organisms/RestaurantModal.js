@@ -1,34 +1,30 @@
 import React from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import { RestaurantInfo } from '../molecules/RestaurantInfo'
 import './RestaurantModal.css'
 
-export const RestaurantModal = ({resInfo, show, onModalHide}) => {
-  console.log(resInfo);
+export const RestaurantModal = ({res, show, onModalHide}) => {
   let modal
-  if(resInfo){
-      modal = < Modal
+  if(res){
+      modal =
+      <Modal
         show = {show}
         onHide = {onModalHide}
         scrollable = {true}
+        dialogClassName = "restaurantModal"
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>{resInfo.kr_name}</Modal.Title>
+          <Modal.Title>{res.kr_name}</Modal.Title>
         </Modal.Header>
 
       <Modal.Body>
         <h5> 식당 정보 </h5>
         <p> restaurant information should be included in the backend </p>
         <RestaurantInfo
-          resInfo={resInfo}
+          res={res}
         />
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button variant = "secondary" onClick = {onModalHide}> Close</Button>
-      </Modal.Footer>
-
     </Modal>
   }else{
      modal = < Modal

@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
-import { RestaurantModal } from '../components/organisms/RestaurantModal'
+import { SeminarModal } from '../components/organisms/SeminarModal'
 import { modalHide } from '../store/actions'
 
 const mapStateToProps = (state) => {
-  return{
-    res : state.selectedRes,
-    show : state.showResModal
+  return {
+    semi: state.selectedSemi,
+    show: state.showSemiModal
   }
 }
 
@@ -17,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantModal)
+export default connect(mapStateToProps, mapDispatchToProps)(SeminarModal)

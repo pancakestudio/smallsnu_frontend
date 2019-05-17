@@ -11,3 +11,8 @@ export function getRestaurantInfo(){
   return axios.get(`restaurant/`)
     .catch(error => {return {error: error}})
 }
+
+export function getSeminarInfo(){
+  return axios.get('seminar/')
+    .catch(error => { return {error:error}})
+}

@@ -13,7 +13,7 @@ function* handleRequestBldgInfo(){
       const rests = data.restaurants
       const semis = data.seminars
       const lecs = data.lectures
-      const posts = data.posts.slice(-3).reverse()
+      const posts = data.posts
       yield put(actions.getBuildingSuccess(info, rests, semis, lecs, posts))
     } else {
       const errormsg = '건물 정보를 받아오지 못했습니다.'
@@ -24,7 +24,7 @@ function* handleRequestBldgInfo(){
 
 function* handleRequestResInfo(){
   while(true){
-    const action = yield take(types.SIDE_RESTAURANT_CLICK)
+    yield take(types.SIDE_RESTAURANT_CLICK)
     const {data, error} = yield call(api.getRestaurantInfo)
     if(data && !error){
       yield put(actions.getRestaurantSucess(data))
@@ -35,7 +35,22 @@ function* handleRequestResInfo(){
   }
 }
 
+function* handleRequestSemiInfo(){
+  while(true){
+    yield take(types.SIDE_SEMINAR_CLICK)
+    const { data, error } = yield call(api.getSeminarInfo)
+    if(data && !error){
+      const semis = data
+      yield put(actions.getSeminarSuccess(semis))
+    } else {
+      const errormsg = '세미나 정보를 받아오지 못했습니다.'
+      yield put(actions.getSeminarFailure(errormsg))
+    }
+  }
+}
+
 export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
   yield fork(handleRequestResInfo)
+  yield fork(handleRequestSemiInfo)
 }

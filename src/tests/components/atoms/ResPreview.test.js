@@ -1,5 +1,5 @@
 import React from 'react'
-import { ResPreview } from '../../components/atoms/ResPreview'
+import { ResPreview } from '../../../components/atoms/ResPreview'
 import { shallow } from 'enzyme'
 
 describe('ResPreview', ()=>{

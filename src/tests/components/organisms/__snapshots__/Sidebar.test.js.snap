@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectedSidebar matches snapshot 1`] = `ReactWrapper {}`;
+
+exports[`Sidebar matches snapshot 1`] = `ShallowWrapper {}`;
