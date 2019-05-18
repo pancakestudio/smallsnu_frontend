@@ -83,16 +83,12 @@ function showSearchMarker(state = false, action){
 
 function showSideResMarker(state = false, action){
   switch(action.type){
-    case types.GET_RESTAURANT_SUCCESS:
     case types.SIDE_RESTAURANT_CLICK:
-      console.log(action.type)
-      console.log(action.sideResToggle)
-      if(action.sideResToggle) return false
-      return true
+      return !state
     case types.ZOOM_CHANGED:
     case types.MAP_RESTAURANT_CLICK:
     case types.MODAL_HIDE:
-      return state
+    case types.GET_RESTAURANT_SUCCESS:
     default:
       return state
   }
@@ -101,11 +97,7 @@ function showSideResMarker(state = false, action){
 function sideResInfo(state = null, action){
   switch(action.type){
     case types.GET_RESTAURANT_SUCCESS:
-      let res = action.data
-      var resArr = new Array
-      for(let i = 0;i<res.length;i++){
-        resArr.push(res[i])}
-      return resArr
+      return action.resInfo
     default :
       return state
   }
@@ -114,7 +106,7 @@ function sideResInfo(state = null, action){
 function sideResToggle(state = false, action){
   switch(action.type){
     case types.SIDE_RESTAURANT_CLICK:
-      return !action.sideResToggle
+      return !state
     default :
       return state
   }
@@ -123,7 +115,7 @@ function sideResToggle(state = false, action){
 function mapResInfo(state = null, action){
   switch(action.type){
     case types.MAP_RESTAURANT_CLICK:
-      return action.data
+      return action.resInfo
     default:
       return state
   }

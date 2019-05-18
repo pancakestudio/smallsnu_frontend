@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     onZoom: (zoomLevel) => {
       dispatch(zoomChanged(zoomLevel))
     },
-    onResClick: (data) => {
-      dispatch(mapResClick(data))
+    onResClick: (resInfo) => {
+      dispatch(mapResClick(resInfo))
     }
   }
 }

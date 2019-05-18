@@ -18,11 +18,6 @@ describe('Map', ()=>{
   const mockZoom = jest.fn()
   const mockResClick = jest.fn()
 
-  let resData = null;
-  const handleResClick = (data) => {
-    resData = data;
-  }
-
   it('renders correctly', ()=>{
 
     component = shallow(
@@ -107,14 +102,25 @@ describe('Map', ()=>{
         }
       }
     }]})
+    component.find('.sideResToolTip').simulate('click',
+    { resData: [{
+      kr_name: '식당',
+      building: {
+        spot: {
+          latitude: 37.469,
+          longitude: 126.962
+        }
+      }
+    }]})
     expect(mockMapClick.mock.calls.length).toBe(1)
     expect(mockZoom.mock.calls.length).toBe(1)
-    expect(mockResClick.mock.calls.length).toBe(1)
+    expect(mockResClick.mock.calls.length).toBe(2)
   })
 })
 
 describe('ConnectedMap',()=>{
-  const initialState = {currentPos: {lat:37.459, lng:126.952}, zoom: 17, showMarker: false}
+  const initialState = {currentPos: {lat:37.459, lng:126.952}, zoom: 17,
+      showMarker: false, resData:{kr_name:"식당", operating_hours: ""}}
   const baseURL = 'http://127.0.0.1:8000'
   const request = jest
     .spyOn(api, 'getBuildingInfo')

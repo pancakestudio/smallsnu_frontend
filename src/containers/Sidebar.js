@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    onResClick: (sideResToggle) => {
-      dispatch(sideResClick(sideResToggle))
+    onResClick: () => {
+      dispatch(sideResClick())
     },
   }
 }

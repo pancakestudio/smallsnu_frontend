@@ -4,7 +4,7 @@ import { modalHide } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return{
-    data : state.mapResInfo,
+    resInfo : state.mapResInfo,
     show : state.showResModal
   }
 }

@@ -24,27 +24,30 @@ export const Map = ({
     onZoom(zoomLevel)
   }
 
-  const handleResClick = (data) => {
-    onResClick(data)
+  const handleResClick = (resInfo) => {
+    onResClick(resInfo)
   }
 
   let searchMarker, sideResMarker
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {currentPos}> </Marker>
   }
-  if(showSideResMarker){
-    if(resData !== null){
-      sideResMarker = resData.map(
-        data => <Marker
-        className="sideResMarker"
-        position = {[data.building.spot.latitude, data.building.spot.longitude]}
-        onClick = {() =>{handleResClick(data)}}>
-          <Tooltip permanent >
-            {data.kr_name}
-          </Tooltip>
-        </Marker>
-      )
-    }
+  if(showSideResMarker && resData){
+    sideResMarker = resData.map(
+      (resInfo) => (<Marker
+      className="sideResMarker"
+      position = {[resInfo.building.spot.latitude, resInfo.building.spot.longitude]}
+      onClick = {() =>{handleResClick(resInfo)}}>
+        <Tooltip
+          className="sideResToolTip"
+          permanent
+          clickable = {true}
+          onClick = {() =>{handleResClick(resInfo)}}
+        >
+          {resInfo.kr_name}
+        </Tooltip>
+      </Marker>
+    ))
   }
 
   return (

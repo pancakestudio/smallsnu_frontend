@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, FormControl, Button } from 'react-bootstrap'
-import { getBldgCoord } from '../../utils/Functions'
+import { getBldgCoord, getKeyword } from '../../utils/Functions'
 import './SearchBar.css'
 
 export const SearchBar = ({onSearchValueChange, onSearchBuilding, onSearchRestaurant}) => {
@@ -16,8 +16,7 @@ export const SearchBar = ({onSearchValueChange, onSearchBuilding, onSearchRestau
     if(bldgPos !== undefined){
       onSearchBuilding(bldgNo, bldgPos)
     }
-    else if(input.value === "restaurant" || input.value === "restaurants"
-    || input.value === "식당" || input.value === "쿰척"){
+    else if(getKeyword(input.value, "restaurant")){
       onSearchRestaurant()
     }
     else {
