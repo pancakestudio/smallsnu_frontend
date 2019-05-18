@@ -22,6 +22,20 @@ function* handleRequestBldgInfo(){
   }
 }
 
+function* handleRequestResInfo(){
+  while(true){
+    const action = yield take(types.SIDE_RESTAURANT_CLICK)
+    const {data, error} = yield call(api.getRestaurantInfo)
+    if(data && !error){
+      yield put(actions.getRestaurantSucess(data))
+    }else{
+      const errormsg = '식당 정보를 받아오지 못했습니다.'
+      yield put(actions.getRestaurantFailure(errormsg))
+    }
+  }
+}
+
 export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
+  yield fork(handleRequestResInfo)
 }

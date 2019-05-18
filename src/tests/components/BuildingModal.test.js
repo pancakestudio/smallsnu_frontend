@@ -58,7 +58,6 @@ describe('ConnectedBuilingModal', ()=>{
     expect(component).toMatchSnapshot()
   })
 
-
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
   })

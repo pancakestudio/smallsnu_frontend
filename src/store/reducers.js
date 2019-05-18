@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
+import { getBldgCoord } from '../utils/Functions'
 import * as types from './actionTypes'
+
 
 function currentPos(state = {lat: 37.459, lng: 126.952}, action){
   switch(action.type){
@@ -50,6 +52,17 @@ function showBldgModal(state = false, action){
   }
 }
 
+function showResModal(state = false, action){
+  switch(action.type){
+    case types.MAP_RESTAURANT_CLICK:
+      return true
+    case types.MODAL_HIDE:
+      return false
+    default:
+      return state
+  }
+}
+
 function zoom(state = 17, action) {
   switch(action.type){
     case types.ZOOM_CHANGED:
@@ -59,7 +72,7 @@ function zoom(state = 17, action) {
   }
 }
 
-function showMarker(state = false, action){
+function showSearchMarker(state = false, action){
   switch(action.type){
     case types.SEARCH:
       return true
@@ -68,9 +81,51 @@ function showMarker(state = false, action){
   }
 }
 
+function showSideResMarker(state = false, action){
+  switch(action.type){
+    case types.SIDE_RESTAURANT_CLICK:
+      return !state
+    case types.ZOOM_CHANGED:
+    case types.MAP_RESTAURANT_CLICK:
+    case types.MODAL_HIDE:
+    case types.GET_RESTAURANT_SUCCESS:
+    default:
+      return state
+  }
+}
+
+function sideResInfo(state = null, action){
+  switch(action.type){
+    case types.GET_RESTAURANT_SUCCESS:
+      return action.resInfo
+    default :
+      return state
+  }
+}
+
+function sideResToggle(state = false, action){
+  switch(action.type){
+    case types.SIDE_RESTAURANT_CLICK:
+      return !state
+    default :
+      return state
+  }
+}
+
+function mapResInfo(state = null, action){
+  switch(action.type){
+    case types.MAP_RESTAURANT_CLICK:
+      return action.resInfo
+    default:
+      return state
+  }
+}
+
 function error(state = "", action){
   switch(action.type){
     case types.GET_BUILDING_FAILURE:
+      return action.error
+    case types.GET_RESTAURANT_FAILURE:
       return action.error
     default:
       return ""
@@ -82,8 +137,13 @@ const reducers = combineReducers({
   searchingBldg,
   selectedBldg,
   showBldgModal,
+  showResModal,
   zoom,
-  showMarker,
+  showSearchMarker,
+  showSideResMarker,
+  sideResInfo,
+  sideResToggle,
+  mapResInfo,
   error
 });
 

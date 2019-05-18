@@ -4,6 +4,7 @@ import { BuildingInfo } from '../molecules/BuildingInfo'
 import './BuildingModal.css'
 
 export const BuildingModal = ({bldg, show, onModalHide}) => {
+  console.log(bldg)
   return(
     <Modal
       show = {show}

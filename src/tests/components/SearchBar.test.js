@@ -15,7 +15,10 @@ describe('SearchBar', ()=>{
   const mockSearch = jest.fn()
 
   it('renders correctly', ()=>{
-    component = shallow(<SearchBar onSearchValueChange={mockSearchValueChange} onSearch={mockSearch}/>)
+    component = shallow(
+      <SearchBar
+        onSearchValueChange={mockSearchValueChange}
+        onSearch={mockSearch}/>)
   })
 
   it('has form, form control, and button', ()=>{
@@ -32,6 +35,9 @@ describe('SearchBar', ()=>{
     const input = component.find('FormControl')
     input.simulate('change', {target: {value: '301'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(1)
+
+    input.simulate('change', {target: {value: '식당'}})
+    expect(mockSearchValueChange.mock.calls.length).toBe(2)
   })
 })
 
@@ -60,17 +66,32 @@ describe('ConnectedSearchBar', ()=>{
     expect(store.getActions()[0]).toEqual(actions.searchValueChange('301'))
   })
 
-  it('dispatches search action', ()=>{
+  it('dispatches search action', () => {
     component.find('input').instance().value = '302'
     component.find('Button').simulate('submit')
     expect(store.getActions()[1]).toEqual(actions.search('302', getBldgCoord('302')))
+  })
+
+  it('dispatches searchRestaurant action', () => {
+    component.find('input').instance().value = 'restaurant'
+    component.find('Button').simulate('submit')
+    expect(store.getActions()[2]).toEqual(actions.sideResClick())
   })
 
   it('shows alert on invalid input', ()=>{
     window.alert = jest.fn()
     component.find('input').instance().value = '0'
     component.find('Button').simulate('submit')
-    expect(window.alert).toHaveBeenCalledWith("해당 번호를 가진 건물이 없습니다.")
+    expect(window.alert).toHaveBeenCalledWith("잘못된 검색어 형식입니다.")
+  })
+
+  it('reducers', ()=>{
+    store = createStore(reducers)
+    store.dispatch(actions.searchValueChange('62'))
+    expect(store.getState().searchingBldg).toBe('62')
+    store.dispatch(actions.search('200', getBldgCoord('200')))
+    expect(store.getState().selectedBldg.bldgNo).toBe('200')
+    expect(store.getState().currentPos).toBe(getBldgCoord('200'))
   })
 
   it('reducers', ()=>{

@@ -8,6 +8,19 @@ export function buildingClick(bldgNo, curPos){
   };
 }
 
+export function sideResClick(){
+  return{
+    type: types.SIDE_RESTAURANT_CLICK,
+  }
+}
+
+export function mapResClick(resInfo){
+  return{
+    type: types.MAP_RESTAURANT_CLICK,
+    resInfo,
+  }
+}
+
 export function getBuildingSuccess(info, restaurants, seminars, lectures, posts){
   return{
     type: types.GET_BUILDING_SUCCESS,
@@ -15,13 +28,27 @@ export function getBuildingSuccess(info, restaurants, seminars, lectures, posts)
     restaurants,
     seminars,
     lectures,
-    posts
+    posts,
   }
 }
 
 export function getBuildingFailure(error){
   return{
     type: types.GET_BUILDING_FAILURE,
+    error
+  }
+}
+
+export function getRestaurantSucess(resInfo){
+  return{
+    type : types.GET_RESTAURANT_SUCCESS,
+    resInfo,
+  }
+}
+
+export function getRestaurantFailure(error){
+  return{
+    type: types.GET_RESTAURANT_FAILURE,
     error
   }
 }

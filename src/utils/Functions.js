@@ -1,6 +1,7 @@
 // ------------- Building Info ---------------//
 // get the json Data about Buildings information
 var bldgCoords = require('./BuildingCoordinate.json');
+var keywords = require('./SearchKeywords.json');
 var info = []
 // get all the building info
 for(let i = 0; i<bldgCoords.length;i++){
@@ -48,4 +49,14 @@ export function getBldgCoord(bldgNo){
     return info[bldgNo].center;
   }
   return undefined;
+}
+
+export function getKeyword(inputValue, subject){
+  if(subject === "restaurant"){
+    for(let i = 0; i<keywords.length;i++){
+      if(inputValue === keywords[i].keyword) return true;
+    }
+  }else{
+    return false;
+  }return false;
 }
