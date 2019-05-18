@@ -93,4 +93,13 @@ describe('ConnectedSearchBar', ()=>{
     expect(store.getState().selectedBldg.bldgNo).toBe('200')
     expect(store.getState().currentPos).toBe(getBldgCoord('200'))
   })
+
+  it('reducers', ()=>{
+    store = createStore(reducers)
+    store.dispatch(actions.searchValueChange('62'))
+    expect(store.getState().searchingBldg).toBe('62')
+    store.dispatch(actions.search('200', getBldgCoord('200')))
+    expect(store.getState().selectedBldg.bldgNo).toBe('200')
+    expect(store.getState().currentPos).toBe(getBldgCoord('200'))
+  })
 })
