@@ -98,7 +98,7 @@ export function showRestaurant(resInfo){
   }
 }
 
-export function getRestaurantSucess(resInfo){
+export function getRestaurantSuccess(resInfo){
   return{
     type : types.GET_RESTAURANT_SUCCESS,
     resInfo,

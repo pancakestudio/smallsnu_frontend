@@ -39,14 +39,35 @@ describe('ConnectedSidebar', ()=>{
     "time": "2019년 3월 28일 목요일 PM 1:30 - 2019년 3월 28일 목요일 PM 2:30",
     "link": "https://cse.snu.ac.kr/node/36950"
   }
+  const restaurant = {
+    id: 1,
+    kr_name: '식당',
+    building: {
+      spot: {
+        latitude: 37.469,
+        longitude: 126.962
+      }
+    }
+  }
   const baseURL = 'http://127.0.0.1:8000'
-  const request = jest
+  const semiRequest = jest
     .spyOn(api, 'getSeminarInfo')
     .mockImplementationOnce(()=>Promise.resolve({
       data: [seminar]
     }))
     .mockImplementationOnce(()=>Promise.resolve({
       data: [seminar]
+    }))
+    .mockImplementationOnce(()=>Promise.resolve({
+      error: "error"
+    }))
+  const resRequest = jest
+    .spyOn(api, 'getRestaurantInfo')
+    .mockImplementationOnce(()=>Promise.resolve({
+      data: [restaurant]
+    }))
+    .mockImplementationOnce(()=>Promise.resolve({
+      data: [restaurant]
     }))
     .mockImplementationOnce(()=>Promise.resolve({
       error: "error"
@@ -82,6 +103,15 @@ describe('ConnectedSidebar', ()=>{
     expect(store.getActions()[1]).toEqual(actions.getSeminarSuccess([seminar]))
   })
 
+  it('dispatches sideResClick action', ()=>{
+    component.find('Bootstrap(ListGroupItem)').at(4).prop('onClick')()
+    expect(store.getActions()[2]).toEqual(actions.sideResClick())
+  })
+
+  it('handleRequestSemiInfo dispatches proper actions', async ()=>{
+    expect(store.getActions()[3]).toEqual(actions.getRestaurantSuccess([restaurant]))
+  })
+
   it('reducers', async ()=>{
     const sagaMiddleware = createSagaMiddleware()
     store = createStore(reducers, applyMiddleware(sagaMiddleware))
@@ -96,5 +126,15 @@ describe('ConnectedSidebar', ()=>{
     expect(store.getState().showSemiMarkers).toEqual(false)
     await Promise.resolve()
     expect(store.getState().error).toBe('세미나 정보를 받아오지 못했습니다.')
+
+    store.dispatch(actions.sideResClick())
+    expect(store.getState().showResMarkers).toEqual(true)
+    await Promise.resolve()
+    expect(store.getState().restaurantList).toEqual([restaurant])
+
+    store.dispatch(actions.sideResClick())
+    expect(store.getState().showResMarkers).toEqual(false)
+    await Promise.resolve()
+    expect(store.getState().error).toBe('식당 정보를 받아오지 못했습니다.')
   })
 })
