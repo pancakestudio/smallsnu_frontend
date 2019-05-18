@@ -263,5 +263,9 @@ describe('ConnectedMap',()=>{
 
     store.dispatch(actions.hideMarkers())
     expect(store.getState().showSemiMarkers).toBe(false)
+
+    store.dispatch(actions.showRestaurant(restaurants[0]))
+    expect(store.getState().selectedRes).toBe(restaurants[0])
+    expect(store.getState().showResModal).toBe(true)
   })
 })

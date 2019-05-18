@@ -4,7 +4,7 @@ import { ResPreview } from '../atoms/ResPreview'
 import { EtcPreview } from '../atoms/EtcPreview'
 import './RestaurantInfo.css'
 
-export const RestaurantInfo = (res) => {
+export const RestaurantInfo = ({res}) => {
   let op_hours, etc
   if(res){
     op_hours = (
@@ -28,7 +28,7 @@ export const RestaurantInfo = (res) => {
     etc = (
       <Card className = "etc border-0">
         <Card.Body>
-          <Card.Text>정보가 없습니다. </Card.Text>
+          <Card.Text>정보가 없습니다.</Card.Text>
         </Card.Body>
       </Card>
     )

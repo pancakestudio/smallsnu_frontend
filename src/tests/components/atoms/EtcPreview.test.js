@@ -1,5 +1,5 @@
 import React from 'react'
-import { EtcPreview } from '../../components/atoms/EtcPreview'
+import { EtcPreview } from '../../../components/atoms/EtcPreview'
 import { shallow } from 'enzyme'
 
 describe('EtcPreview', () =>{

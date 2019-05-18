@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux'
-import { RestaurantModal } from '../../components/organisms/RestaurantModal'
-import ConnectedRestaurantModal from '../../containers/RestaurantModal'
+import { RestaurantModal } from '../../../components/organisms/RestaurantModal'
+import ConnectedRestaurantModal from '../../../containers/RestaurantModal'
 import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
-import * as actions from '../../store/actions'
+import * as actions from '../../../store/actions'
 
 describe('RestaurantModal', () => {
   let component
