@@ -1,0 +1,9 @@
+.semiPreview {
+  margin: 5px 0px;
+  transition: all 0.2s;
+}
+
+.cardHeader:hover {
+  background-color: lightgray;
+  transition: all 0.2s;
+}

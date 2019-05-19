@@ -1,21 +1,24 @@
 import React from 'react'
 import {
    Map as LeafletMap, TileLayer,
-   Marker, Popup, Tooltip, ZoomControl, Polygon,
-   PolygonMarker
+   Marker, Tooltip, ZoomControl
  } from 'react-leaflet'
 import './Map.css'
 import { getBldgNo } from '../../utils/Functions'
 
 export const Map = ({
-  currentPos, resData,
-  zoom, showSearchMarker, showSideResMarker,
-  onMapClick, onZoom, onResClick} ) => {
+  currentPos, zoom, showSearchMarker,
+  resData, showResMarkers,
+  semis, showSemiMarkers,
+  onMapClick, onZoom, onBackgroundClick,
+  onSeminarListClick, onResClick}) => {
 
   const handleClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
     if(bldgNo && bldgNo!=="0"){
       onMapClick(bldgNo, e.latlng)
+    } else {
+      onBackgroundClick()
     }
   }
 
@@ -24,32 +27,62 @@ export const Map = ({
     onZoom(zoomLevel)
   }
 
-  const handleResClick = (resInfo) => {
-    onResClick(resInfo)
-  }
-
-  let searchMarker, sideResMarker
+  let searchMarker, resMarkers, semiMarkers
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {currentPos}> </Marker>
   }
-  if(showSideResMarker && resData){
-    sideResMarker = resData.map(
-      (resInfo) => (<Marker
-      className="sideResMarker"
-      position = {[resInfo.building.spot.latitude, resInfo.building.spot.longitude]}
-      onClick = {() =>{handleResClick(resInfo)}}>
+
+  if(showResMarkers && resData){
+    resMarkers = resData.map((res) => (
+      <Marker
+        key={res.id}
+        className="resMarker"
+        position = {[res.building.spot.latitude, res.building.spot.longitude]}
+        onClick = {() =>{onResClick(res)}}
+      >
         <Tooltip
-          className="sideResToolTip"
+          className="resToolTip"
           permanent
-          clickable = {true}
-          onClick = {() =>{handleResClick(resInfo)}}
         >
-          {resInfo.kr_name}
+          {res.kr_name}
         </Tooltip>
       </Marker>
     ))
   }
 
+  if(showSemiMarkers){
+    if(semis && semis.length!==0){
+      let semiBldgs = []
+      semis.forEach((semi, index) => {
+        let bldg
+        if(semiBldgs.length!==0)
+          bldg = semiBldgs.find((b)=>(b.code===semi.building.code))
+        if(!bldg){
+          bldg = semi.building
+          bldg.seminars = [semi]
+          semiBldgs.push(bldg)
+        } else {
+          bldg.seminars.push(semi)
+        }
+      })
+      semiMarkers = semiBldgs.map((bldg, index) => (
+        <Marker
+          key = {bldg.id}
+	        className="semiMarker"
+	        position = {[bldg.spot.latitude, bldg.spot.longitude]}
+          onClick = {() =>{onSeminarListClick(bldg.seminars)}}
+        >
+          <Tooltip 
+            className="semiToolTip"
+            permanent
+          >
+            총 {bldg.seminars.length} 건
+          </Tooltip>
+        </Marker>
+      ))
+    }
+  }
+    
   return (
       <LeafletMap className = "leafletMap"
         center = {currentPos}
@@ -65,8 +98,9 @@ export const Map = ({
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        { searchMarker }
-        { sideResMarker }
+          { searchMarker }
+          { resMarkers }
+          { semiMarkers }
         <ZoomControl position = 'bottomright'/>
       </LeafletMap>
   )

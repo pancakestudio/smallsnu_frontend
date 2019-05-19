@@ -1,12 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux'
-import { SearchBar } from '../../components/molecules/SearchBar'
-import ConnectedSearchBar from '../../containers/SearchBar'
+import { SearchBar } from '../../../components/molecules/SearchBar'
+import ConnectedSearchBar from '../../../containers/SearchBar'
 import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
-import { getBldgCoord } from '../../utils/Functions'
-import * as actions from '../../store/actions'
-import reducers from '../../store/reducers'
+import { getBldgCoord } from '../../../utils/Functions'
+import * as actions from '../../../store/actions'
+import reducers from '../../../store/reducers'
 import { createStore } from 'redux'
 
 describe('SearchBar', ()=>{
