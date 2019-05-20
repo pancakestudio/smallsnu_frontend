@@ -3,7 +3,7 @@ import { Modal, Card, Tabs, Tab, ListGroup, Button } from 'react-bootstrap'
 import { PostPreview } from '../atoms/PostPreview'
 import './PostBoardModal.css'
 
-export const PostBoardModal = ({show, onModalHide, posts, onPostClick,
+export const PostBoardModal = ({show, bldg, onModalHide, posts, onPostClick,
   onShowBuildingModal, onShowWritePostModal}) => {
   let modal
   if(posts && posts.length!==0){

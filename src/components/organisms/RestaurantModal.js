@@ -1,30 +1,33 @@
 import React from 'react'
-import { Modal } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { RestaurantInfo } from '../molecules/RestaurantInfo'
 import './RestaurantModal.css'
 
-export const RestaurantModal = ({res, show, onModalHide}) => {
+export const RestaurantModal = ({resInfo, show, onModalHide}) => {
   let modal
-  if(res){
-      modal =
-      <Modal
+  if(resInfo){
+      modal = < Modal
         show = {show}
         onHide = {onModalHide}
         scrollable = {true}
-        dialogClassName = "restaurantModal"
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>{res.kr_name}</Modal.Title>
+          <Modal.Title>{resInfo.kr_name}</Modal.Title>
         </Modal.Header>
 
       <Modal.Body>
         <h5> 식당 정보 </h5>
         <p> restaurant information should be included in the backend </p>
         <RestaurantInfo
-          res={res}
+          resInfo={resInfo}
         />
       </Modal.Body>
+
+      <Modal.Footer>
+        <Button variant = "secondary" onClick = {onModalHide}>Close</Button>
+      </Modal.Footer>
+
     </Modal>
   }else{
      modal = < Modal
@@ -35,6 +38,11 @@ export const RestaurantModal = ({res, show, onModalHide}) => {
        <Modal.Header closeButton>
          <Modal.Title>식당 정보가 없습니다.</Modal.Title>
        </Modal.Header>
+       <Modal.Body>
+       정보없음. 암튼 그럼.
+       </Modal.Body>
+       <Modal.Footer>
+       </Modal.Footer>
    </Modal>
  }
    return modal

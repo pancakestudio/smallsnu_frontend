@@ -80,6 +80,14 @@ export function showWritePost() {
   };
 }
 
+export function savePost(post, bldgNo){
+  return{
+    type: types.SAVE_POST,
+    post,
+    bldgNo
+  }
+}
+
 /******** PostList ********/
 export function showPostList(posts){
   return{

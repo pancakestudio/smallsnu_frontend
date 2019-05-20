@@ -3,8 +3,6 @@ import { Modal, Button } from 'react-bootstrap'
 import './PostModal.css'
 
 export const PostModal = ({post, posts, show, onModalHide, onShowPostList}) => {
-  console.log("PostModal")
-  console.log(posts)
   let modal
   if(post){
     modal = <Modal

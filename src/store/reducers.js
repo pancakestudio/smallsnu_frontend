@@ -96,11 +96,24 @@ function searchingBldg(state = "0", action){
       return state
   }
 }
+
+/******** WritePost ********/
+
+function showWritePostModal(state = false, action){
+  switch(action.type){
+    case types.SHOW_WRITE_POST:
+      return true
+    default:
+      return false
+  }
+}
+
 /******** PostList ********/
 
 function showPostBoardModal(state = false, action){
   switch(action.type){
     case types.SHOW_POST_LIST:
+    case types.SAVE_POST:
       return true
     default:
       return false
@@ -112,6 +125,8 @@ function selectedPostList(state = [{}], action){
     case types.SHOW_POST_LIST:
     case types.GET_BUILDING_SUCCESS:
       return action.posts
+    case types.SAVE_POST:
+      return [...state, action.post]
     default:
       return state
   }
@@ -245,7 +260,7 @@ function error(state = "", action){
 const reducers = combineReducers({
   currentPos, zoom, selectedBldg, showBldgModal, showSearchMarker, showResMarkers, showSemiMarkers, // Map
   searchingBldg, // SearchBar
-  // WritePost
+  showWritePostModal,// WritePost
   selectedPostList, showPostBoardModal, // PostList
   selectedPost, showPostModal, // Post
   selectedRes, showResModal, restaurantList, // Restaurant

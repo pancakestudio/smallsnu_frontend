@@ -7,7 +7,7 @@ import SeminarModal from '../../containers/SeminarModal'
 import SeminarListModal from '../../containers/SeminarListModal'
 import PostBoardModal from '../../containers/PostBoardModal'
 import PostModal from '../../containers/PostModal'
-import WritePostModal from '../../containers/PostModal'
+import WritePostModal from '../../containers/WritePostModal'
 import Sidebar from '../../containers/Sidebar'
 import './Main.css'
 

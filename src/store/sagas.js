@@ -49,8 +49,20 @@ function* handleRequestSemiInfo(){
   }
 }
 
+function* handleSave(){
+  while(true){
+    const action = yield take(types.SAVE_POST)
+    const {error} = yield call(api.postWritePost, action.post, action.bldgNo)
+    if(error){
+      const errormsg = '게시물을 저장하지 못했습니다.'
+      alert(errormsg)
+    }
+  }
+}
+
 export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
   yield fork(handleRequestResInfo)
   yield fork(handleRequestSemiInfo)
+  yield fork(handleSave)
 }
