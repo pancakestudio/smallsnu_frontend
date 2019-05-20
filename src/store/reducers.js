@@ -44,9 +44,10 @@ function selectedBldg(state = {bldgNo: "0"}, action){
 function showBldgModal(state = false, action){
   switch(action.type){
     case types.GET_BUILDING_SUCCESS:
+    case types.SHOW_BUILDING:
       return true
     default:
-      return false 
+      return false
   }
 }
 
@@ -91,6 +92,41 @@ function searchingBldg(state = "0", action){
   switch(action.type){
     case types.SEARCH_VALUE_CHANGE:
       return action.bldgNo
+    default:
+      return state
+  }
+}
+
+/******** WritePost ********/
+
+function showWritePostModal(state = false, action){
+  switch(action.type){
+    case types.SHOW_WRITE_POST:
+      return true
+    default:
+      return false
+  }
+}
+
+/******** PostList ********/
+
+function showPostBoardModal(state = false, action){
+  switch(action.type){
+    case types.SHOW_POST_LIST:
+    case types.SAVE_POST:
+      return true
+    default:
+      return false
+  }
+}
+
+function selectedPostList(state = [{}], action){
+  switch(action.type){
+    case types.SHOW_POST_LIST:
+    case types.GET_BUILDING_SUCCESS:
+      return action.posts
+    case types.SAVE_POST:
+      return [...state, action.post]
     default:
       return state
   }
@@ -224,6 +260,8 @@ function error(state = "", action){
 const reducers = combineReducers({
   currentPos, zoom, selectedBldg, showBldgModal, showSearchMarker, showResMarkers, showSemiMarkers, // Map
   searchingBldg, // SearchBar
+  showWritePostModal,// WritePost
+  selectedPostList, showPostBoardModal, // PostList
   selectedPost, showPostModal, // Post
   selectedRes, showResModal, restaurantList, // Restaurant
   selectedSemi, selectedSemiList, showSemiModal, showSemiListModal, activeSemiPage, seminarList, // Seminar

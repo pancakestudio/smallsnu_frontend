@@ -18,7 +18,7 @@ export const BuildingModal = ({bldg, show, onModalHide}) => {
       <Modal.Body>
         <h5>건물 정보</h5>
         <p>{bldg.info}</p>
-        <BuildingInfo 
+        <BuildingInfo
           rests={bldg.restaurants}
           semis={bldg.seminars}
           posts={bldg.posts}

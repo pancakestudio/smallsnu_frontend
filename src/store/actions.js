@@ -36,6 +36,12 @@ export function getBuildingFailure(error){
   }
 }
 
+export function showBuilding(){
+  return{
+    type: types.SHOW_BUILDING,
+  }
+}
+
 export function hideMarkers(){
   return {
     type: types.HIDE_MARKERS
@@ -67,22 +73,37 @@ export function modalHide(){
   };
 }
 
+/******** WritePost ********/
+export function showWritePost() {
+  return{
+    type: types.SHOW_WRITE_POST,
+  };
+}
+
+export function savePost(post, bldgNo){
+  return{
+    type: types.SAVE_POST,
+    post,
+    bldgNo
+  }
+}
+
+/******** PostList ********/
+export function showPostList(posts){
+  return{
+    type: types.SHOW_POST_LIST,
+    posts
+  };
+}
+
 /******** Post ********/
 
 export function showPost(post){
   return {
     type: types.SHOW_POST,
     post
-  }
+  };
 }
-
-export function showPostList(posts){
-  return {
-    type: types.SHOW_POST_LIST,
-    posts
-  }
-}
-
 /******** Restaurant ********/
 
 export function sideResClick(){
