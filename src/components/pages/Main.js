@@ -5,6 +5,9 @@ import BuildingModal from '../../containers/BuildingModal'
 import RestaurantModal from '../../containers/RestaurantModal'
 import SeminarModal from '../../containers/SeminarModal'
 import SeminarListModal from '../../containers/SeminarListModal'
+import PostBoardModal from '../../containers/PostBoardModal'
+import PostModal from '../../containers/PostModal'
+import WritePostModal from '../../containers/PostModal'
 import Sidebar from '../../containers/Sidebar'
 import './Main.css'
 
@@ -18,6 +21,9 @@ const Main = (props) => {
       <RestaurantModal />
       <SeminarModal />
       <SeminarListModal />
+      <PostBoardModal />
+      <PostModal />
+      <WritePostModal />
     </div>
   )
 }

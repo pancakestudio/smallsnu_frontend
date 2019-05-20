@@ -5,7 +5,8 @@ import { modalHide, showPost, showBuilding, showWritePost } from '../store/actio
 const mapStateToProps = (state) => {
   return{
     show : state.showPostBoardModal,
-    posts : state.selectedPostBoard
+    posts : state.selectedPostList,
+    bldg : state.selectedBldg
   }
 }
 
@@ -17,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     onPostClick: (post) => {
       dispatch(showPost(post))
     },
-    onShowBuildingModal: () => {
+    onShowBuildingModal: (bldg) => {
       dispatch(showBuilding())
     },
     onShowWritePostModal: () => {

@@ -17,6 +17,7 @@ export const PostBoardModal = ({show, onModalHide, posts, onPostClick,
       <Modal.Header closeButton>
         <Modal.Title>게시판</Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
         <Card className="postList">
           {posts.map((post) => (

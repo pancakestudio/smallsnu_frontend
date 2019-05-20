@@ -19,7 +19,7 @@ export const SeminarListModal = ({semis, activePage, show, onSeminarClick, onMod
     }
   }
   return (
-    <Modal 
+    <Modal
       show = {show}
       onHide = {onModalHide}
       dialogClassName = "seminarListModal"

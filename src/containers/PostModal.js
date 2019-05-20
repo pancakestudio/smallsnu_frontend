@@ -5,6 +5,7 @@ import { modalHide, showPostList } from '../store/actions'
 const mapStateToProps = (state) => {
   return {
     post: state.selectedPost,
+    posts : state.selectedPostList,
     show: state.showPostModal
   }
 }
@@ -14,8 +15,8 @@ const mapDispatchToProps = (dispatch) => {
     onModalHide: () => {
       dispatch(modalHide())
     },
-    onShowPostList: () => {
-      dispatch(showPostList())
+    onShowPostList: (posts) => {
+      dispatch(showPostList(posts))
     }
   }
 }

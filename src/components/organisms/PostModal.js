@@ -2,9 +2,9 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import './PostModal.css'
 
-export const PostModal = ({post, show, onModalHide, onShowPostList}) => {
-  console.log("post info")
-  console.log(post)
+export const PostModal = ({post, posts, show, onModalHide, onShowPostList}) => {
+  console.log("PostModal")
+  console.log(posts)
   let modal
   if(post){
     modal = <Modal
@@ -23,7 +23,7 @@ export const PostModal = ({post, show, onModalHide, onShowPostList}) => {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant = "secondary" onClick = {onShowPostList}>뒤로가기</Button>
+        <Button variant = "secondary" onClick = {() =>onShowPostList(posts)}>뒤로가기</Button>
       </Modal.Footer>
     </Modal>
   }else{
