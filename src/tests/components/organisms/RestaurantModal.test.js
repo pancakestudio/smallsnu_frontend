@@ -13,7 +13,7 @@ describe('RestaurantModal', () => {
   it('renders correctly', () => {
     component = shallow(
     <RestaurantModal
-        res = {{kr_name : '학생회관 식당'}}
+        resInfo = {{kr_name:'학생회관 식당'}}
         show = {true}
         onModalHide = {mockModalHide}
     />)
@@ -32,10 +32,8 @@ describe('RestaurantModal', () => {
   })
 
   it('data is given null', () => {
-    component.setProps({res: null})
+    component.setProps({resInfo: null})
     expect(component.find('ModalTitle').text()).toBe('식당 정보가 없습니다.')
-    component.setProps({res: {kr_name:'학생회관 식당'}})
-    expect(component.find('ModalTitle').text()).toBe('학생회관 식당')
   })
 
   it('calls functions', ()=>{
