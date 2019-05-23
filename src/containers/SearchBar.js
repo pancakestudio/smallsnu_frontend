@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { SearchBar } from '../components/molecules/SearchBar'
 import { searchValueChange, search } from '../store/actions'
-import { sideResClick } from '../store/actions'
+import { requestAllRestaurants } from '../store/actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(search(bldgNo, bldgPos))
     },
     onSearchRestaurant: () => {
-      dispatch(sideResClick())
+      dispatch(requestAllRestaurants())
     },
   }
 }

@@ -1,38 +1,34 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { RestaurantInfo } from '../molecules/RestaurantInfo'
+import { historyPush } from '../../utils/Functions'
 import './RestaurantModal.css'
 
-export const RestaurantModal = ({resInfo, show, onModalHide}) => {
+export const RestaurantModal = ({res}) => {
   let modal
-  if(resInfo){
-      modal = < Modal
-        show = {show}
-        onHide = {onModalHide}
+  if(res){
+      modal = <Modal
+        show = {true}
+        onHide = {()=>{historyPush('/')}}
         scrollable = {true}
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>{resInfo.kr_name}</Modal.Title>
+          <Modal.Title>{res.kr_name}</Modal.Title>
         </Modal.Header>
 
       <Modal.Body>
         <h5> 식당 정보 </h5>
         <p> restaurant information should be included in the backend </p>
         <RestaurantInfo
-          resInfo={resInfo}
+          res={res}
         />
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button variant = "secondary" onClick = {onModalHide}>Close</Button>
-      </Modal.Footer>
-
     </Modal>
   }else{
-     modal = < Modal
-       show = {show}
-       onHide = {onModalHide}
+     modal = <Modal
+       show = {true}
+       onHide = {()=>{historyPush('/')}}
        centered
      >
        <Modal.Header closeButton>

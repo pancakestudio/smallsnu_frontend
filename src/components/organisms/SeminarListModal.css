@@ -1,3 +1,17 @@
 .seminarListModal {
   min-width: 80vw;
 }
+
+.seminarListModal .footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.seminarListModal .pagination {
+  margin: auto;
+}
+
+.seminarListModal .transparent {
+  cursor: default !important;
+  opacity: 0;
+}

@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import { Map } from '../components/organisms/Map'
-import { buildingClick, zoomChanged, hideMarkers, showRestaurant, showSeminarList } from '../store/actions'
+import { zoomChanged, hideMarkers } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return {
     currentPos: state.currentPos,
-    resData : state.restaurantList,
-    semis: state.seminarList,
+    resData : state.allRestaurants,
+    semis: state.allSeminars,
     zoom: state.zoom,
+    searchedBldg: state.searchedBldg,
     showSearchMarker: state.showSearchMarker,
     showResMarkers: state.showResMarkers,
     showSemiMarkers: state.showSemiMarkers
@@ -16,21 +17,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMapClick: (bldgNo, latlng) => {
-      dispatch(buildingClick(bldgNo, latlng))
-    },
     onZoom: (zoomLevel) => {
       dispatch(zoomChanged(zoomLevel))
-    },
-    onResClick: (resInfo) => {
-      dispatch(showRestaurant(resInfo))
     },
     onBackgroundClick: () => {
       dispatch(hideMarkers())
     },
-    onSeminarListClick: (semis) => {
-      dispatch(showSeminarList(semis))
-    }
   }
 }
 

@@ -4,22 +4,30 @@ import {
    Marker, Tooltip, ZoomControl
  } from 'react-leaflet'
 import './Map.css'
-import { getBldgNo } from '../../utils/Functions'
+import { getBldgNo, getBldgCoord } from '../../utils/Functions'
+import { historyPush } from '../../utils/Functions'
 
 export const Map = ({
-  currentPos, zoom, showSearchMarker,
+  currentPos, zoom, searchedBldg, showSearchMarker,
   resData, showResMarkers,
   semis, showSemiMarkers,
-  onMapClick, onZoom, onBackgroundClick,
-  onSeminarListClick, onResClick}) => {
+  onZoom, onBackgroundClick}) => {
 
-  const handleClick = (e) => {
+  const handleMapClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
     if(bldgNo && bldgNo!=="0"){
-      onMapClick(bldgNo, e.latlng)
+      historyPush(`/building/${bldgNo}`)
     } else {
       onBackgroundClick()
     }
+  }
+
+  const handleResClick = (resId) => {
+    historyPush(`/restaurant/${resId}`)
+  }
+  
+  const handleSeminarListClick = (bldgNo) => {
+    historyPush(`/seminarlist/${bldgNo}`)
   }
 
   const handleZoomEnd = (e) => {
@@ -29,7 +37,7 @@ export const Map = ({
 
   let searchMarker, resMarkers, semiMarkers
   if(showSearchMarker){
-    searchMarker = <Marker className="searchMarker" position = {currentPos}> </Marker>
+    searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)}> </Marker>
   }
 
   if(showResMarkers && resData){
@@ -38,7 +46,7 @@ export const Map = ({
         key={res.id}
         className="resMarker"
         position = {[res.building.spot.latitude, res.building.spot.longitude]}
-        onClick = {() =>{onResClick(res)}}
+        onClick = {() =>{handleResClick(res.id)}}
       >
         <Tooltip
           className="resToolTip"
@@ -68,9 +76,9 @@ export const Map = ({
       semiMarkers = semiBldgs.map((bldg, index) => (
         <Marker
           key = {bldg.id}
-	        className="semiMarker"
-	        position = {[bldg.spot.latitude, bldg.spot.longitude]}
-          onClick = {() =>{onSeminarListClick(bldg.seminars)}}
+	      className="semiMarker"
+	      position = {[bldg.spot.latitude, bldg.spot.longitude]}
+          onClick = {() =>{handleSeminarListClick(bldg.code)}}
         >
           <Tooltip 
             className="semiToolTip"
@@ -92,7 +100,7 @@ export const Map = ({
         zoom = {zoom}
         zoomControl = {false}
         onZoomEnd = {handleZoomEnd}
-        onClick = {handleClick}
+        onClick = {handleMapClick}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

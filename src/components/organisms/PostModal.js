@@ -1,13 +1,24 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { historyPush } from '../../utils/Functions'
 import './PostModal.css'
 
-export const PostModal = ({post, posts, show, onModalHide, onShowPostList}) => {
+export const PostModal = ({post}) => {
+  const handleBack = () => {
+    if(post && post.building){
+      let boardNo = post.building.code
+      historyPush(`/board/${boardNo}`)
+    } else {
+      historyPush('/')
+    }
+  }
+
   let modal
+
   if(post){
     modal = <Modal
-      show = {show}
-      onHide = {onModalHide}
+      show = {true}
+      onHide = {()=>{historyPush('/')}}
       dialogClassName = "postModal"
       scrollable = {true}
       centered
@@ -21,13 +32,14 @@ export const PostModal = ({post, posts, show, onModalHide, onShowPostList}) => {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant = "secondary" onClick = {() =>onShowPostList(posts)}>뒤로가기</Button>
+        <Button variant = "secondary" onClick = {() =>handleBack()}>뒤로가기</Button>
       </Modal.Footer>
+
     </Modal>
   }else{
-    modal = < Modal
-      show = {show}
-      onHide = {onModalHide}
+    modal = <Modal
+      show = {true}
+      onHide = {()=>{historyPush('/')}}
       centered
     >
       <Modal.Header closeButton>

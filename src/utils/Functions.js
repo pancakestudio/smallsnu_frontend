@@ -1,3 +1,5 @@
+import { history } from '../BrowserRouter'
+
 // ------------- Building Info ---------------//
 // get the json Data about Buildings information
 var bldgCoords = require('./BuildingCoordinate.json');
@@ -59,4 +61,8 @@ export function getKeyword(inputValue, subject){
   }else{
     return false;
   }return false;
+}
+
+export function historyPush(url){
+  history.push(url)
 }
