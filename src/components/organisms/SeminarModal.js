@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, Button, Card, ListGroup } from 'react-bootstrap'
+import { FaAngleLeft } from 'react-icons/fa'
 import { historyPush } from '../../utils/Functions'
 import './SeminarModal.css'
 
@@ -38,15 +39,13 @@ export const SeminarModal = ({semi}) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
+        <Modal.Title className="title">{title}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         { semiCard }
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant = "secondary" onClick = {() =>handleBack()}>뒤로가기</Button>
-      </Modal.Footer>
     </Modal>
   )
 }

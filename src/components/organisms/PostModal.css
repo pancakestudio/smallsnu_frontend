@@ -1,3 +1,7 @@
 .postModal {
   min-width: 80vw;
 }
+
+.postModal .title {
+  margin: auto 0px;
+}

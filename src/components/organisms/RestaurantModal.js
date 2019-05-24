@@ -10,6 +10,7 @@ export const RestaurantModal = ({res}) => {
       modal = <Modal
         show = {true}
         onHide = {()=>{historyPush('/')}}
+        dialogClassName = "restaurantModal"
         scrollable = {true}
         centered
       >
@@ -28,6 +29,7 @@ export const RestaurantModal = ({res}) => {
   }else{
      modal = <Modal
        show = {true}
+       dialogClassName = "restaurantModal"
        onHide = {()=>{historyPush('/')}}
        centered
      >
@@ -37,8 +39,6 @@ export const RestaurantModal = ({res}) => {
        <Modal.Body>
        정보없음. 암튼 그럼.
        </Modal.Body>
-       <Modal.Footer>
-       </Modal.Footer>
    </Modal>
  }
    return modal

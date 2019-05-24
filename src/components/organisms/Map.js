@@ -22,6 +22,10 @@ export const Map = ({
     }
   }
 
+  const handleSearchClick = (bldgNo) => {
+    historyPush(`/building/${bldgNo}`)
+  }
+
   const handleResClick = (resId) => {
     historyPush(`/restaurant/${resId}`)
   }
@@ -37,7 +41,7 @@ export const Map = ({
 
   let searchMarker, resMarkers, semiMarkers
   if(showSearchMarker){
-    searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)}> </Marker>
+    searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
 
   if(showResMarkers && resData){
@@ -66,16 +70,19 @@ export const Map = ({
         if(semiBldgs.length!==0)
           bldg = semiBldgs.find((b)=>(b.code===semi.building.code))
         if(!bldg){
-          bldg = semi.building
-          bldg.seminars = [semi]
+          bldg = {
+            spot: semi.building.spot,
+            code: semi.building.code,
+            cnt: 1
+          }
           semiBldgs.push(bldg)
         } else {
-          bldg.seminars.push(semi)
+          bldg.cnt++;
         }
       })
       semiMarkers = semiBldgs.map((bldg, index) => (
         <Marker
-          key = {bldg.id}
+          key = {bldg.code}
 	      className="semiMarker"
 	      position = {[bldg.spot.latitude, bldg.spot.longitude]}
           onClick = {() =>{handleSeminarListClick(bldg.code)}}
@@ -84,7 +91,7 @@ export const Map = ({
             className="semiToolTip"
             permanent
           >
-            총 {bldg.seminars.length} 건
+            총 {bldg.cnt} 건
           </Tooltip>
         </Marker>
       ))

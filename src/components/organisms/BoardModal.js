@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Card, Button } from 'react-bootstrap'
 import { PostPreview } from '../atoms/PostPreview'
+import { FaAngleLeft } from 'react-icons/fa'
 import { historyPush } from '../../utils/Functions'
 import './BoardModal.css'
 
@@ -23,7 +24,8 @@ export const BoardModal = ({bldgNo, onModalHide, posts, onShowWritePostModal}) =
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>{bldgNo}동 게시판</Modal.Title>
+        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
+        <Modal.Title className="title">{bldgNo}동 게시판</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -35,8 +37,6 @@ export const BoardModal = ({bldgNo, onModalHide, posts, onShowWritePostModal}) =
       </Modal.Body>
       <Modal.Footer>
         <Button variant = "secondary" onClick = {onShowWritePostModal}>쓰기</Button>
-
-        <Button variant = "secondary" onClick = {handleBack}>뒤로가기</Button>
       </Modal.Footer>
     </Modal>
   }else{

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { FaAngleLeft } from 'react-icons/fa'
 import { historyPush } from '../../utils/Functions'
 import './PostModal.css'
 
@@ -24,17 +25,13 @@ export const PostModal = ({post}) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>{post.title}</Modal.Title>
+        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
+        <Modal.Title className="title">{post.title}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         {post.content}
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button variant = "secondary" onClick = {() =>handleBack()}>뒤로가기</Button>
-      </Modal.Footer>
-
     </Modal>
   }else{
     modal = <Modal
@@ -43,6 +40,7 @@ export const PostModal = ({post}) => {
       centered
     >
       <Modal.Header closeButton>
+        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
         <Modal.Title>게시글 정보가 없습니다.</Modal.Title>
       </Modal.Header>
   </Modal>
