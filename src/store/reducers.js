@@ -52,11 +52,11 @@ function showSearchMarker(state = false, action){
 
 function showResMarkers(state = false, action){
   switch(action.type){
-    case types.SIDE_RES_CLICK:
+    case types.TOGGLE_RES_MARKER:
       return !state
-    case types.GET_RESTAURANT_FAILURE:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
     case types.HIDE_MARKERS:
-    case types.SIDE_SEMI_CLICK:
+    case types.TOGGLE_SEMI_MARKER:
       return false
     default:
       return state
@@ -65,11 +65,11 @@ function showResMarkers(state = false, action){
 
 function showSemiMarkers(state = false, action){
   switch(action.type){
-    case types.SIDE_SEMI_CLICK:
+    case types.TOGGLE_SEMI_MARKER:
       return !state
-    case types.GET_SEMINAR_FAILURE:
+    case types.GET_ALL_SEMINARS_FAILURE:
     case types.HIDE_MARKERS:
-    case types.SIDE_RES_CLICK:
+    case types.TOGGLE_RES_MARKER:
       return false
     default:
       return state
@@ -224,7 +224,10 @@ function error(state = "", action){
     case types.GET_BOARD_FAILURE:
     case types.GET_POST_FAILURE:
     case types.GET_RESTAURANT_FAILURE:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
     case types.GET_SEMINAR_FAILURE:
+    case types.GET_BLDG_SEMINARS_FAILURE:
+    case types.GET_ALL_SEMINARS_FAILURE:
       return action.error
     default:
       return ""

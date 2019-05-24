@@ -45,10 +45,7 @@ const seminars = [
 
 describe('SeminarListModal', ()=>{
   let component
-  const show = false
   const activePage = 1
-  const mockModalHide = jest.fn()
-  const mockSeminarClick = jest.fn()
   const mockPaginationClick = jest.fn()
 
   it('renders correctly', ()=>{
@@ -56,9 +53,7 @@ describe('SeminarListModal', ()=>{
       <SeminarListModal 
         semis={seminars}
         activePage={activePage}
-        show={show}
-        onSeminarClick={mockSeminarClick}
-        onModalHide={mockModalHide}
+        show={true}
         onPaginationClick={mockPaginationClick}
       />
     )
@@ -89,8 +84,6 @@ describe('SeminarListModal', ()=>{
     expect(mockPaginationClick.mock.calls.length).toBe(4)
     component.find('Next').simulate('click')
     expect(mockPaginationClick.mock.calls.length).toBe(5)
-    component.find('Bootstrap(Modal)').simulate('hide')
-    expect(mockModalHide.mock.calls.length).toBe(1)
   })
 })
 
@@ -98,7 +91,6 @@ describe('ConnectedSeminarListModal', ()=>{
   const initialState = {
     selectedSemiList: seminars, 
     activeSemiPage: 1,
-    showSemiListModal: true
   }
   const mockStore = configureStore()
   let store, component
@@ -121,33 +113,15 @@ describe('ConnectedSeminarListModal', ()=>{
     expect(component.find('PageItem').length).toBe(4) // Including next and prev
   })
 
-  it('dispatches showSeminar action', ()=>{
-    component.find('SemiPreview').at(0).prop('onClick')()
-    expect(store.getActions()[0]).toEqual(actions.showSeminar(seminars[0]))
-  })
-
-  it('dispatches modalHide action', ()=>{
-    component.find('Bootstrap(Modal)').prop('onHide')()
-    expect(store.getActions()[1]).toEqual(actions.modalHide())
-  })
-
   it('dispatches changeSeminarPage action', ()=>{
     component.find('PageItem').at(2).prop('onClick')()
-    expect(store.getActions()[2]).toEqual(actions.changeSeminarPage(2))
+    expect(store.getActions()[0]).toEqual(actions.changeSeminarPage(2))
   })
 
   it('reducers', ()=>{
     store = createStore(reducers, initialState)
 
-    store.dispatch(actions.showSeminar(seminars[0]))
-    expect(store.getState().selectedSemi).toBe(seminars[0])
-    expect(store.getState().showSemiModal).toBe(true)
-
     store.dispatch(actions.changeSeminarPage(2))
-    expect(store.getState().showSemiListModal).toBe(true)
     expect(store.getState().activeSemiPage).toBe(2)
-
-    store.dispatch(actions.modalHide())
-    expect(store.getState().showSemiListModal).toBe(false)
   })
 })

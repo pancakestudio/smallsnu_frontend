@@ -6,7 +6,7 @@ import './WritePostModal.css'
 export const WritePostModal = ({bldgNo, show, onSavePost}) =>{
   let titleInput, textInput
   const handleBack = () => {
-    historyPush(`board/${bldgNo}`)
+    historyPush(`/board/${bldgNo}`)
   }
   const handleSave = () => {
     let post = {

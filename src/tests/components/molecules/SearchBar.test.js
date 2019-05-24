@@ -75,7 +75,8 @@ describe('ConnectedSearchBar', ()=>{
   it('dispatches searchRestaurant action', () => {
     component.find('input').instance().value = 'restaurant'
     component.find('Button').simulate('submit')
-    expect(store.getActions()[2]).toEqual(actions.sideResClick())
+    expect(store.getActions()[2]).toEqual(actions.requestAllRestaurants())
+    expect(store.getActions()[3]).toEqual(actions.toggleResMarker())
   })
 
   it('shows alert on invalid input', ()=>{
@@ -90,16 +91,7 @@ describe('ConnectedSearchBar', ()=>{
     store.dispatch(actions.searchValueChange('62'))
     expect(store.getState().searchingBldg).toBe('62')
     store.dispatch(actions.search('200', getBldgCoord('200')))
-    expect(store.getState().selectedBldg.bldgNo).toBe('200')
-    expect(store.getState().currentPos).toBe(getBldgCoord('200'))
-  })
-
-  it('reducers', ()=>{
-    store = createStore(reducers)
-    store.dispatch(actions.searchValueChange('62'))
-    expect(store.getState().searchingBldg).toBe('62')
-    store.dispatch(actions.search('200', getBldgCoord('200')))
-    expect(store.getState().selectedBldg.bldgNo).toBe('200')
+    expect(store.getState().searchedBldg).toBe('200')
     expect(store.getState().currentPos).toBe(getBldgCoord('200'))
   })
 })

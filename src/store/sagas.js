@@ -69,12 +69,12 @@ function* handleRequestResInfo(){
 function* handleRequestAllResInfo(){
   while(true){
     yield take(types.REQUEST_ALL_RESTAURANTS)
-    const {data, error} = yield call(api.getAllRestaurantInfo)
+    const {data, error} = yield call(api.getAllRestaurantsInfo)
     if(data && !error){
       yield put(actions.getAllRestaurantsSuccess(data))
     }else{
       const errormsg = '식당 정보를 받아오지 못했습니다.'
-      yield put(actions.getRestaurantFailure(errormsg))
+      yield put(actions.getAllRestaurantsFailure(errormsg))
     }
   }
 }

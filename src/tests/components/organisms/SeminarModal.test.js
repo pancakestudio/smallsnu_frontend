@@ -19,11 +19,10 @@ const semi = {
 
 describe('SeminarModal', ()=>{
   let component
-  const show = false
-  const mockModalHide = jest.fn()
+  const show = true 
 
   it('renders correctly', ()=>{
-    component = shallow(<SeminarModal semi={semi} show={show} onModalHide={mockModalHide}/>)
+    component = shallow(<SeminarModal semi={semi} show={show} />)
   })
 
   it('matches snapshot', ()=>{
@@ -33,23 +32,11 @@ describe('SeminarModal', ()=>{
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
   })
-
-  it('shows semiCard properly', ()=>{
-    expect(component.find('.semiCard').exists()).toBe(true)
-    component.setProps({semi: {}})
-    expect(component.find('.semiCard').exists()).toBe(false)
-  })
-
-  it('calls functions', ()=>{
-    component.find('Bootstrap(Modal)').simulate('hide')
-    expect(mockModalHide.mock.calls.length).toBe(1)
-  })
 })
 
 describe('ConnectedSeminarModal', ()=>{
   const initialState = {
     selectedSemi: semi, 
-    showSemiModal: true
   }
   const mockStore = configureStore()
   let store, component
@@ -63,19 +50,7 @@ describe('ConnectedSeminarModal', ()=>{
     expect(component).toMatchSnapshot()
   })
 
-
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
-  })
-
-  it('dispatches onModalHide action', ()=>{
-    component.find('Bootstrap(Modal)').prop('onHide')()
-    expect(store.getActions()[0]).toEqual(actions.modalHide())
-  })
-
-  it('reducers', ()=>{
-    store = createStore(reducers, initialState)
-    store.dispatch(actions.modalHide())
-    expect(store.getState().showSemiModal).toBe(false)
   })
 })

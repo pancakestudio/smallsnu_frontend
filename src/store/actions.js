@@ -128,9 +128,9 @@ export function showWritePost() {
 
 /******** Restaurant ********/
 
-export function sideResClick(){
+export function toggleResMarker(){
   return{
-    type: types.SIDE_RES_CLICK,
+    type: types.TOGGLE_RES_MARKER,
   }
 }
 
@@ -178,9 +178,9 @@ export function getAllRestaurantsFailure(error){
 
 /******** Seminar ********/
 
-export function sideSemiClick(){
+export function toggleSemiMarker(){
   return{
-    type: types.SIDE_SEMI_CLICK,
+    type: types.TOGGLE_SEMI_MARKER,
   }
 }
 

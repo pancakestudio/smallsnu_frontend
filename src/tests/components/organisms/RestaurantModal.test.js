@@ -8,14 +8,12 @@ import * as actions from '../../../store/actions'
 
 describe('RestaurantModal', () => {
   let component
-  const mockModalHide = jest.fn()
 
   it('renders correctly', () => {
     component = shallow(
     <RestaurantModal
-        resInfo = {{kr_name:'학생회관 식당'}}
+        res = {{kr_name:'학생회관 식당'}}
         show = {true}
-        onModalHide = {mockModalHide}
     />)
   })
 
@@ -32,13 +30,8 @@ describe('RestaurantModal', () => {
   })
 
   it('data is given null', () => {
-    component.setProps({resInfo: null})
+    component.setProps({res: null})
     expect(component.find('ModalTitle').text()).toBe('식당 정보가 없습니다.')
-  })
-
-  it('calls functions', ()=>{
-    component.find('Bootstrap(Modal)').simulate('hide')
-    expect(mockModalHide.mock.calls.length).toBe(1)
   })
 
 })
@@ -56,10 +49,4 @@ describe('ConnectedRestaurantModal', () => {
   it('matches snapshot', () => {
     expect(component).toMatchSnapshot()
   })
-
-  it('dispatches onModalHide action', ()=>{
-    component.find('Bootstrap(Modal)').prop('onHide')()
-    expect(store.getActions()[0]).toEqual(actions.modalHide())
-  })
-
 })

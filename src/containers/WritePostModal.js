@@ -5,7 +5,7 @@ import { savePost } from '../store/actions'
 const mapStateToProps = (state) => {
   return{
     show: state.showWritePostModal,
-    bldgNo: state.selectedBldg.bldgNo
+    bldgNo: state.selectedBoardBldgNo
   }
 }
 

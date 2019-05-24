@@ -4,7 +4,7 @@ import { BuildingInfo } from '../molecules/BuildingInfo'
 import { historyPush } from '../../utils/Functions'
 import './BuildingModal.css'
 
-export const BuildingModal = ({bldg, onModalHide}) => {
+export const BuildingModal = ({bldg}) => {
   return(
     <Modal
       show = {true}

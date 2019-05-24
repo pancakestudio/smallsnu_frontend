@@ -22,7 +22,7 @@ export function getRestaurantInfo(id){
     .catch(error => { return {error: error}})
 }
 
-export function getAllRestaurantInfo(){
+export function getAllRestaurantsInfo(){
   return axios.get(`restaurant/`)
     .catch(error => {return {error: error}})
 }

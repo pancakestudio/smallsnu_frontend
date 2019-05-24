@@ -14,10 +14,7 @@ describe('BuildingModal', ()=>{
 
   it('renders correctly', ()=>{
     component = shallow(
-      <BuildingModal bldg={{bldgNo: '301'}}
-        show={true}
-        onModalHide={mockModalHide}
-      />
+      <BuildingModal bldg={{krName: '제1공학관(301동)', bldgNo: '301'}} />
     )
   })
 
@@ -29,19 +26,15 @@ describe('BuildingModal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
   })
 
-  it('has a correct building number', ()=>{
-    expect(component.find('ModalTitle').text()).toBe('301동')
-  })
-
-  it('calls functions', ()=>{
-    component.find('Bootstrap(Modal)').simulate('hide')
-    expect(mockModalHide.mock.calls.length).toBe(1)
+  it('has a correct building name', ()=>{
+    expect(component.find('ModalTitle').text()).toBe('제1공학관(301동)')
   })
 })
 
 describe('ConnectedBuilingModal', ()=>{
   const initialState = {
     selectedBldg: {
+      krName: '300동',
       bldgNo: '300'
     },
     showBldgModal: true
@@ -62,14 +55,7 @@ describe('ConnectedBuilingModal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
   })
 
-  it('dispatches onModalHide action', ()=>{
-    component.find('Bootstrap(Modal)').prop('onHide')()
-    expect(store.getActions()[0]).toEqual(actions.modalHide())
-  })
-
-  it('reducers', ()=>{
-    store = createStore(reducers, initialState)
-    store.dispatch(actions.modalHide())
-    expect(store.getState().showBldgModal).toBe(false)
+  it('has a correct building name', ()=>{
+    expect(component.find('ModalTitle').text()).toBe('300동')
   })
 })

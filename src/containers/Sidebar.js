@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Sidebar } from '../components/organisms/Sidebar'
-import { requestAllRestaurants, sideResClick, requestAllSeminars, sideSemiClick } from '../store/actions'
+import { requestAllRestaurants, toggleResMarker, requestAllSeminars, toggleSemiMarker } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return{
@@ -12,11 +12,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onResClick: () => {
       dispatch(requestAllRestaurants())
-      dispatch(sideResClick())
+      dispatch(toggleResMarker())
     },
     onSemiClick: () => {
       dispatch(requestAllSeminars())
-      dispatch(sideSemiClick())
+      dispatch(toggleSemiMarker())
     }
   }
 }
