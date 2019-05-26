@@ -8,6 +8,7 @@ import * as actions from '../../../store/actions'
 import reducers from '../../../store/reducers'
 
 describe('BuildingInfo', ()=>{
+  global.window = { location: { pathname: null } };
   let component
   const mockPostListClick = jest.fn()
   const mockSeminarListClick = jest.fn()
@@ -37,6 +38,7 @@ describe('BuildingInfo', ()=>{
   it('renders correctly', ()=>{
     component = shallow(
       <BuildingInfo 
+        bldgNo={'301'}
         rests={bldg.restaurants}
         posts={bldg.posts}
         semis={bldg.seminars}
@@ -52,6 +54,17 @@ describe('BuildingInfo', ()=>{
     expect(component.find('ResPreview').exists()).toBe(true)
     expect(component.find('PostPreview').exists()).toBe(true)
     expect(component.find('SemiPreview').exists()).toBe(true)
+  })
+
+  it('calls functions', ()=>{
+    component.find('PostPreview').prop('onClick')()
+    expect(global.window.location.pathname).toEqual('/post/1')
+    component.find('SemiPreview').prop('onClick')()
+    expect(global.window.location.pathname).toEqual('/seminar/1')
+    component.find('.postListButton').simulate('click')
+    expect(global.window.location.pathname).toEqual('/board/301')
+    component.find('.semiListButton').simulate('click')
+    expect(global.window.location.pathname).toEqual('/seminarlist/301')
   })
 
   it('handles undefined data', ()=>{

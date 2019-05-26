@@ -44,6 +44,7 @@ const seminars = [
 ]
 
 describe('SeminarListModal', ()=>{
+  global.window = { location: { pathname: null } };
   let component
   const activePage = 1
   const mockPaginationClick = jest.fn()
@@ -51,6 +52,7 @@ describe('SeminarListModal', ()=>{
   it('renders correctly', ()=>{
     component = shallow(
       <SeminarListModal 
+        bldgNo={'302'}
         semis={seminars}
         activePage={activePage}
         show={true}
@@ -84,6 +86,10 @@ describe('SeminarListModal', ()=>{
     expect(mockPaginationClick.mock.calls.length).toBe(4)
     component.find('Next').simulate('click')
     expect(mockPaginationClick.mock.calls.length).toBe(5)
+    component.find('Bootstrap(Modal)').simulate('hide')
+    expect(global.window.location.pathname).toEqual('/')
+    component.find('.back').simulate('click')
+    expect(global.window.location.pathname).toEqual('/building/302')
   })
 })
 

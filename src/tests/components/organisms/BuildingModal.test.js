@@ -29,6 +29,11 @@ describe('BuildingModal', ()=>{
   it('has a correct building name', ()=>{
     expect(component.find('ModalTitle').text()).toBe('제1공학관(301동)')
   })
+
+  it('calls functions', ()=>{
+    component.find('Bootstrap(Modal)').simulate('hide')
+    expect(global.window.location.pathname).toEqual('/')
+  })
 })
 
 describe('ConnectedBuilingModal', ()=>{

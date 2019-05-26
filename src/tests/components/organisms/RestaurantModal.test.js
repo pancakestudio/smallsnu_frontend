@@ -7,6 +7,7 @@ import { shallow, mount } from 'enzyme'
 import * as actions from '../../../store/actions'
 
 describe('RestaurantModal', () => {
+  global.window = { location: { pathname: null } };
   let component
 
   it('renders correctly', () => {
@@ -34,6 +35,10 @@ describe('RestaurantModal', () => {
     expect(component.find('ModalTitle').text()).toBe('식당 정보가 없습니다.')
   })
 
+  it('calls functions', ()=>{
+    component.find('Bootstrap(Modal)').simulate('hide')
+    expect(global.window.location.pathname).toEqual('/')
+  })
 })
 
 describe('ConnectedRestaurantModal', () => {

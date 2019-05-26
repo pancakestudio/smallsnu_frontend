@@ -29,6 +29,11 @@ describe('Sidebar', ()=>{
     expect(component.find('Bootstrap(ListGroupItem)').at(3).text()).toBe('강의실 예약')
     expect(component.find('Bootstrap(ListGroupItem)').at(4).text()).toBe('식당')
   })
+
+  it('changes className properly', ()=>{
+    component.setProps({show: true})
+    expect(component.find('.active').exists()).toBe(true)
+  })
 })
 
 describe('ConnectedSidebar', ()=>{

@@ -11,7 +11,7 @@ export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
     historyPush(`/post/${post.id}`)
   }
 
-  const handleBoardClick = (post) => {
+  const handleBoardClick = () => {
     historyPush(`/board/${bldgNo}`)
   }
 
@@ -50,7 +50,7 @@ export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
         {posts.slice(0, 3).map((post) => (
           <PostPreview key={post.id} {...post} onClick={()=>handlePostClick(post)}/>
         ))}
-        <Card.Footer> <Button className="postListButton" variant="link" onClick={()=>{handleBoardClick(posts)}}>게시글 더보기</Button> </Card.Footer>
+        <Card.Footer> <Button className="postListButton" variant="link" onClick={()=>{handleBoardClick()}}>게시글 더보기</Button> </Card.Footer>
       </Card>
     )
   } else {

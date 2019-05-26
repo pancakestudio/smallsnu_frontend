@@ -64,4 +64,9 @@ describe('SeminarList', ()=>{
     expect(component.find('SemiPreview').exists()).toBe(true)
     expect(component.find('SemiPreview').length).toBe(3)
   })
+
+  it('calls functions', ()=>{
+    component.find('SemiPreview').at(0).prop('onClick')()
+    expect(global.window.location.pathname).toEqual('/seminar/1')
+  })
 })

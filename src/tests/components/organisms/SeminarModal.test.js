@@ -10,6 +10,9 @@ import * as actions from '../../../store/actions'
 
 const semi = {
   "id": 5,
+  "building": {
+    code: "301"
+  },
   "title": "[Seminar] Enabling Scalable Learning on Massive Datasets",
   "talker": "Praveen R. RaoComputer Science & Electrical Engineering School of Computing and Engineering, University of Missouri-Kansas City",
   "where": "301동 306호",
@@ -18,6 +21,7 @@ const semi = {
 }
 
 describe('SeminarModal', ()=>{
+  global.window = { location: { pathname: null } };
   let component
   const show = true 
 
@@ -31,6 +35,16 @@ describe('SeminarModal', ()=>{
 
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
+  })
+
+  it('calls functions', ()=>{
+    component.find('.back').simulate('click')
+    expect(global.window.location.pathname).toEqual('/seminarlist/301')
+    component.setProps({semi: null})
+    component.find('.back').simulate('click')
+    expect(global.window.location.pathname).toEqual('/')
+    component.find('Bootstrap(Modal)').simulate('hide')
+    expect(global.window.location.pathname).toEqual('/')
   })
 })
 

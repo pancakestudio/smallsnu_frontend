@@ -76,6 +76,7 @@ const restaurants = [{
 }]
 
 describe('Map', ()=>{
+  global.window = { location: { pathname: null } };
   let component = null;
   const mockZoom = jest.fn()
   const mockBackgroundClick = jest.fn()
@@ -85,6 +86,7 @@ describe('Map', ()=>{
       <Map
         currentPos={{lat: 37.459, lng: 126.952}}
         zoom={17}
+        searchedBldg={"301"}
         showSearchMarker={false}
         semis={[]}
         resData={[]}
@@ -136,7 +138,11 @@ describe('Map', ()=>{
     component.find('.leafletMap').simulate('click', {latlng: {lat:37.459, lng:126.952}})
     component.find('.leafletMap').simulate('zoomEnd', {target: {_zoom: 18}})
     component.find('.resMarker').simulate('click')
+    expect(global.window.location.pathname).toEqual('/restaurant/1')
     component.find('.semiMarker').at(0).simulate('click')
+    expect(global.window.location.pathname).toEqual('/seminarlist/302')
+    component.find('.searchMarker').simulate('click')
+    expect(global.window.location.pathname).toEqual('/building/301')
     expect(mockBackgroundClick.mock.calls.length).toBe(1)
     expect(mockZoom.mock.calls.length).toBe(1)
   })
@@ -179,5 +185,4 @@ describe('ConnectedMap',()=>{
     component.find('Map').at(1).prop('onClick')(e)
     expect(store.getActions()[1]).toEqual(actions.hideMarkers())
   })
-
 })
