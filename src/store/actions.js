@@ -2,25 +2,18 @@ import * as types from './actionTypes'
 
 /******** Map ********/
 
-export function buildingClick(bldgNo, curPos){
+export function requestBuilding(bldgNo){
   return{
-    type: types.BUILDING_CLICK,
-    bldgNo,
-    curPos
+    type: types.REQUEST_BUILDING,
+    bldgNo
   };
 }
 
-
-export function zoomChanged(zoomLevel){
-  return {
-    type: types.ZOOM_CHANGED,
-    zoomLevel
-  }
-}
-
-export function getBuildingSuccess(info, restaurants, seminars, lectures, posts){
+export function getBuildingSuccess(krName, bldgNo, info, restaurants, seminars, lectures, posts){
   return{
     type: types.GET_BUILDING_SUCCESS,
+    krName,
+    bldgNo,
     info,
     restaurants,
     seminars,
@@ -36,15 +29,24 @@ export function getBuildingFailure(error){
   }
 }
 
-export function showBuilding(){
-  return{
-    type: types.SHOW_BUILDING,
+export function zoomChanged(zoomLevel){
+  return {
+    type: types.ZOOM_CHANGED,
+    zoomLevel
   }
 }
 
 export function hideMarkers(){
   return {
     type: types.HIDE_MARKERS
+  }
+}
+
+/******** SideBar ********/
+
+export function toggleSideBar(){
+  return {
+    type: types.TOGGLE_SIDE_BAR
   }
 }
 
@@ -65,19 +67,49 @@ export function search(bldgNo, bldgPos){
   }
 }
 
-/******** Modal ********/
+/******** Post ********/
 
-export function modalHide(){
-  return{
-    type: types.MODAL_HIDE,
-  };
+export function requestBoard(bldgNo){
+  return {
+    type: types.REQUEST_BOARD,
+    bldgNo
+  }
 }
 
-/******** WritePost ********/
-export function showWritePost() {
-  return{
-    type: types.SHOW_WRITE_POST,
-  };
+export function getBoardSuccess(posts, bldgNo){
+  return {
+    type: types.GET_BOARD_SUCCESS,
+    posts,
+    bldgNo
+  }
+}
+
+export function getBoardFailure(error){
+  return {
+    type: types.GET_BOARD_FAILURE,
+    error
+  }
+}
+
+export function requestPost(id) {
+  return {
+    type: types.REQUEST_POST,
+    id
+  }
+}
+
+export function getPostSuccess(post){
+  return {
+    type: types.GET_POST_SUCCESS,
+    post
+  }
+}
+
+export function getPostFailure(error){
+  return {
+    type: types.GET_POST_FAILURE,
+    error
+  }
 }
 
 export function savePost(post, bldgNo){
@@ -88,41 +120,31 @@ export function savePost(post, bldgNo){
   }
 }
 
-/******** PostList ********/
-export function showPostList(posts){
+export function showWritePost() {
   return{
-    type: types.SHOW_POST_LIST,
-    posts
+    type: types.SHOW_WRITE_POST,
   };
 }
 
-/******** Post ********/
-
-export function showPost(post){
-  return {
-    type: types.SHOW_POST,
-    post
-  };
-}
 /******** Restaurant ********/
 
-export function sideResClick(){
+export function toggleResMarker(){
   return{
-    type: types.SIDE_RESTAURANT_CLICK,
+    type: types.TOGGLE_RES_MARKER,
   }
 }
 
-export function showRestaurant(resInfo){
+export function requestRestaurant(id){
   return{
-    type: types.SHOW_RESTAURANT,
-    resInfo,
+    type: types.REQUEST_RESTAURANT,
+    id
   }
 }
 
-export function getRestaurantSuccess(resInfo){
+export function getRestaurantSuccess(restaurant){
   return{
     type : types.GET_RESTAURANT_SUCCESS,
-    resInfo,
+    restaurant,
   }
 }
 
@@ -133,19 +155,32 @@ export function getRestaurantFailure(error){
   }
 }
 
-/******** Seminar ********/
-
-export function showSeminar(seminar){
-  return {
-    type: types.SHOW_SEMINAR,
-    seminar
+export function requestAllRestaurants(){
+  return{
+    type: types.REQUEST_ALL_RESTAURANTS,
   }
 }
 
-export function showSeminarList(seminars){
-  return {
-    type: types.SHOW_SEMINAR_LIST,
-    seminars
+
+export function getAllRestaurantsSuccess(restaurants){
+  return{
+    type : types.GET_ALL_RESTAURANTS_SUCCESS,
+    restaurants,
+  }
+}
+
+export function getAllRestaurantsFailure(error){
+  return{
+    type: types.GET_ALL_RESTAURANTS_FAILURE,
+    error
+  }
+}
+
+/******** Seminar ********/
+
+export function toggleSemiMarker(){
+  return{
+    type: types.TOGGLE_SEMI_MARKER,
   }
 }
 
@@ -156,22 +191,65 @@ export function changeSeminarPage(page){
   }
 }
 
-export function sideSeminarClick(){
+export function requestSeminar(id){
   return {
-    type: types.SIDE_SEMINAR_CLICK
+    type: types.REQUEST_SEMINAR,
+    id
   }
 }
 
-export function getSeminarSuccess(seminars){
+export function getSeminarSuccess(seminar){
   return {
     type: types.GET_SEMINAR_SUCCESS,
-    seminars
+    seminar
   }
 }
 
 export function getSeminarFailure(error){
   return {
     type: types.GET_SEMINAR_FAILURE,
+    error
+  }
+}
+
+export function requestBldgSeminars(bldgNo){
+  return {
+    type: types.REQUEST_BLDG_SEMINARS,
+    bldgNo
+  }
+}
+
+export function getBldgSeminarsSuccess(seminars, bldgNo){
+  return {
+    type: types.GET_BLDG_SEMINARS_SUCCESS,
+    seminars,
+    bldgNo
+  }
+}
+
+export function getBldgSeminarsFailure(error){
+  return {
+    type: types.GET_BLDG_SEMINARS_FAILURE,
+    error
+  }
+}
+
+export function requestAllSeminars(){
+  return {
+    type: types.REQUEST_ALL_SEMINARS,
+  }
+}
+
+export function getAllSeminarsSuccess(seminars){
+  return {
+    type: types.GET_ALL_SEMINARS_SUCCESS,
+    seminars
+  }
+}
+
+export function getAllSeminarsFailure(error){
+  return {
+    type: types.GET_ALL_SEMINARS_FAILURE,
     error
   }
 }

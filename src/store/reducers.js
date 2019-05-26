@@ -5,8 +5,6 @@ import * as types from './actionTypes'
 
 function currentPos(state = {lat: 37.459, lng: 126.952}, action){
   switch(action.type){
-    case types.BUILDING_CLICK:
-      return action.curPos
     case types.SEARCH:
       return action.bldgPos
     default:
@@ -23,31 +21,23 @@ function zoom(state = 17, action) {
   }
 }
 
-function selectedBldg(state = {bldgNo: "0"}, action){
+function selectedBldg(state = {}, action){
   switch(action.type){
-    case types.BUILDING_CLICK:
-      return {bldgNo: action.bldgNo}
-    case types.SEARCH:
-      return {bldgNo: action.bldgNo}
     case types.GET_BUILDING_SUCCESS:
       return Object.assign({}, state, {
+        krName: action.krName,
+        bldgNo: action.bldgNo,
         info: action.info,
         restaurants: action.restaurants,
         seminars: action.seminars,
         posts: action.posts
       })
+    case types.GET_BOARD_SUCCESS:
+      return Object.assign({}, state, {
+        posts: action.posts
+      })
     default:
       return state
-  }
-}
-
-function showBldgModal(state = false, action){
-  switch(action.type){
-    case types.GET_BUILDING_SUCCESS:
-    case types.SHOW_BUILDING:
-      return true
-    default:
-      return false
   }
 }
 
@@ -62,11 +52,11 @@ function showSearchMarker(state = false, action){
 
 function showResMarkers(state = false, action){
   switch(action.type){
-    case types.SIDE_RESTAURANT_CLICK:
+    case types.TOGGLE_RES_MARKER:
       return !state
-    case types.GET_RESTAURANT_FAILURE:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
     case types.HIDE_MARKERS:
-    case types.SIDE_SEMINAR_CLICK:
+    case types.TOGGLE_SEMI_MARKER:
       return false
     default:
       return state
@@ -75,12 +65,32 @@ function showResMarkers(state = false, action){
 
 function showSemiMarkers(state = false, action){
   switch(action.type){
-    case types.SIDE_SEMINAR_CLICK:
+    case types.TOGGLE_SEMI_MARKER:
       return !state
-    case types.GET_SEMINAR_FAILURE:
+    case types.GET_ALL_SEMINARS_FAILURE:
     case types.HIDE_MARKERS:
-    case types.SIDE_RESTAURANT_CLICK:
+    case types.TOGGLE_RES_MARKER:
       return false
+    default:
+      return state
+  }
+}
+
+function searchedBldg(state = "0", action){
+  switch(action.type){
+    case types.SEARCH:
+      return action.bldgNo
+    default:
+      return state
+  }
+}
+
+/******** SideBar ********/
+
+function showSideBar(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_SIDE_BAR:
+      return !state
     default:
       return state
   }
@@ -97,7 +107,8 @@ function searchingBldg(state = "0", action){
   }
 }
 
-/******** WritePost ********/
+
+/******** Post ********/
 
 function showWritePostModal(state = false, action){
   switch(action.type){
@@ -108,76 +119,48 @@ function showWritePostModal(state = false, action){
   }
 }
 
-/******** PostList ********/
-
-function showPostBoardModal(state = false, action){
+function selectedBoardBldgNo(state = "0", action){
   switch(action.type){
-    case types.SHOW_POST_LIST:
-    case types.SAVE_POST:
-      return true
-    default:
-      return false
-  }
-}
-
-function selectedPostList(state = [{}], action){
-  switch(action.type){
-    case types.SHOW_POST_LIST:
-    case types.GET_BUILDING_SUCCESS:
-      return action.posts
-    case types.SAVE_POST:
-      return [...state, action.post]
+    case types.GET_BOARD_SUCCESS:
+      return action.bldgNo
     default:
       return state
   }
 }
 
-/******** Post ********/
+function selectedPostList(state = [], action){
+  switch(action.type){
+    case types.GET_BOARD_SUCCESS:
+      return action.posts
+    default:
+      return state
+  }
+}
 
 function selectedPost(state = {}, action){
   switch(action.type){
-    case types.SHOW_POST:
+    case types.GET_POST_SUCCESS:
       return action.post
     default:
       return state
   }
 }
 
-function showPostModal(state = false, action){
-  switch(action.type){
-    case types.SHOW_POST:
-      return true
-    default:
-      return false
-  }
-}
-
 /******** Restaurant ********/
 
-function selectedRes(state = null, action){
-  switch(action.type){
-    case types.SHOW_RESTAURANT:
-      return action.resInfo
-    default:
-      return state
-  }
-}
-
-function showResModal(state = false, action){
-  switch(action.type){
-    case types.SHOW_RESTAURANT:
-      return true
-    case types.MODAL_HIDE:
-      return false
-    default:
-      return state
-  }
-}
-
-function restaurantList(state = [], action){
+function selectedRes(state = {}, action){
   switch(action.type){
     case types.GET_RESTAURANT_SUCCESS:
-      return action.resInfo
+      return action.restaurant
+    default:
+      return state
+  }
+}
+
+function allRestaurants(state = [], action){
+  switch(action.type){
+    case types.GET_ALL_RESTAURANTS_SUCCESS:
+      return action.restaurants
     default:
       return state
   }
@@ -187,7 +170,7 @@ function restaurantList(state = [], action){
 
 function selectedSemi(state = {}, action){
   switch(action.type){
-    case types.SHOW_SEMINAR:
+    case types.GET_SEMINAR_SUCCESS:
       return action.seminar
     default:
       return state
@@ -196,29 +179,19 @@ function selectedSemi(state = {}, action){
 
 function selectedSemiList(state = [], action){
   switch(action.type){
-    case types.SHOW_SEMINAR_LIST:
+    case types.GET_BLDG_SEMINARS_SUCCESS:
       return action.seminars
     default:
       return state
   }
 }
 
-function showSemiModal(state = false, action){
+function selectedSemiListBldgNo(state = "0", action){
   switch(action.type){
-    case types.SHOW_SEMINAR:
-      return true
+    case types.GET_BLDG_SEMINARS_SUCCESS:
+      return action.bldgNo
     default:
-      return false
-  }
-}
-
-function showSemiListModal(state = false, action){
-  switch(action.type){
-    case types.SHOW_SEMINAR_LIST:
-    case types.CHANGE_SEMINAR_PAGE:
-      return true
-    default:
-      return false
+      return state
   }
 }
 
@@ -226,7 +199,7 @@ function activeSemiPage(state = 1, action) {
   switch(action.type){
     case types.CHANGE_SEMINAR_PAGE:
       return action.page
-    case types.SHOW_SEMINAR_LIST:
+    case types.GET_BLDG_SEMINARS_SUCCESS:
       return 1
     default:
       return state
@@ -234,9 +207,9 @@ function activeSemiPage(state = 1, action) {
 }
 
 
-function seminarList(state = [], action) {
+function allSeminars(state = [], action) {
   switch(action.type){
-    case types.GET_SEMINAR_SUCCESS:
+    case types.GET_ALL_SEMINARS_SUCCESS:
       return action.seminars
     default:
       return state
@@ -248,9 +221,13 @@ function seminarList(state = [], action) {
 function error(state = "", action){
   switch(action.type){
     case types.GET_BUILDING_FAILURE:
-    case types.GET_SEMINAR_FAILURE:
-      return action.error
+    case types.GET_BOARD_FAILURE:
+    case types.GET_POST_FAILURE:
     case types.GET_RESTAURANT_FAILURE:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.GET_SEMINAR_FAILURE:
+    case types.GET_BLDG_SEMINARS_FAILURE:
+    case types.GET_ALL_SEMINARS_FAILURE:
       return action.error
     default:
       return ""
@@ -258,13 +235,12 @@ function error(state = "", action){
 }
 
 const reducers = combineReducers({
-  currentPos, zoom, selectedBldg, showBldgModal, showSearchMarker, showResMarkers, showSemiMarkers, // Map
+  currentPos, zoom, selectedBldg, showSearchMarker, showResMarkers, showSemiMarkers, searchedBldg, // Map
+  showSideBar, // SideBar
   searchingBldg, // SearchBar
-  showWritePostModal,// WritePost
-  selectedPostList, showPostBoardModal, // PostList
-  selectedPost, showPostModal, // Post
-  selectedRes, showResModal, restaurantList, // Restaurant
-  selectedSemi, selectedSemiList, showSemiModal, showSemiListModal, activeSemiPage, seminarList, // Seminar
+  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, // Post
+  selectedRes, allRestaurants, // Restaurant
+  selectedSemi, selectedSemiList, selectedSemiListBldgNo, activeSemiPage, allSeminars, // Seminar
   error // App
 });
 

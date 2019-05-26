@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux'
 import  App  from '../App';
 import configureStore from 'redux-mock-store'
+import Router from '../BrowserRouter'
 import { shallow, mount } from 'enzyme'
 
 describe('App', ()=>{
@@ -11,7 +12,7 @@ describe('App', ()=>{
 
   it('renders correctly', () => {
     store = mockStore(initialState)
-    component = mount(<Provider store={store}><App /></Provider>)
+    component = mount(<Router><Provider store={store}><App /></Provider></Router>)
   })
 
   it('matches snapshot', ()=>{

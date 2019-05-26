@@ -1,20 +1,10 @@
 import { connect } from 'react-redux'
 import { BuildingModal } from '../components/organisms/BuildingModal'
-import { modalHide } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return {
     bldg: state.selectedBldg,
-    show: state.showBldgModal
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onModalHide: () => {
-      dispatch(modalHide())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BuildingModal)
+export default connect(mapStateToProps, null)(BuildingModal)

@@ -1,49 +1,46 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { RestaurantInfo } from '../molecules/RestaurantInfo'
+import { historyPush } from '../../utils/Functions'
 import './RestaurantModal.css'
 
-export const RestaurantModal = ({resInfo, show, onModalHide}) => {
-  let modal
-  if(resInfo){
-      modal = < Modal
-        show = {show}
-        onHide = {onModalHide}
-        scrollable = {true}
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>{resInfo.kr_name}</Modal.Title>
-        </Modal.Header>
-
+export const RestaurantModal = ({res}) => {
+  let header, body
+  if(res){
+    header = (
+      <Modal.Header closeButton>
+        <Modal.Title>{res.kr_name}</Modal.Title>
+      </Modal.Header>
+    )
+    body = (
       <Modal.Body>
         <h5> 식당 정보 </h5>
         <p> restaurant information should be included in the backend </p>
-        <RestaurantInfo
-          resInfo={resInfo}
-        />
+        <RestaurantInfo res={res}/>
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button variant = "secondary" onClick = {onModalHide}>Close</Button>
-      </Modal.Footer>
-
-    </Modal>
-  }else{
-     modal = < Modal
-       show = {show}
-       onHide = {onModalHide}
-       centered
-     >
-       <Modal.Header closeButton>
-         <Modal.Title>식당 정보가 없습니다.</Modal.Title>
-       </Modal.Header>
-       <Modal.Body>
-       정보없음. 암튼 그럼.
-       </Modal.Body>
-       <Modal.Footer>
-       </Modal.Footer>
+    )
+  } else {
+    header = (
+      <Modal.Header closeButton>
+        <Modal.Title>식당 정보가 없습니다.</Modal.Title>
+      </Modal.Header>
+    )
+    body = (
+      <Modal.Body>
+        정보없음. 암튼 그럼.
+      </Modal.Body>
+    )
+  }
+ return(
+   <Modal
+     show = {true}
+     onHide = {()=>{historyPush('/')}}
+     dialogClassName = "restaurantModal"
+     scrollable = {true}
+     centered
+   >
+     {header}
+     {body}
    </Modal>
- }
-   return modal
+ )
 }

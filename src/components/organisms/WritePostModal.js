@@ -1,9 +1,13 @@
 import React from 'react'
 import { Modal, Button, Form, FormControl } from 'react-bootstrap'
+import { historyPush } from '../../utils/Functions'
 import './WritePostModal.css'
 
-export const WritePostModal = ({bldgNo, show, onModalHide, onShowPostList, onSavePost}) =>{
+export const WritePostModal = ({bldgNo, show, onSavePost}) =>{
   let titleInput, textInput
+  const handleBack = () => {
+    historyPush(`/board/${bldgNo}`)
+  }
   const handleSave = () => {
     let post = {
       "title" : titleInput.value,
@@ -15,7 +19,7 @@ export const WritePostModal = ({bldgNo, show, onModalHide, onShowPostList, onSav
   return (
     <Modal
       show = {show}
-      onHide = {onModalHide}
+      onHide = {()=>{historyPush('/')}}
       dialogClassName = "writePostModal"
       scrollable = {true}
       centered
@@ -48,7 +52,7 @@ export const WritePostModal = ({bldgNo, show, onModalHide, onShowPostList, onSav
 
       <Modal.Footer>
         <Button variant = "secondary" onClick = {handleSave}>저장</Button>
-        <Button variant = "secondary" onClick = {onShowPostList}>뒤로가기</Button>
+        <Button variant = "secondary" onClick = {handleBack}>뒤로가기</Button>
       </Modal.Footer>
     </Modal>
   )

@@ -1,8 +1,18 @@
 import React from 'react'
-import { Modal, Card, ListGroup } from 'react-bootstrap'
+import { Modal, Button, Card, ListGroup } from 'react-bootstrap'
+import { FaAngleLeft } from 'react-icons/fa'
+import { historyPush } from '../../utils/Functions'
 import './SeminarModal.css'
 
-export const SeminarModal = ({semi, show, onModalHide}) => {
+export const SeminarModal = ({semi}) => {
+  const handleBack = () => {
+    if(semi && semi.building){
+      let bldgNo = semi.building.code
+      historyPush(`/seminarlist/${bldgNo}`)
+    } else {
+      historyPush('/')
+    }
+  }
   let title, semiCard
   if(semi && semi.title){
     title = semi.title.replace("[Seminar] ", "")
@@ -22,13 +32,15 @@ export const SeminarModal = ({semi, show, onModalHide}) => {
   }
   return (
     <Modal 
-      show = {show}
-      onHide = {onModalHide}
+      show = {true}
+      onHide = {()=>{historyPush('/')}}
       dialogClassName = "seminarModal"
+      scrollable = {true}
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
+        <Modal.Title className="title">{title}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>

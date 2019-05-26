@@ -1,17 +1,24 @@
 import { connect } from 'react-redux'
 import { Sidebar } from '../components/organisms/Sidebar'
-import { sideResClick } from '../store/actions'
-import { sideSeminarClick } from '../store/actions'
+import { requestAllRestaurants, toggleResMarker, requestAllSeminars, toggleSemiMarker } from '../store/actions'
+
+const mapStateToProps = (state) => {
+  return{
+    show: state.showSideBar
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onResClick: () => {
-      dispatch(sideResClick())
+      dispatch(requestAllRestaurants())
+      dispatch(toggleResMarker())
     },
     onSemiClick: () => {
-      dispatch((sideSeminarClick()))
+      dispatch(requestAllSeminars())
+      dispatch(toggleSemiMarker())
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(Sidebar)
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

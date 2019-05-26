@@ -3,9 +3,25 @@ import { Card, Tabs, Tab, Button } from 'react-bootstrap'
 import { ResPreview } from '../atoms/ResPreview'
 import { PostPreview } from '../atoms/PostPreview'
 import { SemiPreview } from '../atoms/SemiPreview'
+import { historyPush } from '../../utils/Functions'
 import './BuildingInfo.css'
 
-export const BuildingInfo = ({rests, semis, posts, onPostClick, onSeminarClick, onPostListClick, onSeminarListClick}) => {
+export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
+  const handlePostClick = (post) => {
+    historyPush(`/post/${post.id}`)
+  }
+
+  const handleBoardClick = () => {
+    historyPush(`/board/${bldgNo}`)
+  }
+
+  const handleSeminarClick = (semi) => {
+    historyPush(`/seminar/${semi.id}`)
+  }
+
+  const handleSeminarListClick = () => {
+    historyPush(`/seminarlist/${bldgNo}`)
+  }
   let resList, postList, semiList
 
   // Restaurant List
@@ -31,10 +47,10 @@ export const BuildingInfo = ({rests, semis, posts, onPostClick, onSeminarClick, 
   if(posts && posts.length!==0){
     postList = (
       <Card className="postList">
-        {posts.slice(-3).reverse().map((post) => (
-          <PostPreview key={post.id} {...post} onClick={()=>onPostClick(post)}/>
+        {posts.slice(0, 3).map((post) => (
+          <PostPreview key={post.id} {...post} onClick={()=>handlePostClick(post)}/>
         ))}
-        <Card.Footer> <Button className="postListButton" variant="link" onClick={()=>{onPostListClick(posts)}}>게시글 더보기</Button> </Card.Footer>
+        <Card.Footer> <Button className="postListButton" variant="link" onClick={()=>{handleBoardClick()}}>게시글 더보기</Button> </Card.Footer>
       </Card>
     )
   } else {
@@ -52,9 +68,9 @@ export const BuildingInfo = ({rests, semis, posts, onPostClick, onSeminarClick, 
     semiList = (
       <Card className="semiList">
         {semis.slice(0, 2).map((semi) => (
-          <SemiPreview key={semi.id} {...semi} onClick={()=>onSeminarClick(semi)}/>
+          <SemiPreview key={semi.id} {...semi} onClick={()=>handleSeminarClick(semi)}/>
         ))}
-        <Card.Footer> <Button className="semiListButton" variant="link" onClick={()=>{onSeminarListClick(semis)}}>세미나 더보기</Button> </Card.Footer>
+        <Card.Footer> <Button className="semiListButton" variant="link" onClick={()=>{handleSeminarListClick()}}>세미나 더보기</Button> </Card.Footer>
       </Card>
     )
   } else {

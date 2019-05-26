@@ -29,6 +29,11 @@ describe('Sidebar', ()=>{
     expect(component.find('Bootstrap(ListGroupItem)').at(3).text()).toBe('강의실 예약')
     expect(component.find('Bootstrap(ListGroupItem)').at(4).text()).toBe('식당')
   })
+
+  it('changes className properly', ()=>{
+    component.setProps({show: true})
+    expect(component.find('.active').exists()).toBe(true)
+  })
 })
 
 describe('ConnectedSidebar', ()=>{
@@ -51,7 +56,7 @@ describe('ConnectedSidebar', ()=>{
   }
   const baseURL = 'http://127.0.0.1:8000'
   const semiRequest = jest
-    .spyOn(api, 'getSeminarInfo')
+    .spyOn(api, 'getAllSeminarsInfo')
     .mockImplementationOnce(()=>Promise.resolve({
       data: [seminar]
     }))
@@ -62,7 +67,7 @@ describe('ConnectedSidebar', ()=>{
       error: "error"
     }))
   const resRequest = jest
-    .spyOn(api, 'getRestaurantInfo')
+    .spyOn(api, 'getAllRestaurantsInfo')
     .mockImplementationOnce(()=>Promise.resolve({
       data: [restaurant]
     }))
@@ -94,22 +99,24 @@ describe('ConnectedSidebar', ()=>{
     expect(component.find('Bootstrap(ListGroupItem)').at(4).text()).toBe('식당')
   })
 
-  it('dispatches sideSeminarClick action', ()=>{
+  it('dispatches reqeustAllSeminars and toggleSemiMarker action', ()=>{
     component.find('Bootstrap(ListGroupItem)').at(2).prop('onClick')()
-    expect(store.getActions()[0]).toEqual(actions.sideSeminarClick())
+    expect(store.getActions()[0]).toEqual(actions.requestAllSeminars())
+    expect(store.getActions()[1]).toEqual(actions.toggleSemiMarker())
   })
 
-  it('handleRequestSemiInfo dispatches proper actions', ()=>{
-    expect(store.getActions()[1]).toEqual(actions.getSeminarSuccess([seminar]))
+  it('handleRequestAllSemiInfo dispatches proper actions', ()=>{
+    expect(store.getActions()[2]).toEqual(actions.getAllSeminarsSuccess([seminar]))
   })
 
-  it('dispatches sideResClick action', ()=>{
+  it('dispatches requestAllRestaurants and toggleResMarker action', ()=>{
     component.find('Bootstrap(ListGroupItem)').at(4).prop('onClick')()
-    expect(store.getActions()[2]).toEqual(actions.sideResClick())
+    expect(store.getActions()[3]).toEqual(actions.requestAllRestaurants())
+    expect(store.getActions()[4]).toEqual(actions.toggleResMarker())
   })
 
-  it('handleRequestSemiInfo dispatches proper actions', async ()=>{
-    expect(store.getActions()[3]).toEqual(actions.getRestaurantSuccess([restaurant]))
+  it('handleRequestAllSemiInfo dispatches proper actions', async ()=>{
+    expect(store.getActions()[5]).toEqual(actions.getAllRestaurantsSuccess([restaurant]))
   })
 
   it('reducers', async ()=>{
@@ -117,24 +124,26 @@ describe('ConnectedSidebar', ()=>{
     store = createStore(reducers, applyMiddleware(sagaMiddleware))
     sagaMiddleware.run(rootSaga)
 
-    store.dispatch(actions.sideSeminarClick())
+    store.dispatch(actions.requestAllSeminars())
+    store.dispatch(actions.toggleSemiMarker())
     expect(store.getState().showSemiMarkers).toEqual(true)
     await Promise.resolve()
-    expect(store.getState().seminarList).toEqual([seminar])
+    expect(store.getState().allSeminars).toEqual([seminar])
 
-    store.dispatch(actions.sideSeminarClick())
-    expect(store.getState().showSemiMarkers).toEqual(false)
+    store.dispatch(actions.requestAllSeminars())
     await Promise.resolve()
+    expect(store.getState().showSemiMarkers).toEqual(false)
     expect(store.getState().error).toBe('세미나 정보를 받아오지 못했습니다.')
 
-    store.dispatch(actions.sideResClick())
+    store.dispatch(actions.requestAllRestaurants())
+    store.dispatch(actions.toggleResMarker())
     expect(store.getState().showResMarkers).toEqual(true)
     await Promise.resolve()
-    expect(store.getState().restaurantList).toEqual([restaurant])
+    expect(store.getState().allRestaurants).toEqual([restaurant])
 
-    store.dispatch(actions.sideResClick())
-    expect(store.getState().showResMarkers).toEqual(false)
+    store.dispatch(actions.requestAllRestaurants())
     await Promise.resolve()
+    expect(store.getState().showResMarkers).toEqual(false)
     expect(store.getState().error).toBe('식당 정보를 받아오지 못했습니다.')
   })
 })

@@ -10,6 +10,9 @@ import * as actions from '../../../store/actions'
 
 const semi = {
   "id": 5,
+  "building": {
+    code: "301"
+  },
   "title": "[Seminar] Enabling Scalable Learning on Massive Datasets",
   "talker": "Praveen R. RaoComputer Science & Electrical Engineering School of Computing and Engineering, University of Missouri-Kansas City",
   "where": "301동 306호",
@@ -18,12 +21,12 @@ const semi = {
 }
 
 describe('SeminarModal', ()=>{
+  global.window = { location: { pathname: null } };
   let component
-  const show = false
-  const mockModalHide = jest.fn()
+  const show = true 
 
   it('renders correctly', ()=>{
-    component = shallow(<SeminarModal semi={semi} show={show} onModalHide={mockModalHide}/>)
+    component = shallow(<SeminarModal semi={semi} show={show} />)
   })
 
   it('matches snapshot', ()=>{
@@ -34,22 +37,20 @@ describe('SeminarModal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
   })
 
-  it('shows semiCard properly', ()=>{
-    expect(component.find('.semiCard').exists()).toBe(true)
-    component.setProps({semi: {}})
-    expect(component.find('.semiCard').exists()).toBe(false)
-  })
-
   it('calls functions', ()=>{
+    component.find('.back').simulate('click')
+    expect(global.window.location.pathname).toEqual('/seminarlist/301')
+    component.setProps({semi: null})
+    component.find('.back').simulate('click')
+    expect(global.window.location.pathname).toEqual('/')
     component.find('Bootstrap(Modal)').simulate('hide')
-    expect(mockModalHide.mock.calls.length).toBe(1)
+    expect(global.window.location.pathname).toEqual('/')
   })
 })
 
 describe('ConnectedSeminarModal', ()=>{
   const initialState = {
     selectedSemi: semi, 
-    showSemiModal: true
   }
   const mockStore = configureStore()
   let store, component
@@ -63,19 +64,7 @@ describe('ConnectedSeminarModal', ()=>{
     expect(component).toMatchSnapshot()
   })
 
-
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
-  })
-
-  it('dispatches onModalHide action', ()=>{
-    component.find('Bootstrap(Modal)').prop('onHide')()
-    expect(store.getActions()[0]).toEqual(actions.modalHide())
-  })
-
-  it('reducers', ()=>{
-    store = createStore(reducers, initialState)
-    store.dispatch(actions.modalHide())
-    expect(store.getState().showSemiModal).toBe(false)
   })
 })

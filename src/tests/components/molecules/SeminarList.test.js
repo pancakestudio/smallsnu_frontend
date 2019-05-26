@@ -2,7 +2,7 @@ import React from 'react'
 import { SeminarList } from '../../../components/molecules/SeminarList'
 import { shallow } from 'enzyme'
 
-describe('SemiPreview', ()=>{
+describe('SeminarList', ()=>{
   let component
   const seminars = [
     {
@@ -46,7 +46,6 @@ describe('SemiPreview', ()=>{
       <SeminarList
         semis={seminars.slice(0, 2)}
         page={page}
-        onSeminarClick={mockSeminarClick}
       />
     )
   })
@@ -68,10 +67,6 @@ describe('SemiPreview', ()=>{
 
   it('calls functions', ()=>{
     component.find('SemiPreview').at(0).prop('onClick')()
-    expect(mockSeminarClick.mock.calls.length).toBe(1)
-    component.find('SemiPreview').at(1).prop('onClick')()
-    expect(mockSeminarClick.mock.calls.length).toBe(2)
-    component.find('SemiPreview').at(2).prop('onClick')()
-    expect(mockSeminarClick.mock.calls.length).toBe(3)
+    expect(global.window.location.pathname).toEqual('/seminar/1')
   })
 })

@@ -1,24 +1,27 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
-import BuildingInfo from '../../containers/BuildingInfo'
+import { BuildingInfo } from '../molecules/BuildingInfo'
+import { historyPush } from '../../utils/Functions'
 import './BuildingModal.css'
 
-export const BuildingModal = ({bldg, show, onModalHide}) => {
+export const BuildingModal = ({bldg}) => {
   return(
     <Modal
-      show = {show}
-      onHide = {onModalHide}
+      show = {true}
+      onHide = {()=>{historyPush('/')}}
       dialogClassName = "buildingModal"
+      scrollable = {true}
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>{bldg.bldgNo}동</Modal.Title>
+        <Modal.Title>{bldg.krName}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <h5>건물 정보</h5>
         <p>{bldg.info}</p>
         <BuildingInfo
+          bldgNo={bldg.bldgNo}
           rests={bldg.restaurants}
           semis={bldg.seminars}
           posts={bldg.posts}
