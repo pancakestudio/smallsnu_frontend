@@ -133,6 +133,19 @@ function* handleSave(){
   }
 }
 
+function* handleEdit(){
+  while(true){
+    const action = yield take(types.EDIT_POST)
+    const {error} = yield call(api.postEditPost, action.post, action.bldgNo)
+    if(error){
+      const errormsg = '게시물을 수정하지 못했습니다.'
+      alert(errormsg)
+    }
+    yield put(actions.requestPost(action.post.id))
+    yield put(actions.requestBoard(action.bldgNo))
+  }
+}
+
 export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
   yield fork(handleRequestBoardInfo)
@@ -143,4 +156,5 @@ export default function* rootSaga(){
   yield fork(handleRequestBldgSemiInfo)
   yield fork(handleRequestAllSemiInfo)
   yield fork(handleSave)
+  yield fork(handleEdit)
 }

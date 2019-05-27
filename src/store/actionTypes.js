@@ -20,6 +20,8 @@ export const REQUEST_POST = "REQUEST_POST"
 export const GET_POST_SUCCESS = "GET_POST_SUCCESS"
 export const GET_POST_FAILURE = "GET_POST_FAILURE"
 export const SAVE_POST = "SAVE_POST";
+export const EDIT_POST = "EDIT_POST";
+export const EDIT_POST_FLAG = "EDIT_POST_FLAG";
 export const SHOW_WRITE_POST = "SHOW_WRITE_POST";
 
 /******** Restaurant ********/

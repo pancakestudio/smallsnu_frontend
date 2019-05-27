@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { SearchBar } from '../components/molecules/SearchBar'
-import { toggleResMarker, requestAllRestaurants, searchValueChange, search } from '../store/actions'
+import { toggleResMarker, requestAllRestaurants,
+  searchValueChange, search, requestAllSeminars, toggleSemiMarker } from '../store/actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -14,6 +15,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(requestAllRestaurants())
       dispatch(toggleResMarker())
     },
+    onSearchSeminar: () => {
+      dispatch(requestAllSeminars())
+      dispatch(toggleSemiMarker())
+    }
   }
 }
 

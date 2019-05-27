@@ -4,7 +4,9 @@ import { FaAngleLeft } from 'react-icons/fa'
 import { historyPush } from '../../utils/Functions'
 import './PostModal.css'
 
-export const PostModal = ({post}) => {
+export const PostModal = ({post, onShowWritePostModal, onEdit}) => {
+  console.log("postModal in")
+  console.log(post)
   const handleBack = () => {
     if(post && post.building){
       let boardNo = post.building.code
@@ -13,9 +15,15 @@ export const PostModal = ({post}) => {
       historyPush('/')
     }
   }
+  const handleEdit = () => {
+    onEdit()
+    onShowWritePostModal()
+  }
+  const handleDelete = () => {
+
+  }
 
   let modal
-
   if(post){
     modal = <Modal
       show = {true}
@@ -30,8 +38,14 @@ export const PostModal = ({post}) => {
       </Modal.Header>
 
       <Modal.Body>
+        <p> Username : {post.username} </p>
         {post.content}
       </Modal.Body>
+
+      <Modal.Footer>
+          <Button variant = "secondary" onClick={handleEdit}>수정</Button>
+          <Button variant = "danger" onClick={handleDelete}>삭제</Button>
+      </Modal.Footer>
     </Modal>
   }else{
     modal = <Modal

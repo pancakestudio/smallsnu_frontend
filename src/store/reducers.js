@@ -146,6 +146,17 @@ function selectedPost(state = {}, action){
   }
 }
 
+function isEdit(state = false, action){
+  switch(action.type){
+    case types.EDIT_POST_FLAG:
+      return true
+    case types.GET_BOARD_SUCCESS:
+      return false
+    default:
+      return state
+  }
+}
+
 /******** Restaurant ********/
 
 function selectedRes(state = {}, action){
@@ -238,7 +249,7 @@ const reducers = combineReducers({
   currentPos, zoom, selectedBldg, showSearchMarker, showResMarkers, showSemiMarkers, searchedBldg, // Map
   showSideBar, // SideBar
   searchingBldg, // SearchBar
-  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, // Post
+  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, isEdit,// Post
   selectedRes, allRestaurants, // Restaurant
   selectedSemi, selectedSemiList, selectedSemiListBldgNo, activeSemiPage, allSeminars, // Seminar
   error // App

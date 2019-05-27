@@ -120,6 +120,20 @@ export function savePost(post, bldgNo){
   }
 }
 
+export function editPost(post, bldgNo){
+  return{
+    type: types.EDIT_POST,
+    post,
+    bldgNo
+  }
+}
+
+export function editPostFlag(){
+  return{
+    type: types.EDIT_POST_FLAG,
+  }
+}
+
 export function showWritePost() {
   return{
     type: types.SHOW_WRITE_POST,

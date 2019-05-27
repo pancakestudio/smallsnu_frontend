@@ -44,12 +44,24 @@ export function getAllSeminarsInfo(){
 
 export function postWritePost(post, bldgNo){
   const option = {
-        method: 'POST',
-        headers: new Headers({
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }),
-    };
+    method: 'POST',
+    headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }),
+  };
   return axios.post(`building/${bldgNo}/post/`,post, option)
+  .catch(error => {return{error:error}})
+}
+
+export function postEditPost(post){
+  const option = {
+    method: 'POST',
+    headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }),
+  };
+  return axios.post(`post/${post.id}/`, post, option)
   .catch(error => {return{error:error}})
 }
