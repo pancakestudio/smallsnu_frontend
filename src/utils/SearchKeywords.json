@@ -1,3 +1,4 @@
+
 [
   {
     "subject": "restaurant",
@@ -26,5 +27,25 @@
   {
     "subject": "restaurant",
     "keyword": "밥"
+  },
+
+
+
+  {
+    "subject": "seminar",
+    "keyword": "seminar"
+  },
+  {
+    "subject": "seminar",
+    "keyword": "seminars"
+  },
+  {
+    "subject": "seminar",
+    "keyword": "세미나"
+  },
+  {
+    "subject": "seminar",
+    "keyword": "conference"
   }
+
 ]

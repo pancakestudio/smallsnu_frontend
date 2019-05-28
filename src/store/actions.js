@@ -112,6 +112,14 @@ export function getPostFailure(error){
   }
 }
 
+export function deletePost(post, bldgNo){
+  return{
+    type: types.DELETE_POST,
+    post,
+    bldgNo,
+  }
+}
+
 export function savePost(post, bldgNo){
   return{
     type: types.SAVE_POST,
@@ -120,10 +128,43 @@ export function savePost(post, bldgNo){
   }
 }
 
+export function editPost(post, bldgNo){
+  return{
+    type: types.EDIT_POST,
+    post,
+    bldgNo
+  }
+}
+
+export function editPostFlag(){
+  return{
+    type: types.EDIT_POST_FLAG,
+  }
+}
+
 export function showWritePost() {
   return{
     type: types.SHOW_WRITE_POST,
   };
+}
+
+export function showPostPWCheck(){
+  return{
+    type: types.SHOW_POST_PW_CHECK
+  }
+}
+
+export function hidePostPWCheck(){
+  return{
+    type: types.HIDE_POST_PW_CHECK
+  }
+}
+
+export function postPWCheck(password) {
+  return{
+    type: types.POST_PW_CHECK,
+    password
+  }
 }
 
 /******** Restaurant ********/

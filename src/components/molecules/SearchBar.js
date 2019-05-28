@@ -3,7 +3,8 @@ import { Form, FormControl, Button } from 'react-bootstrap'
 import { getBldgCoord, getKeyword } from '../../utils/Functions'
 import './SearchBar.css'
 
-export const SearchBar = ({onSearchValueChange, onSearchBuilding, onSearchRestaurant}) => {
+export const SearchBar = ({onSearchValueChange, onSearchBuilding,
+  onSearchRestaurant, onSearchSeminar}) => {
   let input
   const handleChange = (e) => {
     onSearchValueChange(e.target.value.trim())
@@ -16,8 +17,11 @@ export const SearchBar = ({onSearchValueChange, onSearchBuilding, onSearchRestau
     if(bldgPos !== undefined){
       onSearchBuilding(bldgNo, bldgPos)
     }
-    else if(getKeyword(input.value, "restaurant")){
+    else if(getKeyword(input.value, "restaurant")==="restaurant"){
       onSearchRestaurant()
+    }
+    else if(getKeyword(input.value, "seminar")==="seminar"){
+      onSearchSeminar()
     }
     else {
       alert("잘못된 검색어 형식입니다.")

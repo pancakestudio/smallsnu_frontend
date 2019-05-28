@@ -122,6 +122,7 @@ function showWritePostModal(state = false, action){
 function selectedBoardBldgNo(state = "0", action){
   switch(action.type){
     case types.GET_BOARD_SUCCESS:
+    case types.GET_BUILDING_SUCCESS:
       return action.bldgNo
     default:
       return state
@@ -146,6 +147,36 @@ function selectedPost(state = {}, action){
   }
 }
 
+function isEdit(state = false, action){
+  switch(action.type){
+    case types.EDIT_POST_FLAG:
+      return true
+    case types.GET_BOARD_SUCCESS:
+      return false
+    default:
+      return state
+  }
+}
+
+function postPW(state = "", action){
+  switch(action.type){
+    case types.POST_PW_CHECK:
+      return action.password
+    case types.GET_BOARD_SUCCESS:
+      return ""
+    default:
+      return state
+  }
+}
+
+function showPostPWCheck(state = false, action){
+  switch(action.type){
+    case types.SHOW_POST_PW_CHECK:
+      return true
+    default:
+      return false
+  }
+}
 /******** Restaurant ********/
 
 function selectedRes(state = {}, action){
@@ -238,7 +269,7 @@ const reducers = combineReducers({
   currentPos, zoom, selectedBldg, showSearchMarker, showResMarkers, showSemiMarkers, searchedBldg, // Map
   showSideBar, // SideBar
   searchingBldg, // SearchBar
-  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, // Post
+  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, isEdit, postPW, showPostPWCheck, // Post
   selectedRes, allRestaurants, // Restaurant
   selectedSemi, selectedSemiList, selectedSemiListBldgNo, activeSemiPage, allSeminars, // Seminar
   error // App
