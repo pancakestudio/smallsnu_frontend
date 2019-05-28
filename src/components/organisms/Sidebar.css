@@ -1,8 +1,8 @@
 #sidebar {
   border-radius: 5px;
   height: calc(100vh - 85px);
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 150px;
+  max-width: 150px;
   padding: 10px;
   position: fixed;
   top: 65px;

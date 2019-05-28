@@ -301,3 +301,117 @@ export function getAllSeminarsFailure(error){
     error
   }
 }
+
+/******** Bank ********/
+
+export function toggleBankMarker(){
+  return{
+    type: types.TOGGLE_BANK_MARKER,
+  }
+}
+
+export function requestAllBanks(){
+  return{
+    type: types.REQUEST_ALL_BANKS,
+  }
+}
+
+export function getAllBanksSuccess(banks){
+  return{
+    type: types.GET_ALL_BANKS_SUCCESS,
+    banks,
+  }
+}
+
+export function getAllBanksFailure(error){
+  return{
+    type: types.GET_ALL_BANKS_FAILURE,
+    error,
+  }
+}
+
+
+/******** ATM ********/
+
+export function toggleATMMarker(){
+  return{
+    type: types.TOGGLE_ATM_MARKER,
+  }
+}
+
+export function requestAllATMs(){
+  return{
+    type: types.REQUEST_ALL_ATMS,
+  }
+}
+
+export function getAllATMsSuccess(atms){
+  return{
+    type: types.GET_ALL_ATMS_SUCCESS,
+    atms,
+  }
+}
+
+export function getAllATMsFailure(error){
+  return{
+    type: types.GET_ALL_ATMS_FAILURE,
+    error,
+  }
+}
+
+/******** Cafe ********/
+
+export function toggleCafeMarker(){
+  return{
+    type: types.TOGGLE_CAFE_MARKER,
+  }
+}
+
+export function requestAllCafes(){
+  return{
+    type: types.REQUEST_ALL_CAFES,
+  }
+}
+
+export function getAllCafesSuccess(cafes){
+  return{
+    type: types.GET_ALL_CAFES_SUCCESS,
+    cafes,
+  }
+}
+
+export function getAllCafesFailure(error){
+  return{
+    type: types.GET_ALL_CAFES_FAILURE,
+    error,
+  }
+}
+
+
+/******** Conv ********/
+
+export function toggleConvMarker(){
+  return{
+    type: types.TOGGLE_CONV_MARKER,
+  }
+}
+
+export function requestAllConves(){
+  return{
+    type: types.REQUEST_ALL_CONVES,
+  }
+}
+
+export function getAllConvesSuccess(conves){
+  return{
+    type: types.GET_ALL_CONVES_SUCCESS,
+    conves,
+  }
+}
+
+export function getAllConvesFailure(error){
+  return{
+    type: types.GET_ALL_CONVES_FAILURE,
+    error,
+  }
+}

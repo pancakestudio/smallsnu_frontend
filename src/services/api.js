@@ -42,6 +42,26 @@ export function getAllSeminarsInfo(){
     .catch(error => { return {error:error}})
 }
 
+export function getAllBanksInfo(){
+  return axios.get('bank/')
+    .catch(error => { return {error:error}})
+}
+
+export function getAllATMsInfo(){
+  return axios.get('atm/')
+    .catch(error => { return {error:error}})
+}
+
+export function getAllCafesInfo(){
+  return axios.get('cafe/')
+    .catch(error => { return {error:error}})
+}
+
+export function getAllConvesInfo(){
+  return axios.get('conv/')
+    .catch(error => { return {error:error}})
+}
+
 export function postWritePost(post, bldgNo){
   const option = {
     headers: new Headers({

@@ -122,6 +122,62 @@ function* handleRequestAllSemiInfo(){
   }
 }
 
+function* handleRequestAllBankInfo(){
+  while(true){
+    yield take(types.REQUEST_ALL_BANKS)
+    const { data, error } = yield call(api.getAllBanksInfo)
+    if(data && !error){
+      const banks = data
+      yield put(actions.getAllBanksSuccess(banks))
+    } else {
+      const errormsg = '은행 정보를 받아오지 못했습니다.'
+      yield put(actions.getAllBanksFailure(errormsg))
+    }
+  }
+}
+
+function* handleRequestAllATMInfo(){
+  while(true){
+    yield take(types.REQUEST_ALL_ATMS)
+    const { data, error } = yield call(api.getAllATMsInfo)
+    if(data && !error){
+      const atms = data
+      yield put(actions.getAllATMsSuccess(atms))
+    } else {
+      const errormsg = 'ATM 정보를 받아오지 못했습니다.'
+      yield put(actions.getAllATMsFailure(errormsg))
+    }
+  }
+}
+
+function* handleRequestAllCafeInfo(){
+  while(true){
+    yield take(types.REQUEST_ALL_CAFES)
+    const { data, error } = yield call(api.getAllCafesInfo)
+    if(data && !error){
+      const cafes = data
+      yield put(actions.getAllCafesSuccess(cafes))
+    } else {
+      const errormsg = '카페 정보를 받아오지 못했습니다.'
+      yield put(actions.getAllCafesFailure(errormsg))
+    }
+  }
+}
+
+function* handleRequestAllConvInfo(){
+  while(true){
+    yield take(types.REQUEST_ALL_CONVES)
+    const { data, error } = yield call(api.getAllConvesInfo)
+    if(data && !error){
+      const conves = data
+      yield put(actions.getAllConvesSuccess(conves))
+    } else {
+      const errormsg = '편의점 정보를 받아오지 못했습니다.'
+      yield put(actions.getAllConvesFailure(errormsg))
+    }
+  }
+}
+
 function* handleSave(){
   while(true){
     const action = yield take(types.SAVE_POST)
@@ -171,6 +227,10 @@ export default function* rootSaga(){
   yield fork(handleRequestSemiInfo)
   yield fork(handleRequestBldgSemiInfo)
   yield fork(handleRequestAllSemiInfo)
+  yield fork(handleRequestAllBankInfo)
+  yield fork(handleRequestAllATMInfo)
+  yield fork(handleRequestAllCafeInfo)
+  yield fork(handleRequestAllConvInfo)
   yield fork(handleSave)
   yield fork(handleEdit)
   yield fork(handleDelete)
