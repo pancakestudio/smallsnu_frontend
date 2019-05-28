@@ -8,12 +8,13 @@ import SeminarListModal from '../../containers/SeminarListModal'
 import BoardModal from '../../containers/BoardModal'
 import PostModal from '../../containers/PostModal'
 import WritePostModal from '../../containers/WritePostModal'
+import PostPWCheck from '../../containers/PostPWCheck'
 import Sidebar from '../../containers/Sidebar'
 import { Route } from 'react-router-dom'
 import './Main.css'
 
 export const Main = ({match, error, getBuilding, getRestaurant, getSeminar, getSeminarList, getBoard, getPost}) => {
-  if(!error || error.length === 0){ 
+  if(!error || error.length === 0){
     switch(match.params.modal){
       case "building":
         getBuilding(match.params.id)
@@ -48,6 +49,7 @@ export const Main = ({match, error, getBuilding, getRestaurant, getSeminar, getS
       <Route exact path="/board/:bldgNo" component={BoardModal} />
       <Route exact path="/post/:id" component={PostModal} />
       <WritePostModal />
+      <PostPWCheck />
     </div>
   )
 }

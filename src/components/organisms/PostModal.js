@@ -4,9 +4,9 @@ import { FaAngleLeft } from 'react-icons/fa'
 import { historyPush } from '../../utils/Functions'
 import './PostModal.css'
 
-export const PostModal = ({post, onShowWritePostModal, onEdit}) => {
-  console.log("postModal in")
-  console.log(post)
+export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModal, deleteFlag}) => {
+  let postShow = true
+
   const handleBack = () => {
     if(post && post.building){
       let boardNo = post.building.code
@@ -20,13 +20,13 @@ export const PostModal = ({post, onShowWritePostModal, onEdit}) => {
     onShowWritePostModal()
   }
   const handleDelete = () => {
-
+    onShowCheckPWModal()
   }
 
   let modal
   if(post){
     modal = <Modal
-      show = {true}
+      show = {!deleteFlag}
       onHide = {()=>{historyPush('/')}}
       dialogClassName = "postModal"
       scrollable = {true}

@@ -44,7 +44,6 @@ export function getAllSeminarsInfo(){
 
 export function postWritePost(post, bldgNo){
   const option = {
-    method: 'POST',
     headers: new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -56,12 +55,26 @@ export function postWritePost(post, bldgNo){
 
 export function postEditPost(post){
   const option = {
-    method: 'POST',
     headers: new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     }),
   };
   return axios.post(`post/${post.id}/`, post, option)
+  .catch(error => {return{error:error}})
+}
+
+export function postDeletePost(post){
+  let password = { "password" : post.password }
+  const option = {
+    method: 'DELETE',
+    headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }),
+    mode : 'cors',
+    data : JSON.stringify(password)
+  };
+  return axios.delete(`post/${post.id}/`, option)
   .catch(error => {return{error:error}})
 }

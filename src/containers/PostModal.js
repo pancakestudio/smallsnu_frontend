@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import { PostModal } from '../components/organisms/PostModal'
-import { showWritePost , editPostFlag} from '../store/actions'
+import { showWritePost , editPostFlag, showPostPWCheck} from '../store/actions'
 
 const mapStateToProps = (state) => {
   return {
     post: state.selectedPost,
+    deleteFlag : state.isDelete,
   }
 }
 
@@ -15,7 +16,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     onEdit: () => {
       dispatch(editPostFlag())
-    }
+    },
+    onShowCheckPWModal: () => {
+      dispatch(showPostPWCheck())
+    },
   }
 }
 
