@@ -5,3 +5,12 @@
 .boardModal .title{
   margin: auto 0px;
 }
+
+.boardModal .center {
+  display: flex;
+  justify-content: center;
+}
+
+.boardModal .pagination {
+  margin: auto;
+}

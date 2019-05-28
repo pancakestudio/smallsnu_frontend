@@ -21,12 +21,13 @@ export const PostPWCheck = ({show, post, bldgNo, onHideModal, onDelete}) => {
   return(
     <Modal
       show = {show}
-      onHide = {() =>{historyPush('/')}}
-      dialogClassName = "PostPWCheck"
+      onHide = {onHideModal}
+      backdrop = {false}
+      size = "sm"
+      dialogClassName = "postPWCheck"
       centered
     >
       <Modal.Header closeButton>
-      <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
         <Modal.Title>비밀번호 확인</Modal.Title>
       </Modal.Header>
       <Modal.Body>

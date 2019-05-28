@@ -1,7 +1,11 @@
 .postModal {
-  min-width: 50vw;
+  min-width: 80vw;
 }
 
 .postModal .title {
   margin: auto 0px;
+}
+
+.postModal .postHeader {
+  margin: -16px;
 }

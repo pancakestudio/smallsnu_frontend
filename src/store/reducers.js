@@ -14,6 +14,9 @@ function currentPos(state = {lat: 37.459, lng: 126.952}, action){
 
 function zoom(state = 17, action) {
   switch(action.type){
+    case types.TOGGLE_RES_MARKER:
+    case types.TOGGLE_SEMI_MARKER:
+      return 15
     case types.ZOOM_CHANGED:
       return action.zoomLevel
     default:
@@ -177,6 +180,18 @@ function showPostPWCheck(state = false, action){
       return false
   }
 }
+
+function activeBoardPage(state = 1, action) {
+  switch(action.type){
+    case types.CHANGE_BOARD_PAGE:
+      return action.page
+    case types.GET_BOARD_SUCCESS:
+      return 1
+    default:
+      return state
+  }
+}
+
 /******** Restaurant ********/
 
 function selectedRes(state = {}, action){
@@ -269,7 +284,7 @@ const reducers = combineReducers({
   currentPos, zoom, selectedBldg, showSearchMarker, showResMarkers, showSemiMarkers, searchedBldg, // Map
   showSideBar, // SideBar
   searchingBldg, // SearchBar
-  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, isEdit, postPW, showPostPWCheck, // Post
+  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, isEdit, postPW, showPostPWCheck, activeBoardPage, // Post
   selectedRes, allRestaurants, // Restaurant
   selectedSemi, selectedSemiList, selectedSemiListBldgNo, activeSemiPage, allSeminars, // Seminar
   error // App

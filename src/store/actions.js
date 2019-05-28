@@ -167,6 +167,13 @@ export function postPWCheck(password) {
   }
 }
 
+export function changeBoardPage(page){
+  return {
+    type: types.CHANGE_BOARD_PAGE,
+    page
+  }
+}
+
 /******** Restaurant ********/
 
 export function toggleResMarker(){

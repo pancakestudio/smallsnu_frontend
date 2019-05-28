@@ -1,3 +1,13 @@
 .postPreview {
   overflow: hidden;
 }
+
+.postPreview:hover .title{
+  text-decoration: underline;
+}
+
+.postPreview .footer {
+  margin-top: -20px;
+  background-color: rgba(0,0,0,0);
+  font-size: 14px;
+}

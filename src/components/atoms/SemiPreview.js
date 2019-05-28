@@ -13,7 +13,7 @@ export const SemiPreview = ({title, talker, where, time, onClick}) => {
       >
         {title.replace("[Seminar] ","")}
       </Card.Header>
-      <ListGroup>
+      <ListGroup variant="flush">
         <ListGroup.Item>강연자: {talker}</ListGroup.Item>
         <ListGroup.Item>장소: {where}</ListGroup.Item>
         <ListGroup.Item>시간: {time}</ListGroup.Item>

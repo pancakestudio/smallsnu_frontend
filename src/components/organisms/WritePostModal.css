@@ -1,3 +1,7 @@
 .writePostModal {
   min-width: 50vw;
 }
+
+.writePostModal .modal-content {
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
+}

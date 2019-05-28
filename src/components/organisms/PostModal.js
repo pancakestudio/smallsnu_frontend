@@ -1,5 +1,6 @@
 import React from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import moment from 'moment'
+import { Modal, Button, Card } from 'react-bootstrap'
 import { FaAngleLeft } from 'react-icons/fa'
 import { historyPush } from '../../utils/Functions'
 import './PostModal.css'
@@ -38,8 +39,17 @@ export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModa
       </Modal.Header>
 
       <Modal.Body>
-        <p> Username : {post.username} </p>
-        {post.content}
+        <Card className="border-0">
+          <Card.Header className="postHeader text-muted">
+            작성자: {post.username} | 작성일시: {moment(post.created).format("YYYY.MM.DD HH:mm:ss")}
+          </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              <br/>
+              {post.content}
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </Modal.Body>
 
       <Modal.Footer>

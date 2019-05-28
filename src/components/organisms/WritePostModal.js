@@ -26,7 +26,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
   }
   const handleEdit = () => {
     if(passwordInput.value !== editPost.password){
-      alert("비밀번호가 맞지 않습니다.")
+      alert("비밀번호가 올바르지 않습니다.")
     }else{
       editPost.title = titleInput.value
       editPost.content = textInput.value
@@ -34,61 +34,35 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
     }
   }
 
+  let modalTitle, title, content, username, titlePlaceholder, contentPlaceholder, usernamePlaceholder, disabled, handler
+
   if(isEdit){
-    return (
-      <Modal
-        show = {show}
-        onHide = {()=>{historyPush('/')}}
-        dialogClassName = "writePostModal"
-        scrollable = {true}
-        centered
-      >
-        <Modal.Header closeButton>
-        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
-          <Modal.Title> 수정할 게시글 </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="postTitle">
-              <Form.Control type="title" defaultValue = {editPost.title} ref = {(ref) => (titleInput=ref)}/>
-            </Form.Group>
-
-            <Form.Group controlId="postText">
-              <Form.Control as = "textarea" defaultValue = {editPost.content} rows = "10" ref = {(ref) => (textInput=ref)}/>
-            </Form.Group>
-
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label></Form.Label>
-                <Form.Control type="userName" defaultValue = {editPost.username} />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label></Form.Label>
-                <Form.Control type="password" placeholder="비밀번호" ref = {(ref) => (passwordInput=ref)}/>
-              </Form.Group>
-            </Form.Row>
-          </Form>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant = "secondary" onClick = {handleEdit}>수정</Button>
-        </Modal.Footer>
-      </Modal>
-    )
+    modalTitle = "게시글 수정"
+    title = editPost.title
+    content = editPost.content
+    username = editPost.username
+    disabled = true
+    handler = handleEdit
   }else{
-    return (
+    modalTitle = "새로운 게시글"
+    titlePlaceholder = "제목"
+    contentPlaceholder = "내용"
+    usernamePlaceholder = "아이디"
+    disabled = false
+    handler = handleSave
+  }
+  return (
       <Modal
+        className = "writeModal"
         show = {show}
-        onHide = {()=>{historyPush('/')}}
+        onHide = {handleBack}
         dialogClassName = "writePostModal"
         scrollable = {true}
+        backdrop = {false}
         centered
       >
         <Modal.Header closeButton>
-        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
-          <Modal.Title> 새로운 게시글 </Modal.Title>
+          <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -96,7 +70,8 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
             <Form.Group controlId="postTitle">
               <Form.Control
                 type="title"
-                placeholder="제목"
+                defaultValue={title}
+                placeholder={titlePlaceholder}
                 ref = {(ref) => (titleInput=ref)}
               />
             </Form.Group>
@@ -105,7 +80,8 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
               <Form.Control
                 as = "textarea"
                 rows = "10"
-                placehoder = "text"
+                defaultValue={content}
+                placehoder={contentPlaceholder}
                 ref = {(ref) => (textInput=ref)}
               />
             </Form.Group>
@@ -113,23 +89,30 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
             <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label></Form.Label>
-                <Form.Control type="userName" placeholder="아이디" ref = {(ref) => (userNameInput=ref)}/>
+                <Form.Control
+                  type="userName"
+                  disabled={disabled}
+                  defaultValue={username}
+                  placeholder="아이디"
+                  ref = {(ref) => (userNameInput=ref)}
+                />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label></Form.Label>
-                <Form.Control type="password" placeholder="비밀번호" ref = {(ref) => (passwordInput=ref)}/>
+                <Form.Control
+                  type="password"
+                  placeholder="비밀번호"
+                  ref = {(ref) => (passwordInput=ref)}
+                />
               </Form.Group>
             </Form.Row>
-
-
           </Form>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant = "secondary" onClick = {handleSave}>저장</Button>
+          <Button variant = "secondary" onClick = {handler}>저장</Button>
         </Modal.Footer>
       </Modal>
-    )
-  }
+  )
 }
