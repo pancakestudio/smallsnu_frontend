@@ -3,6 +3,7 @@ import * as actions from './actions'
 import * as types from './actionTypes'
 import * as api from '../services/api'
 import * as reducers from './reducers'
+import { historyPush } from '../utils/Functions'
 
 function* handleRequestBldgInfo(){
   while(true){
@@ -148,12 +149,14 @@ function* handleEdit(){
 function* handleDelete(){
   while(true){
     const action = yield take(types.DELETE_POST)
+    let boardNo = action.post.building.code
     const {error} = yield call(api.postDeletePost, action.post)
     if(error){
       const errormsg = '게시물을 삭제하지 못했습니다.'
       alert(errormsg)
     }else{
       alert('삭제되었습니다.')
+      historyPush(`/board/${boardNo}`)
     }
     yield put(actions.requestBoard(action.bldgNo))
   }

@@ -5,7 +5,6 @@ import { showWritePost , editPostFlag, showPostPWCheck} from '../store/actions'
 const mapStateToProps = (state) => {
   return {
     post: state.selectedPost,
-    deleteFlag : state.isDelete,
   }
 }
 

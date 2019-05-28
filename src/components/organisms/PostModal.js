@@ -4,7 +4,7 @@ import { FaAngleLeft } from 'react-icons/fa'
 import { historyPush } from '../../utils/Functions'
 import './PostModal.css'
 
-export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModal, deleteFlag}) => {
+export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModal}) => {
   let postShow = true
 
   const handleBack = () => {
@@ -26,7 +26,7 @@ export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModa
   let modal
   if(post){
     modal = <Modal
-      show = {!deleteFlag}
+      show = {true}
       onHide = {()=>{historyPush('/')}}
       dialogClassName = "postModal"
       scrollable = {true}

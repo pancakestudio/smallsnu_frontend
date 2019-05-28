@@ -120,12 +120,6 @@ export function deletePost(post, bldgNo){
   }
 }
 
-export function deleteSuccess(){
-  return{
-    type: types.DELETE_SUCCESS,
-  }
-}
-
 export function savePost(post, bldgNo){
   return{
     type: types.SAVE_POST,
