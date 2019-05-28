@@ -6,12 +6,15 @@ import {
 import './Map.css'
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
+import { resIcon, semiIcon, convIcon} from '../../utils/iconGroup'
 
 export const Map = ({
   currentPos, zoom, searchedBldg, showSearchMarker,
   resData, showResMarkers,
   semis, showSemiMarkers,
   onZoom, onBackgroundClick}) => {
+
+
 
   const handleMapClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
@@ -29,7 +32,7 @@ export const Map = ({
   const handleResClick = (resId) => {
     historyPush(`/restaurant/${resId}`)
   }
-  
+
   const handleSeminarListClick = (bldgNo) => {
     historyPush(`/seminarlist/${bldgNo}`)
   }
@@ -41,7 +44,7 @@ export const Map = ({
 
   let searchMarker, resMarkers, semiMarkers
   if(showSearchMarker){
-    searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
+    searchMarker = <Marker className="searchMarker" icon={resIcon} position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
 
   if(showResMarkers && resData){
@@ -49,6 +52,7 @@ export const Map = ({
       <Marker
         key={res.id}
         className="resMarker"
+        icon = {resIcon}
         position = {[res.building.spot.latitude, res.building.spot.longitude]}
         onClick = {() =>{handleResClick(res.id)}}
       >
@@ -82,12 +86,13 @@ export const Map = ({
       })
       semiMarkers = semiBldgs.map((bldg, index) => (
         <Marker
-          key = {bldg.code}
+        key = {bldg.code}
 	      className="semiMarker"
+        icon = {semiIcon}
 	      position = {[bldg.spot.latitude, bldg.spot.longitude]}
           onClick = {() =>{handleSeminarListClick(bldg.code)}}
         >
-          <Tooltip 
+          <Tooltip
             className="semiToolTip"
             permanent
           >
@@ -97,7 +102,7 @@ export const Map = ({
       ))
     }
   }
-    
+
   return (
       <LeafletMap className = "leafletMap"
         center = {currentPos}
