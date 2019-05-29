@@ -13,7 +13,7 @@ describe('RestaurantModal', () => {
   it('renders correctly', () => {
     component = shallow(
     <RestaurantModal
-        res = {{kr_name:'학생회관 식당'}}
+        res = {{kr_name:'학생회관 식당', building: {kr_name: "학생회관"}}}
         show = {true}
     />)
   })
@@ -28,6 +28,10 @@ describe('RestaurantModal', () => {
 
   it('has a correct restaurant name', ()=>{
     expect(component.find('ModalTitle').text()).toBe('학생회관 식당')
+  })
+
+  it('has a correct building name', ()=>{
+    expect(component.find('Bootstrap(ListGroupItem)').at(0).text()).toBe('위치: 학생회관')
   })
 
   it('data is given null', () => {
