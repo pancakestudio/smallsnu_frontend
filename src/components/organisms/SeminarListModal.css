@@ -6,11 +6,6 @@
   margin: auto 0px;
 }
 
-.seminarListModal .footer {
-  display: flex;
-  justify-content: space-between;
-}
-
 .seminarListModal .pagination {
   margin: auto;
 }

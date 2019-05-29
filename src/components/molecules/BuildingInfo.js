@@ -22,6 +22,10 @@ export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
   const handleSeminarListClick = () => {
     historyPush(`/seminarlist/${bldgNo}`)
   }
+
+  const handleResClick = (res) => {
+    historyPush(`/restaurant/${res.id}`)
+  }
   let resList, postList, semiList
 
   // Restaurant List
@@ -29,7 +33,7 @@ export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
     resList = (
       <Card className="resList">
         {rests.map((rest) => (
-          <ResPreview key={rest.id} {...rest}/>
+          <ResPreview key={rest.id} {...rest} onClick={()=>{handleResClick(rest)}}/>
         ))}
       </Card>
     )

@@ -1,3 +1,8 @@
 .resPreview {
   margin: 5px 0px;
 }
+
+.resPreview .cardHeader:hover {
+  background-color: lightgray;
+  transition: all 0.2s;
+}

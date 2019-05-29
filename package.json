@@ -9,6 +9,7 @@
     "jquery": "^3.4.0",
     "leaflet": "^1.4.0",
     "leaflet-freedraw": "^2.10.0",
+    "moment": "^2.24.0",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",

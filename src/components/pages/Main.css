@@ -19,7 +19,7 @@
 
 .back:hover{
   background-color: rgba(0,0,0,0);
-  color: lightgray;
+  color: lightgray !important;
 }
 
 .back:focus{

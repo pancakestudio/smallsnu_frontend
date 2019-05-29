@@ -27,7 +27,7 @@ export const SHOW_WRITE_POST = "SHOW_WRITE_POST";
 export const POST_PW_CHECK = "POST_PW_CHECK";
 export const SHOW_POST_PW_CHECK = "SHOW_POST_PW_CHECK";
 export const HIDE_POST_PW_CHECK = "HIDE_POST_PW_CHECK";
-
+export const CHANGE_BOARD_PAGE = "CHANGE_BOARD_PAGE";
 
 /******** Restaurant ********/
 export const TOGGLE_RES_MARKER = "TOGGLE_RES_MARKER"
