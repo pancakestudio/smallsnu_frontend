@@ -17,8 +17,8 @@ export const semiIcon = new L.Icon({
 })
 
 export const convIcon = new L.Icon({
-    iconUrl: require('./marker_icon/semiIcon.png'),
-    iconRetinaUrl: require('./marker_icon/semiIcon.png'),
+    iconUrl: require('./marker_icon/convIcon.png'),
+    iconRetinaUrl: require('./marker_icon/convIcon.png'),
     iconAnchor: [5, 55],
     popupAnchor: [10, -44],
     iconSize: [30, 30],

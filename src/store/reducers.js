@@ -290,6 +290,7 @@ function allATMs(state = [], action){
 function allCafes(state = [], action){
   switch(action.type){
     case types.GET_ALL_CAFES_SUCCESS:
+      console.log(action.cafes)
       return action.cafes
     default:
       return state

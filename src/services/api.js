@@ -53,6 +53,7 @@ export function getAllATMsInfo(){
 }
 
 export function getAllCafesInfo(){
+  console.log("Cafe")
   return axios.get('cafe/')
     .catch(error => { return {error:error}})
 }
