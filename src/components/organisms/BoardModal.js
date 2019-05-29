@@ -19,7 +19,7 @@ export const BoardModal = ({bldgNo, posts, activePage, onPaginationClick, onShow
   let start, end
 
   if(posts && posts.length!==0){
-    last = ~~((posts.length+7)/8)
+    last = ~~((posts.length+4)/5)
 
     for(let num=1; num<=last; num++){
       items.push(
@@ -29,8 +29,8 @@ export const BoardModal = ({bldgNo, posts, activePage, onPaginationClick, onShow
       )
     }
   }
-  start = (activePage-1)*8
-  end = start+8 < posts.length ? (start+8) : (posts.length)
+  start = (activePage-1)*5
+  end = start+5 < posts.length ? (start+5) : (posts.length)
 
   if(posts && posts.length!==0){
     modal = <Modal

@@ -60,6 +60,78 @@ function showResMarkers(state = false, action){
     case types.GET_ALL_RESTAURANTS_FAILURE:
     case types.HIDE_MARKERS:
     case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showBankMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_BANK_MARKER:
+      return !state
+    case types.GET_ALL_BANKS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showATMMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_ATM_MARKER:
+      return !state
+    case types.GET_ALL_ATMS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showCafeMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_CAFE_MARKER:
+      return !state
+    case types.GET_ALL_CAFES_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showConvMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_CONV_MARKER:
+      return !state
+    case types.GET_ALL_CONVES_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
       return false
     default:
       return state
@@ -191,6 +263,49 @@ function activeBoardPage(state = 1, action) {
       return state
   }
 }
+/******** Bank ********/
+
+function allBanks(state = [], action){
+  switch(action.type){
+    case types.GET_ALL_BANKS_SUCCESS:
+      return action.banks
+    default:
+      return state
+  }
+}
+
+/******** ATM ********/
+
+function allATMs(state = [], action){
+  switch(action.type){
+    case types.GET_ALL_ATMS_SUCCESS:
+      return action.atms
+    default:
+      return state
+  }
+}
+
+/******** Cafe ********/
+
+function allCafes(state = [], action){
+  switch(action.type){
+    case types.GET_ALL_CAFES_SUCCESS:
+      return action.cafes
+    default:
+      return state
+  }
+}
+
+/******** Convenient Store ********/
+
+function allConves(state = [], action){
+  switch(action.type){
+    case types.GET_ALL_CONVES_SUCCESS:
+      return action.conves
+    default:
+      return state
+  }
+}
 
 /******** Restaurant ********/
 
@@ -281,13 +396,28 @@ function error(state = "", action){
 }
 
 const reducers = combineReducers({
-  currentPos, zoom, selectedBldg, showSearchMarker, showResMarkers, showSemiMarkers, searchedBldg, // Map
+
+  currentPos, zoom, selectedBldg, showSearchMarker, showResMarkers,
+  showSemiMarkers, searchedBldg, showBankMarkers, showATMMarkers, showCafeMarkers,
+  showConvMarkers,// Map
+
   showSideBar, // SideBar
   searchingBldg, // SearchBar
-  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost, isEdit, postPW, showPostPWCheck, activeBoardPage, // Post
+
+  showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
+  isEdit, postPW, showPostPWCheck, activeBoardPage, // Post
+
+  allBanks, // bank
+  allATMs, // ATM
+  allCafes, // Cafe
+  allConves, // Convenient Store
   selectedRes, allRestaurants, // Restaurant
-  selectedSemi, selectedSemiList, selectedSemiListBldgNo, activeSemiPage, allSeminars, // Seminar
+
+  selectedSemi, selectedSemiList, selectedSemiListBldgNo,
+  activeSemiPage, allSeminars, // Seminar
+
   error // App
+
 });
 
 export default reducers

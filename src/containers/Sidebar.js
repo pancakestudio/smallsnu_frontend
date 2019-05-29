@@ -1,6 +1,11 @@
 import { connect } from 'react-redux'
 import { Sidebar } from '../components/organisms/Sidebar'
-import { requestAllRestaurants, toggleResMarker, requestAllSeminars, toggleSemiMarker } from '../store/actions'
+import { requestAllRestaurants, toggleResMarker,
+        requestAllSeminars, toggleSemiMarker,
+        requestAllCafes, toggleCafeMarker,
+        requestAllBanks, toggleBankMarker,
+        requestAllATMs, toggleATMMarker,
+        requestAllConves, toggleConvMarker} from '../store/actions'
 
 const mapStateToProps = (state) => {
   return{
@@ -17,6 +22,22 @@ const mapDispatchToProps = (dispatch) => {
     onSemiClick: () => {
       dispatch(requestAllSeminars())
       dispatch(toggleSemiMarker())
+    },
+    onCafeClick: () => {
+      dispatch(requestAllCafes())
+      dispatch(toggleCafeMarker())
+    },
+    onConvClick: () => {
+      dispatch(requestAllConves())
+      dispatch(toggleConvMarker())
+    },
+    onBankClick: () => {
+      dispatch(requestAllBanks())
+      dispatch(toggleBankMarker())
+    },
+    onATMClick: () => {
+      dispatch(requestAllATMs())
+      dispatch(toggleATMMarker())
     }
   }
 }

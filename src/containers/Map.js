@@ -7,11 +7,20 @@ const mapStateToProps = (state) => {
     currentPos: state.currentPos,
     resData : state.allRestaurants,
     semis: state.allSeminars,
+    banks: state.allBanks,
+    atms: state.allATMs,
+    cafes: state.allCafes,
+    conves: state.allConves,
+
     zoom: state.zoom,
     searchedBldg: state.searchedBldg,
     showSearchMarker: state.showSearchMarker,
     showResMarkers: state.showResMarkers,
-    showSemiMarkers: state.showSemiMarkers
+    showSemiMarkers: state.showSemiMarkers,
+    showBankMarkers: state.showBankMarkers,
+    showATMMarkers: state.showATMMarkers,
+    showCafeMarkers: state.showCafeMarkers,
+    showConvMarkers: state.showConvMarkers,
   }
 }
 
