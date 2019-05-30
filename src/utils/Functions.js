@@ -54,14 +54,8 @@ export function getBldgCoord(bldgNo){
 }
 
 export function getKeyword(inputValue, subject){
-  if(subject === "restaurant"){
-    for(let i = 0; i<7;i++){
-      if(inputValue === keywords[i].keyword) return "restaurant";
-    }
-  }else if(subject === "seminar"){
-    for(let i = 7; i<keywords.length;i++){
-      if(inputValue === keywords[i].keyword) return "seminar";
-    }
+  for(let i = 0; i<keywords.length;i++){
+    if(inputValue === keywords[i].keyword) return keywords[i].subject
   }
   return "";
 }

@@ -330,6 +330,27 @@ export function getAllBanksFailure(error){
   }
 }
 
+export function requestBank(id){
+  return{
+    type: types.REQUEST_BANK,
+    id
+  }
+}
+
+export function getBankSuccess(bank){
+  return{
+    type: types.GET_BANK_SUCCESS,
+    bank
+  }
+}
+
+export function getBankFailure(error){
+  return{
+    type: types.GET_BANK_FAILURE,
+    error
+  }
+}
+
 
 /******** ATM ********/
 
@@ -356,6 +377,27 @@ export function getAllATMsFailure(error){
   return{
     type: types.GET_ALL_ATMS_FAILURE,
     error,
+  }
+}
+
+export function requestATM(id){
+  return{
+    type: types.REQUEST_ATM,
+    id
+  }
+}
+
+export function getATMSuccess(atm){
+  return{
+    type: types.GET_ATM_SUCCESS,
+    atm
+  }
+}
+
+export function getATMFailure(error){
+  return{
+    type: types.GET_ATM_FAILURE,
+    error
   }
 }
 
@@ -387,6 +429,27 @@ export function getAllCafesFailure(error){
   }
 }
 
+export function requestCafe(id){
+  return{
+    type: types.REQUEST_CAFE,
+    id
+  }
+}
+
+export function getCafeSuccess(cafe){
+  return{
+    type: types.GET_CAFE_SUCCESS,
+    cafe
+  }
+}
+
+export function getCafeFailure(error){
+  return{
+    type: types.GET_CAFE_FAILURE,
+    error
+  }
+}
+
 
 /******** Conv ********/
 
@@ -413,5 +476,26 @@ export function getAllConvesFailure(error){
   return{
     type: types.GET_ALL_CONVES_FAILURE,
     error,
+  }
+}
+
+export function requestConv(id){
+  return{
+    type: types.REQUEST_CONV,
+    id
+  }
+}
+
+export function getConvSuccess(conv){
+  return{
+    type: types.GET_CONV_SUCCESS,
+    conv
+  }
+}
+
+export function getConvFailure(error){
+  return{
+    type: types.GET_CONV_FAILURE,
+    error
   }
 }

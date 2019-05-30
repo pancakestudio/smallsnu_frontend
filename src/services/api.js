@@ -42,9 +42,19 @@ export function getAllSeminarsInfo(){
     .catch(error => { return {error:error}})
 }
 
+export function getBankInfo(id){
+  return axios.get(`bank/${id}`)
+    .catch(error => { return {error: error}})
+}
+
 export function getAllBanksInfo(){
   return axios.get('bank/')
     .catch(error => { return {error:error}})
+}
+
+export function getATMInfo(id){
+  return axios.get(`atm/${id}`)
+    .catch(error => { return {error: error}})
 }
 
 export function getAllATMsInfo(){
@@ -52,10 +62,20 @@ export function getAllATMsInfo(){
     .catch(error => { return {error:error}})
 }
 
+export function getCafeInfo(id){
+  return axios.get(`cafe/${id}`)
+    .catch(error => { return {error: error}})
+}
+
 export function getAllCafesInfo(){
   console.log("Cafe")
   return axios.get('cafe/')
     .catch(error => { return {error:error}})
+}
+
+export function getConvInfo(id){
+  return axios.get(`conv/${id}`)
+    .catch(error => { return {error: error}})
 }
 
 export function getAllConvesInfo(){

@@ -4,7 +4,7 @@ import { getBldgCoord, getKeyword } from '../../utils/Functions'
 import './SearchBar.css'
 
 export const SearchBar = ({onSearchValueChange, onSearchBuilding,
-  onSearchRestaurant, onSearchSeminar}) => {
+  onSearchRestaurant, onSearchSeminar, onSearchATM, onSearchCafe, onSearchBank, onSearchConv}) => {
   let input
   const handleChange = (e) => {
     onSearchValueChange(e.target.value.trim())
@@ -22,6 +22,18 @@ export const SearchBar = ({onSearchValueChange, onSearchBuilding,
     }
     else if(getKeyword(input.value, "seminar")==="seminar"){
       onSearchSeminar()
+    }
+    else if(getKeyword(input.value, "atm")==="atm"){
+      onSearchATM()
+    }
+    else if(getKeyword(input.value, "bank")==="bank"){
+      onSearchBank()
+    }
+    else if(getKeyword(input.value, "cafe")==="cafe"){
+      onSearchCafe()
+    }
+    else if(getKeyword(input.value, "conv")==="conv"){
+      onSearchConv()
     }
     else {
       alert("잘못된 검색어 형식입니다.")

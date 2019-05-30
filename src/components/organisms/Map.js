@@ -1,12 +1,9 @@
 import React from 'react'
-import {
-   Map as LeafletMap, TileLayer,
-   Marker, Tooltip, ZoomControl
- } from 'react-leaflet'
-import './Map.css'
+import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl} from 'react-leaflet'
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
 import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon} from '../../utils/iconGroup'
+import './Map.css'
 
 export const Map = ({
   currentPos, zoom, searchedBldg, showSearchMarker,
@@ -35,6 +32,22 @@ export const Map = ({
     historyPush(`/restaurant/${resId}`)
   }
 
+  const handleCafeClick = (cafeId) =>{
+    historyPush(`/cafe/${cafeId}`)
+  }
+
+  const handleConvClick = (convId) => {
+    historyPush(`/conv/${convId}`)
+  }
+
+  const handleBankClick = (bankId) => {
+    historyPush(`/bank/${bankId}`)
+  }
+
+  const handleATMClick = (atmId) => {
+    historyPush(`/atm/${atmId}`)
+  }
+
   const handleSeminarListClick = (bldgNo) => {
     historyPush(`/seminarlist/${bldgNo}`)
   }
@@ -48,18 +61,6 @@ export const Map = ({
   cafeMarkers, convMarkers, atmMarkers, bankMarkers
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" icon={resIcon} position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
-  }
-
-  if(showResMarkers && resData){
-    resMarkers = resData.map((res) => (
-      <Marker
-        key={res.id} className="resMarker" icon = {resIcon}
-        position = {[res.building.spot.latitude, res.building.spot.longitude]}
-        onClick = {() =>{handleResClick(res.id)}}
-      >
-        <Tooltip className="resToolTip">{res.kr_name}</Tooltip>
-      </Marker>
-    ))
   }
 
   if(showSemiMarkers){
@@ -79,10 +80,22 @@ export const Map = ({
 	        position = {[bldg.spot.latitude, bldg.spot.longitude]}
           onClick = {() =>{handleSeminarListClick(bldg.code)}}
         >
-          <Tooltip className="semiToolTip" permanent>총 {bldg.cnt} 건</Tooltip>
+          <Tooltip className="semiToolTip" permanent direction = 'left'>총 {bldg.cnt} 건</Tooltip>
         </Marker>
       ))
     }
+  }
+
+  if(showResMarkers && resData){
+    resMarkers = resData.map((res) => (
+      <Marker
+        key={res.id} className="resMarker" icon = {resIcon}
+        position = {[res.building.spot.latitude, res.building.spot.longitude]}
+        onClick = {() =>{handleResClick(res.id)}}
+      >
+        <Tooltip className="resToolTip" direction = 'left'>{res.kr_name}</Tooltip>
+      </Marker>
+    ))
   }
 
   if(showCafeMarkers && cafes){
@@ -90,8 +103,9 @@ export const Map = ({
       <Marker
         key={cafe.id} className="cafeMarker" icon = {cafeIcon}
         position = {[cafe.building.spot.latitude, cafe.building.spot.longitude]}
+        onClick = {() => {handleCafeClick(cafe.id)}}
       >
-        <Tooltip className="cafeToolTip">{cafe.kr_name}</Tooltip>
+        <Tooltip className="cafeToolTip" direction = 'left'>{cafe.kr_name}</Tooltip>
       </Marker>
     ))
   }
@@ -101,8 +115,9 @@ export const Map = ({
       <Marker
         key={conv.id} className="convMarker" icon = {convIcon}
         position = {[conv.building.spot.latitude, conv.building.spot.longitude]}
+        onClick = {() => {handleConvClick(conv.id)}}
       >
-        <Tooltip className="convToolTip">{conv.kr_name}</Tooltip>
+        <Tooltip className="convToolTip" direction = 'left'>{conv.kr_name}</Tooltip>
       </Marker>
     ))
   }
@@ -112,8 +127,9 @@ export const Map = ({
       <Marker
         key={bank.id} className="bankMarker" icon = {bankIcon}
         position = {[bank.building.spot.latitude, bank.building.spot.longitude]}
+        onClick = {() => {handleBankClick(bank.id)}}
       >
-        <Tooltip className="bankToolTip">{bank.kr_name}</Tooltip>
+        <Tooltip className="bankToolTip" direction = 'left'>{bank.kr_name}</Tooltip>
       </Marker>
     ))
   }
@@ -123,8 +139,9 @@ export const Map = ({
       <Marker
         key={atm.id} className="atmMarker" icon = {atmIcon}
         position = {[atm.building.spot.latitude, atm.building.spot.longitude]}
+        onClick = {() => {handleATMClick(atm.id)}}
       >
-        <Tooltip className="atmToolTip">{atm.kr_name}</Tooltip>
+        <Tooltip className="atmToolTip" direction = 'left'>{atm.kr_name}</Tooltip>
       </Marker>
     ))
   }

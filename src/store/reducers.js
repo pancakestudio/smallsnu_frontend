@@ -274,12 +274,30 @@ function allBanks(state = [], action){
   }
 }
 
+function selectedBank(state = {}, action){
+  switch(action.type){
+    case types.GET_BANK_SUCCESS:
+      return action.bank
+    default:
+      return state
+  }
+}
+
 /******** ATM ********/
 
 function allATMs(state = [], action){
   switch(action.type){
     case types.GET_ALL_ATMS_SUCCESS:
       return action.atms
+    default:
+      return state
+  }
+}
+
+function selectedATM(state = {}, action){
+  switch(action.type){
+    case types.GET_ATM_SUCCESS:
+      return action.atm
     default:
       return state
   }
@@ -297,12 +315,30 @@ function allCafes(state = [], action){
   }
 }
 
+function selectedCafe(state = {}, action){
+  switch(action.type){
+    case types.GET_CAFE_SUCCESS:
+      return action.cafe
+    default:
+      return state
+  }
+}
+
 /******** Convenient Store ********/
 
 function allConves(state = [], action){
   switch(action.type){
     case types.GET_ALL_CONVES_SUCCESS:
       return action.conves
+    default:
+      return state
+  }
+}
+
+function selectedConv(state = {}, action){
+  switch(action.type){
+    case types.GET_CONV_SUCCESS:
+      return action.conv
     default:
       return state
   }
@@ -408,10 +444,10 @@ const reducers = combineReducers({
   showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
   isEdit, postPW, showPostPWCheck, activeBoardPage, // Post
 
-  allBanks, // bank
-  allATMs, // ATM
-  allCafes, // Cafe
-  allConves, // Convenient Store
+  allBanks,selectedBank, // Bank
+  allATMs, selectedATM, // ATM
+  allCafes, selectedCafe, // Cafe
+  allConves, selectedConv,  // Convenient Store
   selectedRes, allRestaurants, // Restaurant
 
   selectedSemi, selectedSemiList, selectedSemiListBldgNo,

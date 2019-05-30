@@ -122,6 +122,20 @@ function* handleRequestAllSemiInfo(){
   }
 }
 
+function* handleRequestBankInfo(){
+  while(true){
+    const action = yield take(types.REQUEST_BANK)
+    const { data, error } = yield call(api.getBankInfo, action.id)
+    if(data && !error){
+      yield put(actions.getBankSuccess(data))
+    } else {
+      const errormsg = '은행 정보를 받아오지 못했습니다.'
+      yield put(actions.getBankFailure(errormsg))
+    }
+  }
+}
+
+
 function* handleRequestAllBankInfo(){
   while(true){
     yield take(types.REQUEST_ALL_BANKS)
@@ -135,6 +149,20 @@ function* handleRequestAllBankInfo(){
     }
   }
 }
+
+function* handleRequestATMInfo(){
+  while(true){
+    const action = yield take(types.REQUEST_ATM)
+    const { data, error } = yield call(api.getATMInfo, action.id)
+    if(data && !error){
+      yield put(actions.getATMSuccess(data))
+    } else {
+      const errormsg = 'ATM 정보를 받아오지 못했습니다.'
+      yield put(actions.getATMFailure(errormsg))
+    }
+  }
+}
+
 
 function* handleRequestAllATMInfo(){
   while(true){
@@ -150,6 +178,20 @@ function* handleRequestAllATMInfo(){
   }
 }
 
+function* handleRequestCafeInfo(){
+  while(true){
+    const action = yield take(types.REQUEST_CAFE)
+    const { data, error } = yield call(api.getCafeInfo, action.id)
+    if(data && !error){
+      yield put(actions.getCafeSuccess(data))
+    } else {
+      const errormsg = '카페 정보를 받아오지 못했습니다.'
+      yield put(actions.getCafeFailure(errormsg))
+    }
+  }
+}
+
+
 function* handleRequestAllCafeInfo(){
   while(true){
     yield take(types.REQUEST_ALL_CAFES)
@@ -163,6 +205,20 @@ function* handleRequestAllCafeInfo(){
     }
   }
 }
+
+function* handleRequestConvInfo(){
+  while(true){
+    const action = yield take(types.REQUEST_CONV)
+    const { data, error } = yield call(api.getConvInfo, action.id)
+    if(data && !error){
+      yield put(actions.getConvSuccess(data))
+    } else {
+      const errormsg = '편의점 정보를 받아오지 못했습니다.'
+      yield put(actions.getConvFailure(errormsg))
+    }
+  }
+}
+
 
 function* handleRequestAllConvInfo(){
   while(true){
@@ -222,15 +278,26 @@ export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
   yield fork(handleRequestBoardInfo)
   yield fork(handleRequestPostInfo)
+
   yield fork(handleRequestResInfo)
   yield fork(handleRequestAllResInfo)
+
   yield fork(handleRequestSemiInfo)
   yield fork(handleRequestBldgSemiInfo)
   yield fork(handleRequestAllSemiInfo)
+
+  yield fork(handleRequestBankInfo)
   yield fork(handleRequestAllBankInfo)
+
+  yield fork(handleRequestATMInfo)
   yield fork(handleRequestAllATMInfo)
+
+  yield fork(handleRequestATMInfo)
   yield fork(handleRequestAllCafeInfo)
+
+  yield fork(handleRequestConvInfo)
   yield fork(handleRequestAllConvInfo)
+
   yield fork(handleSave)
   yield fork(handleEdit)
   yield fork(handleDelete)
