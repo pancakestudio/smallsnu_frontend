@@ -101,7 +101,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  className ="password"
+                  className="password"
                   placeholder="비밀번호"
                   ref = {(ref) => (passwordInput=ref)}
                 />

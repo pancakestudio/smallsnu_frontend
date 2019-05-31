@@ -10,6 +10,9 @@ import * as actions from '../../../store/actions'
 
 describe('WritePostModal', ()=>{
   let component
+  const mockSavePost = jest.fn()
+  const mockEditPost = jest.fn()
+
   let editPost = {
     "title": "hi",
     "content": "hello",
@@ -23,7 +26,8 @@ describe('WritePostModal', ()=>{
       bldgNo = '301'
       show = {true}
       isEdit = {false}
-      editPost = {editPost}
+      onSavePost = {mockSavePost}
+      onEditPost = {mockEditPost}
       />
     )
   })
@@ -40,19 +44,29 @@ describe('WritePostModal', ()=>{
     component.find('Bootstrap(Modal)').simulate('hide')
     expect(global.window.location.pathname).toEqual('/board/301')
   })
+
+  it('write new post', () => {
+    // expect(component.find('ModalTitle').text()).toBe('새로운 게시글')
+    // const titleInput = component.find('FormControl').at(0)
+    // titleInput.simulate('change', {target:{value:'postInput'}})
+    // const textInput = component.find('FormControl').at(1)
+    // textInput.simulate('change', {target:{value:'textInput'}})
+    // const userNameInput = component.find('FormControl').at(2)
+    // userNameInput.simulate('change', {target:{value:'user1'}})
+    // const passwordInput = component.find('FormControl').at(3)
+    // passwordInput.simulate('change', {target:{value:'1234'}})
+    // component.find('Button').simulate('click')
+    // expect(mockSavePost.mock.calls.length).toBe(1)
+
+  })
+
 })
 
 describe('ConnectedWritePostModal', ()=>{
   const initialState = {
     showWritePostModal : true,
     selectedBoardBldgNo : '301',
-    isEdit: true,
-    selectedPost: {
-      "title": "hi",
-      "content": "hello",
-      "username": "sc",
-      "password": "1234"
-    }
+    isEdit: false,
   }
   const mockStore = configureStore()
   let store, component

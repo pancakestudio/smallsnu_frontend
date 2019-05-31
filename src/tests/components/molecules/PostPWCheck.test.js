@@ -37,6 +37,7 @@ describe('PostPWCheck', () => {
   it('has form, form control, and button', ()=>{
     expect(component.find('FormControl').exists()).toBe(true)
     expect(component.find('Button').exists()).toBe(true)
+    expect(component.find('ModalTitle').text()).toBe('비밀번호 확인')
   })
 
   it('calls functions', () => {
@@ -49,6 +50,17 @@ describe('PostPWCheck', () => {
 describe('ConnectedPostPWCheck', () => {
   const mockStore = configureStore()
   let store, component
+  const initialState = {
+    showPostPWCheck: true,
+    selectedPost: {
+      id: 1,
+      title: 'title',
+      content: 'content',
+      username: 'user',
+      password: '1234'
+    },
+    selectedBoardBldgNo: '301'
+  }
   const post = {
     id: 1,
     title: 'title',
@@ -58,7 +70,7 @@ describe('ConnectedPostPWCheck', () => {
   }
 
   it('renders correctly', () => {
-    store = mockStore()
+    store = mockStore(initialState)
     component = mount(<Provider store = {store}><ConnectedPostPWCheck/></Provider>)
   })
 
@@ -66,15 +78,21 @@ describe('ConnectedPostPWCheck', () => {
     expect(component).toMatchSnapshot()
   })
 
-  // it('has form, form control, and button', ()=>{
-  //   expect(component.find('FormControl').exists()).toBe(true)
-  //   expect(component.find('Button').exists()).toBe(true)
-  // })
-  //
-  // it('calls functions', () => {
-  //   component.find('FormControl').instance().value = '1234'
-  //   component.find('Button').simulate('submit')
-  //   expect(store.getActions()[0]).toEqual(actions.deletePost(post,'301'))
-  // })
+  it('has a modal', ()=>{
+    expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
+  })
+
+  it('correct password', () => {
+    component.find('input').instance().value = '1234'
+    component.find('Button').simulate('click')
+    expect(store.getActions()[0]).toEqual(actions.deletePost(post,'301'))
+  })
+
+  it('incorrect password', () => {
+    window.alert = jest.fn()
+    component.find('input').instance().value = '1'
+    component.find('Button').simulate('click')
+    expect(window.alert).toHaveBeenCalledWith('비밀번호가 틀렸습니다')
+  })
 
 })
