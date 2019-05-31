@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import './App.css';
 
-const App = ({error}) => {
+const App = ({error, message}) => {
   if(error.length !== 0){
     alert(error)
     window.location = '/'
+  } else if(message.length !== 0){
+    alert(message)
   }
   return (
     <Switch>
@@ -19,6 +21,7 @@ const App = ({error}) => {
 
 export default connect(
   state => ({
-    error: state.error
+    error: state.error,
+    message: state.message
   })
 )(App);

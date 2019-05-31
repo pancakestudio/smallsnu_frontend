@@ -1,13 +1,11 @@
 import React from 'react'
-import { Modal, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
-import { FaAngleLeft } from 'react-icons/fa'
-import { historyPush } from '../../utils/Functions'
+import { Modal, Button, Form, Col } from 'react-bootstrap'
 import './WritePostModal.css'
 
-export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEditPost}) =>{
+export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPost, onEditPost}) =>{
   let titleInput, textInput, userNameInput, passwordInput
   const handleBack = () => {
-    historyPush(`/board/${bldgNo}`)
+    onHide()
   }
   const handleSave = () => {
     let post = {
@@ -25,16 +23,13 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
     }
   }
   const handleEdit = () => {
-    if(passwordInput.value !== editPost.password){
-      alert("비밀번호가 올바르지 않습니다.")
-    }else{
-      editPost.title = titleInput.value
-      editPost.content = textInput.value
-      onEditPost(editPost, bldgNo)
-    }
+    editPost.title = titleInput.value
+    editPost.content = textInput.value
+    editPost.password = passwordInput.value
+    onEditPost(editPost, bldgNo)
   }
 
-  let modalTitle, title, content, username, titlePlaceholder, contentPlaceholder, usernamePlaceholder, disabled, handler
+  let modalTitle, title, content, username, disabled, handler
 
   if(isEdit){
     modalTitle = "게시글 수정"
@@ -45,9 +40,6 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
     handler = handleEdit
   }else{
     modalTitle = "새로운 게시글"
-    titlePlaceholder = "제목"
-    contentPlaceholder = "내용"
-    usernamePlaceholder = "아이디"
     disabled = false
     handler = handleSave
   }
@@ -71,7 +63,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
               <Form.Control
                 type="title"
                 defaultValue={title}
-                placeholder={titlePlaceholder}
+                placeholder="제목"
                 ref = {(ref) => (titleInput=ref)}
               />
             </Form.Group>
@@ -81,7 +73,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
                 as = "textarea"
                 rows = "10"
                 defaultValue={content}
-                placehoder={contentPlaceholder}
+                placeholder="내용"
                 ref = {(ref) => (textInput=ref)}
               />
             </Form.Group>

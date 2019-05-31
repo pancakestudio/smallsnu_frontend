@@ -234,43 +234,180 @@ function* handleRequestAllConvInfo(){
   }
 }
 
-function* handleSave(){
+function* handleSavePost(){
   while(true){
     const action = yield take(types.SAVE_POST)
     const {error} = yield call(api.postWritePost, action.post, action.bldgNo)
     if(error){
       const errormsg = '게시물을 저장하지 못했습니다.'
-      alert(errormsg)
+      yield put(actions.savePostFailure(errormsg))
+    } else {
+      yield put(actions.savePostSuccess(action.bldgNo))
     }
+  }
+}
+
+function* handleSavePostSuccess(){
+  while(true){
+    const action = yield take(types.SAVE_POST_SUCCESS)
     yield put(actions.requestBoard(action.bldgNo))
   }
 }
 
-function* handleEdit(){
+function* handleEditPost(){
   while(true){
     const action = yield take(types.EDIT_POST)
     const {error} = yield call(api.postEditPost, action.post)
     if(error){
-      const errormsg = '게시물을 수정하지 못했습니다.'
-      alert(errormsg)
+      if(error.response.status===400){
+        yield put(actions.wrongPassword())
+      } else {
+        const errormsg = '게시물을 수정하지 못했습니다.'
+        yield put(actions.editPostFailure(errormsg))
+      }
+    } else {
+      yield put(actions.editPostSuccess(action.post.id))
     }
-    yield put(actions.requestPost(action.post.id))
   }
 }
 
-function* handleDelete(){
+function* handleEditPostSuccess(){
+  while(true){
+    const action = yield take(types.EDIT_POST_SUCCESS)
+    yield put(actions.requestPost(action.postId))
+  }
+}
+
+function* handleDeletePost(){
   while(true){
     const action = yield take(types.DELETE_POST)
-    let boardNo = action.post.building.code
-    const {error} = yield call(api.postDeletePost, action.post)
+    const {error} = yield call(api.postDeletePost, action.post, action.password)
     if(error){
-      const errormsg = '게시물을 삭제하지 못했습니다.'
-      alert(errormsg)
+      if(error.response.status===400){
+        yield put(actions.wrongPassword())
+      } else {
+        const errormsg = '게시물을 삭제하지 못했습니다.'
+        yield put(actions.deletePostFailure(errormsg))
+      }
     }else{
-      alert('삭제되었습니다.')
-      historyPush(`/board/${boardNo}`)
+      historyPush(`/board/${action.bldgNo}`)
+      yield put(actions.deletePostSuccess(action.bldgNo))
     }
+  }
+}
+
+function* handleDeletePostSuccess(){
+  while(true){
+    const action = yield take(types.DELETE_POST_SUCCESS)
     yield put(actions.requestBoard(action.bldgNo))
+  }
+}
+
+function* handlePostLike() {
+  while(true){
+    const action = yield take(types.POST_LIKE)
+    const { error } = yield call(api.postPostLike, action.postId)
+    if(error){
+      const errormsg = '추천을 하지 못했습니다.'
+      yield put(actions.postLikeFailure(errormsg))
+    } else {
+      yield put(actions.postLikeSuccess(action.postId))
+    }
+  }
+}
+
+function* handlePostLikeSuccess(){
+  while(true){
+    const action = yield take(types.POST_LIKE_SUCCESS)
+    yield put(actions.requestPost(action.postId))
+  }
+}
+
+function* handleSaveComment() {
+  while(true){
+    const action = yield take(types.SAVE_COMMENT)
+    const { error } = yield call(api.postComment, action.comment, action.postId)
+    if(error){
+      const errormsg = '댓글을 등록하지 못했습니다.'
+      yield put(actions.saveCommentFailure(errormsg))
+    } else {
+      yield put(actions.saveCommentSuccess(action.postId))
+    }
+  }
+}
+
+function* handleSaveCommentSuccess(){
+  while(true){
+    const action = yield take(types.SAVE_COMMENT_SUCCESS)
+    yield put(actions.requestPost(action.postId))
+  }
+}
+
+function* handleEditComment(){
+  while(true){
+    const action = yield take(types.EDIT_COMMENT)
+    const {error} = yield call(api.postEditComment, action.comment)
+    if(error){
+      if(error.response.status===400){
+        yield put(actions.wrongPassword())
+      } else {
+        const errormsg = '댓글을 수정하지 못했습니다.'
+        yield put(actions.editCommentFailure(errormsg))
+      }
+    }else{
+      yield put(actions.editCommentSuccess(action.postId))
+    }
+  }
+}
+
+function* handleEditCommentSuccess(){
+  while(true){
+    const action = yield take(types.EDIT_COMMENT_SUCCESS)
+    yield put(actions.requestPost(action.postId))
+  }
+}
+
+function* handleDeleteComment(){
+  while(true){
+    const action = yield take(types.DELETE_COMMENT)
+    const {error} = yield call(api.deleteComment, action.comment, action.password)
+    if(error){
+      if(error.response.status===400){
+        yield put(actions.wrongPassword())
+      } else {
+        const errormsg = '댓글을 삭제하지 못했습니다.'
+        yield put(actions.deleteCommentFailure(errormsg))
+      }
+    }else{
+      yield put(actions.deleteCommentSuccess(action.postId))
+    }
+  }
+}
+
+function* handleDeleteCommentSuccess(){
+  while(true){
+    const action = yield take(types.DELETE_COMMENT_SUCCESS)
+    yield put(actions.requestPost(action.postId))
+  }
+}
+
+function* handleCommentLike() {
+  while(true){
+    const action = yield take(types.COMMENT_LIKE)
+    const { error } = yield call(api.postCommentLike, action.commentId)
+    if(error){
+      const errormsg = '댓글 추천을 하지 못했습니다.'
+      yield put(actions.commentLikeFailure(errormsg))
+    } else {
+      yield put(actions.commentLikeSuccess(action.postId))
+    }
+  }
+}
+
+function* handleCommentLikeSuccess(){
+  while(true){
+    const action = yield take(types.COMMENT_LIKE_SUCCESS)
+    yield put(actions.requestPost(action.postId))
   }
 }
 
@@ -298,7 +435,12 @@ export default function* rootSaga(){
   yield fork(handleRequestConvInfo)
   yield fork(handleRequestAllConvInfo)
 
-  yield fork(handleSave)
-  yield fork(handleEdit)
-  yield fork(handleDelete)
+  yield fork(handleSavePost); yield fork(handleSavePostSuccess)
+  yield fork(handleEditPost); yield fork(handleEditPostSuccess)
+  yield fork(handleDeletePost); yield fork(handleDeletePostSuccess)
+  yield fork(handlePostLike); yield fork(handlePostLikeSuccess)
+  yield fork(handleSaveComment); yield fork(handleSaveCommentSuccess)
+  yield fork(handleEditComment); yield fork(handleEditCommentSuccess)
+  yield fork(handleDeleteComment); yield fork(handleDeleteCommentSuccess)
+  yield fork(handleCommentLike); yield fork(handleCommentLikeSuccess)
 }

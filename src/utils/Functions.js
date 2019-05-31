@@ -1,4 +1,5 @@
 import { history } from '../BrowserRouter'
+import moment from 'moment'
 
 // ------------- Building Info ---------------//
 // get the json Data about Buildings information
@@ -62,4 +63,21 @@ export function getKeyword(inputValue, subject){
 
 export function historyPush(url){
   history.push(url)
+}
+
+export function trimCreated(created){
+  let c
+  let now = moment()
+  let date = moment(created).date()
+  let diff = now.diff(moment(created), "minutes")
+  if(diff <= 0){
+    c = "방금"
+  } else if(diff<60){
+    c = `${diff}분 전`
+  } else if(diff<1440 && date===now.date()){
+    c = moment(created).format('HH:mm') 
+  } else {
+    c = moment(created).format('YYYY.MM.DD')
+  }
+  return c
 }

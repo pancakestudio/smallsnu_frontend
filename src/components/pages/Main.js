@@ -12,7 +12,8 @@ import SeminarListModal from '../../containers/SeminarListModal'
 import BoardModal from '../../containers/BoardModal'
 import PostModal from '../../containers/PostModal'
 import WritePostModal from '../../containers/WritePostModal'
-import PostPWCheck from '../../containers/PostPWCheck'
+import PasswordCheck from '../../containers/PasswordCheck'
+import EditCommentModal from '../../containers/EditCommentModal'
 import Sidebar from '../../containers/Sidebar'
 import { Route } from 'react-router-dom'
 import './Main.css'
@@ -70,7 +71,8 @@ export const Main = ({match, error, getBuilding, getRestaurant,
       <Route exact path="/board/:bldgNo" component={BoardModal} />
       <Route exact path="/post/:id" component={PostModal} />
       <WritePostModal />
-      <PostPWCheck />
+      <PasswordCheck />
+      <EditCommentModal />
     </div>
   )
 }

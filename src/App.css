@@ -23,11 +23,49 @@
   color: #61dafb;
 }
 
+.modal {
+  -webkit-overflow-scrolling: touch;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media(max-width: 576px){
+  .modal-header .modal-title {
+    font-size: calc(10px + 3vmin);
+  }
+  
+  .modal-body {
+    font-size: calc(10px + 1vmin);
+  }
+  
+  .modal-footer Button {
+    font-size: calc(10px + 1vmin);
+  }
+
+  .modal-footer .page-link {
+    font-size: calc(10px + 1vmin);
+  }
+
+  .card-title {
+    font-size: calc(10px + 1vmin);
+  }
+
+  .card-header {
+    font-size: calc(10px + 1.5vmin);
+  }
+
+  .card-footer Button {
+    font-size: calc(10px + 1vmin);
+  }
+
+  .list-group-item {
+    font-size: calc(10px + 1vmin);
   }
 }

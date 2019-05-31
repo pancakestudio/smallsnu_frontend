@@ -112,14 +112,6 @@ export function getPostFailure(error){
   }
 }
 
-export function deletePost(post, bldgNo){
-  return{
-    type: types.DELETE_POST,
-    post,
-    bldgNo,
-  }
-}
-
 export function savePost(post, bldgNo){
   return{
     type: types.SAVE_POST,
@@ -128,11 +120,39 @@ export function savePost(post, bldgNo){
   }
 }
 
+export function savePostSuccess(bldgNo){
+  return {
+    type: types.SAVE_POST_SUCCESS,
+    bldgNo
+  }
+}
+
+export function savePostFailure(error){
+  return {
+    type: types.SAVE_POST_FAILURE,
+    error
+  }
+}
+
 export function editPost(post, bldgNo){
   return{
     type: types.EDIT_POST,
     post,
-    bldgNo
+    bldgNo,
+  }
+}
+
+export function editPostSuccess(postId){
+  return {
+    type: types.EDIT_POST_SUCCESS,
+    postId
+  }
+}
+
+export function editPostFailure(error){
+  return {
+    type: types.EDIT_POST_FAILURE,
+    error
   }
 }
 
@@ -142,28 +162,175 @@ export function editPostFlag(){
   }
 }
 
-export function showWritePost() {
+export function deletePost(post, bldgNo, password){
+  return{
+    type: types.DELETE_POST,
+    post,
+    bldgNo,
+    password
+  }
+}
+
+export function deletePostSuccess(bldgNo){
+  return {
+    type: types.DELETE_POST_SUCCESS,
+    bldgNo
+  }
+}
+
+export function deletePostFailure(error){
+  return {
+    type: types.DELETE_POST_FAILURE,
+    error
+  }
+}
+
+export function showWritePost(bldgNo) {
   return{
     type: types.SHOW_WRITE_POST,
+    bldgNo
   };
 }
 
-export function showPostPWCheck(){
-  return{
-    type: types.SHOW_POST_PW_CHECK
+export function hideWritePost() {
+  return {
+    type: types.HIDE_WRITE_POST,
   }
 }
 
-export function hidePostPWCheck(){
+export function showPasswordCheck(target){
   return{
-    type: types.HIDE_POST_PW_CHECK
+    type: types.SHOW_PASSWORD_CHECK,
+    target
   }
 }
 
-export function postPWCheck(password) {
+export function hidePasswordCheck(){
   return{
-    type: types.POST_PW_CHECK,
+    type: types.HIDE_PASSWORD_CHECK
+  }
+}
+
+export function postLike(postId) {
+  return {
+    type: types.POST_LIKE,
+    postId
+  }
+}
+
+export function postLikeSuccess(postId) {
+  return {
+    type: types.POST_LIKE_SUCCESS,
+    postId
+  }
+}
+
+export function postLikeFailure(error) {
+  return {
+    type: types.POST_LIKE_FAILURE,
+    error
+  }
+}
+
+export function saveComment(comment, postId){
+  return {
+    type: types.SAVE_COMMENT,
+    comment,
+    postId
+  }
+}
+
+export function saveCommentSuccess(postId){
+  return {
+    type: types.SAVE_COMMENT_SUCCESS,
+    postId
+  }
+}
+
+export function saveCommentFailure(error){
+  return {
+    type: types.SAVE_COMMENT_FAILURE,
+    error
+  }
+}
+
+export function showEditComment(comment){
+  return {
+    type: types.SHOW_EDIT_COMMENT,
+    comment
+  }
+}
+
+export function hideEditComment(){
+  return {
+    type: types.HIDE_EDIT_COMMENT
+  }
+}
+
+export function editComment(comment, postId){
+  return {
+    type: types.EDIT_COMMENT,
+    comment,
+    postId
+  }
+}
+
+export function editCommentSuccess(postId){
+  return {
+    type: types.EDIT_COMMENT_SUCCESS,
+    postId
+  }
+}
+
+export function editCommentFailure(error){
+  return {
+    type: types.EDIT_COMMENT_FAILURE,
+    error
+  }
+}
+
+export function deleteComment(comment, postId, password){
+  return {
+    type: types.DELETE_COMMENT,
+    comment,
+    postId,
     password
+  }
+}
+
+export function deleteCommentSuccess(msg){
+  return {
+    type: types.DELETE_COMMENT_SUCCESS,
+    msg
+  }
+}
+
+export function deleteCommentFailure(error){
+  return {
+    type: types.DELETE_COMMENT_FAILURE,
+    error
+  }
+}
+
+export function commentLike(commentId, postId) {
+  return {
+    type: types.COMMENT_LIKE,
+    commentId,
+    postId
+  }
+}
+
+export function commentLikeSuccess(postId) {
+  return {
+    type: types.COMMENT_LIKE_SUCCESS,
+    postId
+  }
+}
+
+export function commentLikeFailure(error) {
+  return {
+    type: types.COMMENT_LIKE_FAILURE,
+    error
   }
 }
 
@@ -171,6 +338,12 @@ export function changeBoardPage(page){
   return {
     type: types.CHANGE_BOARD_PAGE,
     page
+  }
+}
+
+export function wrongPassword(){
+  return {
+    type: types.WRONG_PASSWORD,
   }
 }
 

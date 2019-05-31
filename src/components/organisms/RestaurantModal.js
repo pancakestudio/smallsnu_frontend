@@ -26,7 +26,12 @@ export const RestaurantModal = ({res}) => {
         <Card className="op_hours border-0">
           <ListGroup variant="flush">
             <ListGroup.Item className="border-left-0 border-right-0 border-top-0"><strong>위치:</strong> {res.building.kr_name}</ListGroup.Item>
-            <ListGroup.Item className="border-left-0 border-right-0 border-bottom-0"><strong>운영 시간:</strong> {res.operating_hours}</ListGroup.Item>
+            <ListGroup.Item className="border-left-0 border-right-0 border-bottom-0">
+              <strong>운영 시간:</strong><br/>
+              {res.operating_hours.split('\n').map(line=>(
+                <span key={line}>{line}<br/></span>
+              ))}
+            </ListGroup.Item>
           </ListGroup>
         </Card>
       </Modal.Body>

@@ -64,7 +64,7 @@ export const BoardModal = ({bldgNo, posts, activePage, onPaginationClick, onShow
           </Pagination>
         </div>
         <div className="col-5">
-          <Button className="float-right" variant="secondary" onClick = {onShowWritePostModal}>쓰기</Button>
+          <Button className="float-right" variant="secondary" onClick = {()=>{onShowWritePostModal(bldgNo)}}>쓰기</Button>
         </div>
       </Modal.Footer>
     </Modal>

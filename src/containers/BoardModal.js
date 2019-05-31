@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) => {
     onPaginationClick: (page) => {
       dispatch(changeBoardPage(page))
     },
-    onShowWritePostModal: () => {
-      dispatch(showWritePost())
+    onShowWritePostModal: (bldgNo) => {
+      dispatch(showWritePost(bldgNo))
     },
   }
 }
