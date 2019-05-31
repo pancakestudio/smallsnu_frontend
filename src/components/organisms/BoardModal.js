@@ -6,6 +6,7 @@ import { historyPush } from '../../utils/Functions'
 import './BoardModal.css'
 
 export const BoardModal = ({bldgNo, posts, activePage, onPaginationClick, onShowWritePostModal}) => {
+  console.log(posts)
   const handleBack = () => {
     historyPush(`/building/${bldgNo}`)
   }

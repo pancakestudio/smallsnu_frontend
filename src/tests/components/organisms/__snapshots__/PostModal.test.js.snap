@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectedPostModal matches snapshot 1`] = `ReactWrapper {}`;
+
+exports[`PostModal matches snapshot 1`] = `ShallowWrapper {}`;

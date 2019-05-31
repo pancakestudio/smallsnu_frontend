@@ -38,6 +38,18 @@ describe('SearchBar', ()=>{
 
     input.simulate('change', {target: {value: '식당'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(2)
+
+    input.simulate('change', {target: {value: 'atm'}})
+    expect(mockSearchValueChange.mock.calls.length).toBe(3)
+
+    input.simulate('change', {target: {value: 'bank'}})
+    expect(mockSearchValueChange.mock.calls.length).toBe(4)
+
+    input.simulate('change', {target: {value: 'cafe'}})
+    expect(mockSearchValueChange.mock.calls.length).toBe(5)
+
+    input.simulate('change', {target: {value: 'CU'}})
+    expect(mockSearchValueChange.mock.calls.length).toBe(6)
   })
 })
 
@@ -77,6 +89,41 @@ describe('ConnectedSearchBar', ()=>{
     component.find('Button').simulate('submit')
     expect(store.getActions()[2]).toEqual(actions.requestAllRestaurants())
     expect(store.getActions()[3]).toEqual(actions.toggleResMarker())
+  })
+
+  it('dispatches searchSeminar action', () => {
+    component.find('input').instance().value = 'seminar'
+    component.find('Button').simulate('submit')
+    expect(store.getActions()[4]).toEqual(actions.requestAllSeminars())
+    expect(store.getActions()[5]).toEqual(actions.toggleSemiMarker())
+  })
+
+  it('dispatches searchATM action', () => {
+    component.find('input').instance().value = 'ATM'
+    component.find('Button').simulate('submit')
+    expect(store.getActions()[6]).toEqual(actions.requestAllATMs())
+    expect(store.getActions()[7]).toEqual(actions.toggleATMMarker())
+  })
+
+  it('dispatches searchBank action', () => {
+    component.find('input').instance().value = 'bank'
+    component.find('Button').simulate('submit')
+    expect(store.getActions()[8]).toEqual(actions.requestAllBanks())
+    expect(store.getActions()[9]).toEqual(actions.toggleBankMarker())
+  })
+
+  it('dispatches searchCafe action', () => {
+    component.find('input').instance().value = 'cafe'
+    component.find('Button').simulate('submit')
+    expect(store.getActions()[10]).toEqual(actions.requestAllCafes())
+    expect(store.getActions()[11]).toEqual(actions.toggleCafeMarker())
+  })
+
+  it('dispatches searchConv action', () => {
+    component.find('input').instance().value = 'CU'
+    component.find('Button').simulate('submit')
+    expect(store.getActions()[12]).toEqual(actions.requestAllConves())
+    expect(store.getActions()[13]).toEqual(actions.toggleConvMarker())
   })
 
   it('shows alert on invalid input', ()=>{

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectedPostPWCheck matches snapshot 1`] = `ReactWrapper {}`;
+
+exports[`PostPWCheck matches snapshot 1`] = `ShallowWrapper {}`;
