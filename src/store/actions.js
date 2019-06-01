@@ -301,3 +301,201 @@ export function getAllSeminarsFailure(error){
     error
   }
 }
+
+/******** Bank ********/
+
+export function toggleBankMarker(){
+  return{
+    type: types.TOGGLE_BANK_MARKER,
+  }
+}
+
+export function requestAllBanks(){
+  return{
+    type: types.REQUEST_ALL_BANKS,
+  }
+}
+
+export function getAllBanksSuccess(banks){
+  return{
+    type: types.GET_ALL_BANKS_SUCCESS,
+    banks,
+  }
+}
+
+export function getAllBanksFailure(error){
+  return{
+    type: types.GET_ALL_BANKS_FAILURE,
+    error,
+  }
+}
+
+export function requestBank(id){
+  return{
+    type: types.REQUEST_BANK,
+    id
+  }
+}
+
+export function getBankSuccess(bank){
+  return{
+    type: types.GET_BANK_SUCCESS,
+    bank
+  }
+}
+
+export function getBankFailure(error){
+  return{
+    type: types.GET_BANK_FAILURE,
+    error
+  }
+}
+
+
+/******** ATM ********/
+
+export function toggleATMMarker(){
+  return{
+    type: types.TOGGLE_ATM_MARKER,
+  }
+}
+
+export function requestAllATMs(){
+  return{
+    type: types.REQUEST_ALL_ATMS,
+  }
+}
+
+export function getAllATMsSuccess(atms){
+  return{
+    type: types.GET_ALL_ATMS_SUCCESS,
+    atms,
+  }
+}
+
+export function getAllATMsFailure(error){
+  return{
+    type: types.GET_ALL_ATMS_FAILURE,
+    error,
+  }
+}
+
+export function requestATM(id){
+  return{
+    type: types.REQUEST_ATM,
+    id
+  }
+}
+
+export function getATMSuccess(atm){
+  return{
+    type: types.GET_ATM_SUCCESS,
+    atm
+  }
+}
+
+export function getATMFailure(error){
+  return{
+    type: types.GET_ATM_FAILURE,
+    error
+  }
+}
+
+/******** Cafe ********/
+
+export function toggleCafeMarker(){
+  return{
+    type: types.TOGGLE_CAFE_MARKER,
+  }
+}
+
+export function requestAllCafes(){
+  return{
+    type: types.REQUEST_ALL_CAFES,
+  }
+}
+
+export function getAllCafesSuccess(cafes){
+  return{
+    type: types.GET_ALL_CAFES_SUCCESS,
+    cafes,
+  }
+}
+
+export function getAllCafesFailure(error){
+  return{
+    type: types.GET_ALL_CAFES_FAILURE,
+    error,
+  }
+}
+
+export function requestCafe(id){
+  return{
+    type: types.REQUEST_CAFE,
+    id
+  }
+}
+
+export function getCafeSuccess(cafe){
+  return{
+    type: types.GET_CAFE_SUCCESS,
+    cafe
+  }
+}
+
+export function getCafeFailure(error){
+  return{
+    type: types.GET_CAFE_FAILURE,
+    error
+  }
+}
+
+
+/******** Conv ********/
+
+export function toggleConvMarker(){
+  return{
+    type: types.TOGGLE_CONV_MARKER,
+  }
+}
+
+export function requestAllConves(){
+  return{
+    type: types.REQUEST_ALL_CONVES,
+  }
+}
+
+export function getAllConvesSuccess(conves){
+  return{
+    type: types.GET_ALL_CONVES_SUCCESS,
+    conves,
+  }
+}
+
+export function getAllConvesFailure(error){
+  return{
+    type: types.GET_ALL_CONVES_FAILURE,
+    error,
+  }
+}
+
+export function requestConv(id){
+  return{
+    type: types.REQUEST_CONV,
+    id
+  }
+}
+
+export function getConvSuccess(conv){
+  return{
+    type: types.GET_CONV_SUCCESS,
+    conv
+  }
+}
+
+export function getConvFailure(error){
+  return{
+    type: types.GET_CONV_FAILURE,
+    error
+  }
+}

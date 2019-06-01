@@ -1,7 +1,11 @@
 import { connect } from 'react-redux'
 import { SearchBar } from '../components/molecules/SearchBar'
 import { toggleResMarker, requestAllRestaurants,
-  searchValueChange, search, requestAllSeminars, toggleSemiMarker } from '../store/actions'
+    searchValueChange, search, requestAllSeminars, toggleSemiMarker,
+    requestAllATMs, toggleATMMarker, requestAllBanks, toggleBankMarker,
+    requestAllCafes, toggleCafeMarker, requestAllConves, toggleConvMarker
+
+} from '../store/actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -18,6 +22,22 @@ const mapDispatchToProps = (dispatch) => {
     onSearchSeminar: () => {
       dispatch(requestAllSeminars())
       dispatch(toggleSemiMarker())
+    },
+    onSearchATM: () => {
+      dispatch(requestAllATMs())
+      dispatch(toggleATMMarker())
+    },
+    onSearchBank: () => {
+      dispatch(requestAllBanks())
+      dispatch(toggleBankMarker())
+    },
+    onSearchCafe: () => {
+      dispatch(requestAllCafes())
+      dispatch(toggleCafeMarker())
+    },
+    onSearchConv: () => {
+      dispatch(requestAllConves())
+      dispatch(toggleConvMarker())
     }
   }
 }

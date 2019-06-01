@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import { Main } from '../components/pages/Main'
-import { 
+import {
   requestBuilding,
-  requestBoard, requestPost, 
+  requestBoard, requestPost,
   requestRestaurant,
-  requestSeminar, requestBldgSeminars
+  requestSeminar, requestBldgSeminars,
+  requestATM, requestBank, requestCafe, requestConv
 } from '../store/actions'
 
 const mapStateToProps = (state) => {
@@ -20,6 +21,18 @@ const mapDispatchToProps = (dispatch) => {
     },
     getRestaurant: (id) => {
       dispatch(requestRestaurant(id))
+    },
+    getATM: (id) => {
+      dispatch(requestATM(id))
+    },
+    getBank: (id) => {
+      dispatch(requestBank(id))
+    },
+    getCafe: (id) => {
+      dispatch(requestCafe(id))
+    },
+    getConv: (id) => {
+      dispatch(requestConv(id))
     },
     getSeminar: (id) => {
       dispatch(requestSeminar(id))

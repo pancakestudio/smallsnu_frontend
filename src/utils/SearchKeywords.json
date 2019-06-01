@@ -46,6 +46,78 @@
   {
     "subject": "seminar",
     "keyword": "conference"
+  },
+
+
+
+  {
+    "subject": "atm",
+    "keyword": "atm"
+  },
+  {
+    "subject": "atm",
+    "keyword": "ATM"
+  },
+  {
+    "subject": "atm",
+    "keyword": "Atm"
+  },
+  {
+    "subject": "atm",
+    "keyword": "현금인출금"
+  },
+
+
+
+  {
+    "subject": "bank",
+    "keyword": "bank"
+  },
+  {
+    "subject": "bank",
+    "keyword": "은행"
+  },
+  {
+    "subject": "bank",
+    "keyword": "Bank"
+  },
+
+
+
+  {
+    "subject": "cafe",
+    "keyword": "cafe"
+  },
+  {
+    "subject": "cafe",
+    "keyword": "Cafe"
+  },
+  {
+    "subject": "cafe",
+    "keyword": "Coffee"
+  },
+  {
+    "subject": "cafe",
+    "keyword": "coffee"
+  },
+  {
+    "subject": "cafe",
+    "keyword": "카페"
+  },
+
+
+
+  {
+    "subject": "conv",
+    "keyword": "convenience store"
+  },
+  {
+    "subject": "conv",
+    "keyword": "편의점"
+  },
+  {
+    "subject": "conv",
+    "keyword": "CU"
   }
 
 ]

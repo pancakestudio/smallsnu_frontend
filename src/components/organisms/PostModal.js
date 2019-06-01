@@ -7,7 +7,7 @@ import './PostModal.css'
 
 export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModal}) => {
   let postShow = true
-
+  console.log(post)
   const handleBack = () => {
     if(post && post.building){
       let boardNo = post.building.code

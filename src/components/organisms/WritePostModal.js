@@ -90,7 +90,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  type="userName"
+                  className ="userName"
                   disabled={disabled}
                   defaultValue={username}
                   placeholder="아이디"
@@ -101,7 +101,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  type="password"
+                  className="password"
                   placeholder="비밀번호"
                   ref = {(ref) => (passwordInput=ref)}
                 />

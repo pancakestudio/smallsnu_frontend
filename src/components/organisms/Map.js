@@ -1,16 +1,18 @@
 import React from 'react'
-import {
-   Map as LeafletMap, TileLayer,
-   Marker, Tooltip, ZoomControl
- } from 'react-leaflet'
-import './Map.css'
+import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl} from 'react-leaflet'
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
+import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon} from '../../utils/iconGroup'
+import './Map.css'
 
 export const Map = ({
   currentPos, zoom, searchedBldg, showSearchMarker,
   resData, showResMarkers,
   semis, showSemiMarkers,
+  banks, showBankMarkers,
+  atms, showATMMarkers,
+  cafes, showCafeMarkers,
+  conves, showConvMarkers,
   onZoom, onBackgroundClick}) => {
 
   const handleMapClick = (e) => {
@@ -29,7 +31,23 @@ export const Map = ({
   const handleResClick = (resId) => {
     historyPush(`/restaurant/${resId}`)
   }
-  
+
+  const handleCafeClick = (cafeId) =>{
+    historyPush(`/cafe/${cafeId}`)
+  }
+
+  const handleConvClick = (convId) => {
+    historyPush(`/conv/${convId}`)
+  }
+
+  const handleBankClick = (bankId) => {
+    historyPush(`/bank/${bankId}`)
+  }
+
+  const handleATMClick = (atmId) => {
+    historyPush(`/atm/${atmId}`)
+  }
+
   const handleSeminarListClick = (bldgNo) => {
     historyPush(`/seminarlist/${bldgNo}`)
   }
@@ -39,27 +57,10 @@ export const Map = ({
     onZoom(zoomLevel)
   }
 
-  let searchMarker, resMarkers, semiMarkers
+  let searchMarker, resMarkers, semiMarkers,
+  cafeMarkers, convMarkers, atmMarkers, bankMarkers
   if(showSearchMarker){
-    searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
-  }
-
-  if(showResMarkers && resData){
-    resMarkers = resData.map((res) => (
-      <Marker
-        key={res.id}
-        className="resMarker"
-        position = {[res.building.spot.latitude, res.building.spot.longitude]}
-        onClick = {() =>{handleResClick(res.id)}}
-      >
-        <Tooltip
-          className="resToolTip"
-          permanent
-        >
-          {res.kr_name}
-        </Tooltip>
-      </Marker>
-    ))
+    searchMarker = <Marker className="searchMarker" icon={resIcon} position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
 
   if(showSemiMarkers){
@@ -70,34 +71,81 @@ export const Map = ({
         if(semiBldgs.length!==0)
           bldg = semiBldgs.find((b)=>(b.code===semi.building.code))
         if(!bldg){
-          bldg = {
-            spot: semi.building.spot,
-            code: semi.building.code,
-            cnt: 1
-          }
+          bldg = {spot: semi.building.spot, code: semi.building.code, cnt: 1}
           semiBldgs.push(bldg)
-        } else {
-          bldg.cnt++;
-        }
+        } else {bldg.cnt++;}
       })
       semiMarkers = semiBldgs.map((bldg, index) => (
-        <Marker
-          key = {bldg.code}
-	      className="semiMarker"
-	      position = {[bldg.spot.latitude, bldg.spot.longitude]}
+        <Marker key = {bldg.code} className="semiMarker" icon = {semiIcon}
+	        position = {[bldg.spot.latitude, bldg.spot.longitude]}
           onClick = {() =>{handleSeminarListClick(bldg.code)}}
         >
-          <Tooltip 
-            className="semiToolTip"
-            permanent
-          >
-            총 {bldg.cnt} 건
-          </Tooltip>
+          <Tooltip className="semiToolTip" permanent direction = 'left'>총 {bldg.cnt} 건</Tooltip>
         </Marker>
       ))
     }
   }
-    
+
+  if(showResMarkers && resData){
+    resMarkers = resData.map((res) => (
+      <Marker
+        key={res.id} className="resMarker" icon = {resIcon}
+        position = {[res.building.spot.latitude, res.building.spot.longitude]}
+        onClick = {() =>{handleResClick(res.id)}}
+      >
+        <Tooltip className="resToolTip" direction = 'left'>{res.kr_name}</Tooltip>
+      </Marker>
+    ))
+  }
+
+  if(showCafeMarkers && cafes){
+    cafeMarkers = cafes.map((cafe) => (
+      <Marker
+        key={cafe.id} className="cafeMarker" icon = {cafeIcon}
+        position = {[cafe.building.spot.latitude, cafe.building.spot.longitude]}
+        onClick = {() => {handleCafeClick(cafe.id)}}
+      >
+        <Tooltip className="cafeToolTip" direction = 'left'>{cafe.kr_name}</Tooltip>
+      </Marker>
+    ))
+  }
+
+  if(showConvMarkers && conves){
+    convMarkers = conves.map((conv) => (
+      <Marker
+        key={conv.id} className="convMarker" icon = {convIcon}
+        position = {[conv.building.spot.latitude, conv.building.spot.longitude]}
+        onClick = {() => {handleConvClick(conv.id)}}
+      >
+        <Tooltip className="convToolTip" direction = 'left'>{conv.kr_name}</Tooltip>
+      </Marker>
+    ))
+  }
+
+  if(showBankMarkers && banks){
+    bankMarkers = banks.map((bank) => (
+      <Marker
+        key={bank.id} className="bankMarker" icon = {bankIcon}
+        position = {[bank.building.spot.latitude, bank.building.spot.longitude]}
+        onClick = {() => {handleBankClick(bank.id)}}
+      >
+        <Tooltip className="bankToolTip" direction = 'left'>{bank.kr_name}</Tooltip>
+      </Marker>
+    ))
+  }
+
+  if(showATMMarkers && atms){
+    atmMarkers = atms.map((atm) => (
+      <Marker
+        key={atm.id} className="atmMarker" icon = {atmIcon}
+        position = {[atm.building.spot.latitude, atm.building.spot.longitude]}
+        onClick = {() => {handleATMClick(atm.id)}}
+      >
+        <Tooltip className="atmToolTip" direction = 'left'>{atm.kr_name}</Tooltip>
+      </Marker>
+    ))
+  }
+
   return (
       <LeafletMap className = "leafletMap"
         center = {currentPos}
@@ -116,6 +164,10 @@ export const Map = ({
           { searchMarker }
           { resMarkers }
           { semiMarkers }
+          { cafeMarkers }
+          { convMarkers }
+          { bankMarkers }
+          { atmMarkers }
         <ZoomControl position = 'bottomright'/>
       </LeafletMap>
   )
