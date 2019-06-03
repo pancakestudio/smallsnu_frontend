@@ -44,7 +44,7 @@ export function hideMarkers(){
 
 /******** SideBar ********/
 
-export function toggleSideBar(){
+export function toggleSidebar(){
   return {
     type: types.TOGGLE_SIDE_BAR
   }

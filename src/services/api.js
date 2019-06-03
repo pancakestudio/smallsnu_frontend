@@ -68,7 +68,6 @@ export function getCafeInfo(id){
 }
 
 export function getAllCafesInfo(){
-  console.log("Cafe")
   return axios.get('cafe/')
     .catch(error => { return {error:error}})
 }
