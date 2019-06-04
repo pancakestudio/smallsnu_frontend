@@ -60,7 +60,7 @@ export const Map = ({
   let searchMarker, resMarkers, semiMarkers,
   cafeMarkers, convMarkers, atmMarkers, bankMarkers
   if(showSearchMarker){
-    searchMarker = <Marker className="searchMarker" icon={resIcon} position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
+    searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
 
   if(showSemiMarkers){

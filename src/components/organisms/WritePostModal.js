@@ -83,6 +83,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPo
                 <Form.Label></Form.Label>
                 <Form.Control
                   className ="userName"
+                  type="username"
                   disabled={disabled}
                   defaultValue={username}
                   placeholder="아이디"
@@ -94,6 +95,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPo
                 <Form.Label></Form.Label>
                 <Form.Control
                   className="password"
+                  type="password"
                   placeholder="비밀번호"
                   ref = {(ref) => (passwordInput=ref)}
                 />

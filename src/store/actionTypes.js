@@ -111,3 +111,6 @@ export const REQUEST_ALL_CONVES = "REQUEST_ALL_CONVES"
 export const REQUEST_CONV = "REQUEST_CONV"
 export const GET_CONV_SUCCESS = "GET_CONV_SUCCESS"
 export const GET_CONV_FAILURE = "GET_CONV_FAILURE"
+
+/******** Main ********/
+export const REFRESH_DATA = "REFRESH_DATA"

@@ -14,3 +14,7 @@
 .boardModal .pagination {
   margin: auto;
 }
+
+.boardModal .noPosts {
+  text-align: center;
+}

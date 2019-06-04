@@ -63,6 +63,7 @@ export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
         <Card.Body>
           <Card.Text>게시판에 글이 없습니다.</Card.Text>
         </Card.Body>
+        <Card.Footer> <Button className="postListButton" variant="link" onClick={()=>{handleBoardClick()}}>게시판 바로가기</Button> </Card.Footer>
       </Card>
     )
   }

@@ -15,7 +15,7 @@ import { Switch, Route } from 'react-router-dom'
 import './Main.css'
 
 export const Main = ({match, error, getBuilding, getRestaurant,
-  getSeminar, getSeminarList, getBoard, getPost, getATM, getBank, getCafe, getConv}) => {
+  getSeminar, getSeminarList, getBoard, getPost, getATM, getBank, getCafe, getConv, refresh}) => {
   if(!error || error.length === 0){
     switch(match.params.modal){
       case "building":
@@ -49,6 +49,7 @@ export const Main = ({match, error, getBuilding, getRestaurant,
         getPost(match.params.id)
         break;
       default:
+        refresh()
     }
   }
   return (

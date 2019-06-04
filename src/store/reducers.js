@@ -43,6 +43,8 @@ function selectedBldg(state = {}, action){
       return Object.assign({}, state, {
         posts: action.posts
       })
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -52,8 +54,10 @@ function showSearchMarker(state = false, action){
   switch(action.type){
     case types.SEARCH:
       return true
-    default:
+    case types.HIDE_MARKERS:
       return false
+    default:
+      return state
   }
 }
 
@@ -212,6 +216,8 @@ function selectedBoardBldgNo(state = "0", action){
     case types.GET_BUILDING_SUCCESS:
     case types.SHOW_WRITE_POST:
       return action.bldgNo
+    case types.REFRESH_DATA:
+      return "0"
     default:
       return state
   }
@@ -221,6 +227,8 @@ function selectedPostList(state = [], action){
   switch(action.type){
     case types.GET_BOARD_SUCCESS:
       return action.posts
+    case types.REFRESH_DATA:
+      return []
     default:
       return state
   }
@@ -230,6 +238,8 @@ function selectedPost(state = {}, action){
   switch(action.type){
     case types.GET_POST_SUCCESS:
       return action.post
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -319,6 +329,8 @@ function selectedBank(state = {}, action){
   switch(action.type){
     case types.GET_BANK_SUCCESS:
       return action.bank
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -339,6 +351,8 @@ function selectedATM(state = {}, action){
   switch(action.type){
     case types.GET_ATM_SUCCESS:
       return action.atm
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -359,6 +373,8 @@ function selectedCafe(state = {}, action){
   switch(action.type){
     case types.GET_CAFE_SUCCESS:
       return action.cafe
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -379,6 +395,8 @@ function selectedConv(state = {}, action){
   switch(action.type){
     case types.GET_CONV_SUCCESS:
       return action.conv
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -390,6 +408,8 @@ function selectedRes(state = {}, action){
   switch(action.type){
     case types.GET_RESTAURANT_SUCCESS:
       return action.restaurant
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -410,6 +430,8 @@ function selectedSemi(state = {}, action){
   switch(action.type){
     case types.GET_SEMINAR_SUCCESS:
       return action.seminar
+    case types.REFRESH_DATA:
+      return {}
     default:
       return state
   }
@@ -419,6 +441,8 @@ function selectedSemiList(state = [], action){
   switch(action.type){
     case types.GET_BLDG_SEMINARS_SUCCESS:
       return action.seminars
+    case types.REFRESH_DATA:
+      return []
     default:
       return state
   }
@@ -428,6 +452,8 @@ function selectedSemiListBldgNo(state = "0", action){
   switch(action.type){
     case types.GET_BLDG_SEMINARS_SUCCESS:
       return action.bldgNo
+    case types.REFRESH_DATA:
+      return "0"
     default:
       return state
   }

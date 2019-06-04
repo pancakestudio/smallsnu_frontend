@@ -181,7 +181,6 @@ function* handleRequestAllATMInfo(){
 function* handleRequestCafeInfo(){
   while(true){
     const action = yield take(types.REQUEST_CAFE)
-    console.log('took!!')
     const { data, error } = yield call(api.getCafeInfo, action.id)
     if(data && !error){
       yield put(actions.getCafeSuccess(data))

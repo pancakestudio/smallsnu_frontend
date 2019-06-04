@@ -2,13 +2,12 @@ import React from 'react'
 import moment from 'moment'
 import { Modal, Button, Dropdown, DropdownButton, Card, ListGroup, Container, Row, Col } from 'react-bootstrap'
 import { FaAngleLeft, FaHeart, FaRegComment } from 'react-icons/fa'
+import { ModalSpinner } from '../molecules/ModalSpinner'
 import WriteComment from '../../containers/WriteComment'
 import { historyPush, trimCreated } from '../../utils/Functions'
 import './PostModal.css'
 
 export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModal, onLike, onEditComment, onDeleteComment, onLikeComment}) => {
-  let modal
-
   const handleBack = () => {
     if(post && post.building){
       let boardNo = post.building.code
@@ -118,66 +117,60 @@ export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModa
     </Card>
   }
 
-  if(post && post.comments){
-    modal = <Modal
-      show = {true}
-      onHide = {()=>{historyPush('/')}}
-      dialogClassName = "postModal"
-      scrollable = {true}
-      centered
-    >
-      <Modal.Header closeButton>
-        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
-        <Modal.Title className="title">{post.title}</Modal.Title>
-      </Modal.Header>
+  if(Object.keys(post).length>0){
+    return (
+      <Modal
+        show = {true}
+        onHide = {()=>{historyPush('/')}}
+        dialogClassName = "postModal"
+        scrollable = {true}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
+          <Modal.Title className="title">{post.title}</Modal.Title>
+        </Modal.Header>
 
-      <Modal.Body>
-        <Card className="mainText border-0">
-          <Card.Header className="postHeader text-muted">
-            <Container fluid>
-            <Row>
-              <Col xs={12} md={8} className="headerLeft">
-                작성자: {post.username} | 작성일시: {moment(post.created).format("YYYY.MM.DD HH:mm:ss")}
-              </Col>
-              <Col xs={12} md={4} className="headerRight text-right">
-                <Button variant = "secondary" onClick={handleEdit}>수정</Button>
-                <Button variant = "danger" onClick={handleDelete}>삭제</Button>
-              </Col>
-            </Row>
-            </Container>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text className="postContent">
-              {post.content}
-            </Card.Text>
-            <div className="text-center">
-              <Button
-                variant="outline-danger"
-                className="like text-center"
-                onClick={handleLike}
-              >
-                <FaHeart/><br/>{post.like}
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
-        { comments }
-      </Modal.Body>
-      <Modal.Footer className="postFooter">
-        <WriteComment className="writeComment" postId={post.id}/>
-      </Modal.Footer>
-    </Modal>
+        <Modal.Body>
+          <Card className="mainText border-0">
+            <Card.Header className="postHeader text-muted">
+              <Container fluid>
+              <Row>
+                <Col xs={12} md={8} className="headerLeft">
+                  작성자: {post.username} | 작성일시: {moment(post.created).format("YYYY.MM.DD HH:mm:ss")}
+                </Col>
+                <Col xs={12} md={4} className="headerRight text-right">
+                  <Button variant = "secondary" onClick={handleEdit}>수정</Button>
+                  <Button variant = "danger" onClick={handleDelete}>삭제</Button>
+                </Col>
+              </Row>
+              </Container>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text className="postContent">
+                {post.content}
+              </Card.Text>
+              <div className="text-center">
+                <Button
+                  variant="outline-danger"
+                  className="like text-center"
+                  onClick={handleLike}
+                >
+                  <FaHeart/><br/>{post.like}
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+          { comments }
+        </Modal.Body>
+        <Modal.Footer className="postFooter">
+          <WriteComment className="writeComment" postId={post.id}/>
+        </Modal.Footer>
+      </Modal>
+    )
   }else{
-    modal = <Modal
-      show = {true}
-      onHide = {()=>{historyPush('/')}}
-      centered
-    >
-      <Modal.Header closeButton>
-        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
-        <Modal.Title>게시글 정보가 없습니다.</Modal.Title>
-      </Modal.Header>
-  </Modal>
+    return (
+      <ModalSpinner />
+    )
   }
-  return modal
 }

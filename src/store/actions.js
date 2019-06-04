@@ -672,3 +672,12 @@ export function getConvFailure(error){
     error
   }
 }
+
+
+/******** Main ********/
+
+export function refreshData(){
+  return {
+    type: types.REFRESH_DATA
+  }
+}

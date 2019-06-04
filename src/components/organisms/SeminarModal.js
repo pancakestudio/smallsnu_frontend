@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, Button, Card, ListGroup } from 'react-bootstrap'
 import { FaAngleLeft } from 'react-icons/fa'
+import { ModalSpinner } from '../molecules/ModalSpinner'
 import { historyPush } from '../../utils/Functions'
 import './SeminarModal.css'
 
@@ -14,7 +15,7 @@ export const SeminarModal = ({semi}) => {
     }
   }
   let title, semiCard
-  if(semi && semi.title){
+  if(Object.keys(semi).length>0){
     title = semi.title.replace("[Seminar] ", "")
     semiCard = (
       <Card className="semiCard border-0">
@@ -29,23 +30,27 @@ export const SeminarModal = ({semi}) => {
         </Card.Footer>
       </Card>
     )
-  }
-  return (
-    <Modal 
-      show = {true}
-      onHide = {()=>{historyPush('/')}}
-      dialogClassName = "seminarModal"
-      scrollable = {true}
-      centered
-    >
-      <Modal.Header closeButton>
-        <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
-        <Modal.Title className="title">{title}</Modal.Title>
-      </Modal.Header>
+    return (
+      <Modal 
+        show = {true}
+        onHide = {()=>{historyPush('/')}}
+        dialogClassName = "seminarModal"
+        scrollable = {true}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
+          <Modal.Title className="title">{title}</Modal.Title>
+        </Modal.Header>
 
-      <Modal.Body>
-        { semiCard }
-      </Modal.Body>
-    </Modal>
-  )
+        <Modal.Body>
+          { semiCard }
+        </Modal.Body>
+      </Modal>
+    )
+  } else {
+    return (
+      <ModalSpinner />
+    )
+  }
 }
