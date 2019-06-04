@@ -57,6 +57,8 @@ describe('BuildingInfo', ()=>{
   })
 
   it('calls functions', ()=>{
+    component.find('AmenityPreview').prop('onClick')()
+    expect(global.window.location.pathname).toEqual('/restaurant/1')
     component.find('PostPreview').prop('onClick')()
     expect(global.window.location.pathname).toEqual('/post/1')
     component.find('SemiPreview').prop('onClick')()

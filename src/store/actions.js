@@ -52,13 +52,6 @@ export function toggleSidebar(){
 
 /******** SearchBar ********/
 
-export function searchValueChange(bldgNo){
-  return{
-    type: types.SEARCH_VALUE_CHANGE,
-    bldgNo
-  };
-}
-
 export function search(bldgNo, bldgPos){
   return{
     type: types.SEARCH,

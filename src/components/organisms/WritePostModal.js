@@ -3,16 +3,28 @@ import { Modal, Button, Form, Col } from 'react-bootstrap'
 import './WritePostModal.css'
 
 export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPost, onEditPost}) =>{
-  let titleInput, textInput, userNameInput, passwordInput
+  let titleInput, contentInput, usernameInput, passwordInput
+  const handleChangeTitle = (e) => {
+    titleInput = e.target.value
+  }
+  const handleChangeContent = (e) => {
+    contentInput = e.target.value
+  }
+  const handleChangeUsername = (e) => {
+    usernameInput = e.target.value
+  }
+  const handleChangePassword = (e) => {
+    passwordInput = e.target.value
+  }
   const handleBack = () => {
     onHide()
   }
   const handleSave = () => {
     let post = {
-      "title" : titleInput.value,
-      "content" : textInput.value,
-      "username" : userNameInput.value,
-      "password" : passwordInput.value
+      "title" : titleInput,
+      "content" : contentInput,
+      "username" : usernameInput,
+      "password" : passwordInput
     }
     if(post.title === "" || post.content === ""){
       alert("게시물에 내용이 없습니다.")
@@ -23,9 +35,9 @@ export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPo
     }
   }
   const handleEdit = () => {
-    editPost.title = titleInput.value
-    editPost.content = textInput.value
-    editPost.password = passwordInput.value
+    editPost.title = (titleInput) ? titleInput : editPost.title
+    editPost.content = (contentInput) ? contentInput : editPost.content
+    editPost.password = passwordInput
     onEditPost(editPost, bldgNo)
   }
 
@@ -64,7 +76,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPo
                 type="title"
                 defaultValue={title}
                 placeholder="제목"
-                ref = {(ref) => (titleInput=ref)}
+                onChange={handleChangeTitle}
               />
             </Form.Group>
 
@@ -74,7 +86,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPo
                 rows = "10"
                 defaultValue={content}
                 placeholder="내용"
-                ref = {(ref) => (textInput=ref)}
+                onChange={handleChangeContent}
               />
             </Form.Group>
 
@@ -87,7 +99,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPo
                   disabled={disabled}
                   defaultValue={username}
                   placeholder="아이디"
-                  ref = {(ref) => (userNameInput=ref)}
+                  onChange={handleChangeUsername}
                 />
               </Form.Group>
 
@@ -97,7 +109,7 @@ export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPo
                   className="password"
                   type="password"
                   placeholder="비밀번호"
-                  ref = {(ref) => (passwordInput=ref)}
+                  onChange={handleChangePassword}
                 />
               </Form.Group>
             </Form.Row>

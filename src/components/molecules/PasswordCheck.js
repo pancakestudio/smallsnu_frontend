@@ -4,9 +4,12 @@ import './PasswordCheck.css'
 
 export const PasswordCheck = ({show, target, onHideModal, onDeletePost, onDeleteComment}) => {
   let passwordInput
+  const handleChange = (e) => {
+    passwordInput = e.target.value
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
-    const password = passwordInput.value
+    const password = passwordInput
     if(target && "building" in target){
       const bldgNo = target.building.code
       onDeletePost(target, bldgNo, password)
@@ -31,7 +34,11 @@ export const PasswordCheck = ({show, target, onHideModal, onDeletePost, onDelete
       <Form onSubmit={handleSubmit}>
         <Modal.Body>
           <Form.Group controlId="formGridPassword">
-            <Form.Control type="password" placeholder="비밀번호" ref = {(ref) => (passwordInput=ref)}/>
+            <Form.Control
+              type="password"
+              placeholder="비밀번호"
+              onChange={handleChange}
+            />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

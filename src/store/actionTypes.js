@@ -9,7 +9,6 @@ export const HIDE_MARKERS = "HIDE_MARKERS"
 export const TOGGLE_SIDE_BAR = "TOGGLE_SIDE_BAR"
 
 /******** SearchBar ********/
-export const SEARCH_VALUE_CHANGE = "SEARCH_VALUE_CHANGE"
 export const SEARCH = "SEARCH"
 
 /******** Post ********/

@@ -3,30 +3,47 @@ import { Button, Form, Col } from 'react-bootstrap'
 import './WriteComment.css'
 
 export const WriteComment = ({edit, editingComment, postId, onSaveComment, onEditComment}) => {
-  let form, textInput, usernameInput, passwordInput
-  let textDefault, usernameDefault, disabled, handler
+  let contentInput, usernameInput, passwordInput
+  let contentDefault, usernameDefault, passwordDefault, disabled, handler
+
+  const handleChangeContent = (e) => {
+    contentInput = e.target.value
+  }
+
+  const handleChangeUsername = (e) => {
+    usernameInput = e.target.value
+  }
+
+  const handleChangePassword = (e) => {
+    passwordInput = e.target.value
+  }
 
   const handleCommentSave = (e) => {
-    e.preventDefault()
+    if(e) {
+      e.preventDefault()
+      e.target.reset()
+    }
     let comment = {
-      "content": textInput.value,
-      "username": usernameInput.value,
-      "password": passwordInput.value
+      "content": contentInput,
+      "username": usernameInput,
+      "password": passwordInput
     }
     if(comment.contet === ""){
       alert("댓글 내용이 없습니다.")
     } else {
       onSaveComment(comment, postId)
-      form.reset()
     }
   }
 
   const handleCommentEdit = (e) => {
-    e.preventDefault()
+    if(e) {
+      e.preventDefault()
+      e.target.reset()
+    }
     let comment = editingComment
-    comment.content = textInput.value
-    comment.username = usernameInput.value
-    comment.password = passwordInput.value
+    comment.content = (contentInput) ? contentInput : editingComment.content
+    comment.username = (usernameInput) ? usernameInput : editingComment.username
+    comment.password = passwordInput
     if(comment.contet === ""){
       alert("댓글 내용이 없습니다.")
     } else {
@@ -35,7 +52,7 @@ export const WriteComment = ({edit, editingComment, postId, onSaveComment, onEdi
   }
 
   if(edit){
-    textDefault = editingComment.content
+    contentDefault = editingComment.content
     usernameDefault = editingComment.username
     disabled = true
     handler = handleCommentEdit
@@ -46,7 +63,6 @@ export const WriteComment = ({edit, editingComment, postId, onSaveComment, onEdi
 
   return (
     <Form
-      ref={(ref)=>(form=ref)}
       className="writeComment"
       onSubmit={handler}
     >
@@ -54,9 +70,9 @@ export const WriteComment = ({edit, editingComment, postId, onSaveComment, onEdi
         <Form.Control
           as="textarea"
           rows="2"
-          defaultValue={textDefault}
+          defaultValue={contentDefault}
           placeholder="댓글"
-          ref = {(ref) => (textInput=ref)}
+          onChange={handleChangeContent}
         />
       </Form.Group>
       <Form.Row className="commenterForm">
@@ -67,7 +83,7 @@ export const WriteComment = ({edit, editingComment, postId, onSaveComment, onEdi
             defaultValue={usernameDefault}
             disabled={disabled}
             placeholder="아이디"
-            ref = {(ref) => (usernameInput=ref)}
+            onChange={handleChangeUsername}
           />
         </Form.Group>
 
@@ -76,7 +92,7 @@ export const WriteComment = ({edit, editingComment, postId, onSaveComment, onEdi
           <Form.Control
             type="password"
             placeholder="비밀번호"
-            ref = {(ref) => (passwordInput=ref)}
+            onChange={handleChangePassword}
           />
         </Form.Group>
         <Button className="float-right" variant="outline-secondary" type="submit">댓글 등록</Button>

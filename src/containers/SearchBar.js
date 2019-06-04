@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { SearchBar } from '../components/molecules/SearchBar'
 import { toggleResMarker, requestAllRestaurants,
-    searchValueChange, search, requestAllSeminars, toggleSemiMarker,
+    search, requestAllSeminars, toggleSemiMarker,
     requestAllATMs, toggleATMMarker, requestAllBanks, toggleBankMarker,
     requestAllCafes, toggleCafeMarker, requestAllConves, toggleConvMarker
 
@@ -9,9 +9,6 @@ import { toggleResMarker, requestAllRestaurants,
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearchValueChange: (bldgNo) => {
-      dispatch(searchValueChange(bldgNo))
-    },
     onSearchBuilding: (bldgNo, bldgPos) => {
       dispatch(search(bldgNo, bldgPos))
     },

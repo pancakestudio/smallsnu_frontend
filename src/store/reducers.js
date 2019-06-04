@@ -183,18 +183,6 @@ function showSideBar(state = false, action){
   }
 }
 
-/******** SearchBar ********/
-
-function searchingBldg(state = "0", action){
-  switch(action.type){
-    case types.SEARCH_VALUE_CHANGE:
-      return action.bldgNo
-    default:
-      return state
-  }
-}
-
-
 /******** Post ********/
 
 function showWritePostModal(state = false, action){
@@ -527,7 +515,6 @@ const reducers = combineReducers({
   showConvMarkers,// Map
 
   showSideBar, // SideBar
-  searchingBldg, // SearchBar
 
   showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
   isEdit, showPasswordCheck, activeBoardPage, showEditComment, editingComment, deleteTarget, // Post

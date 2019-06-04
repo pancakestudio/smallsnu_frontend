@@ -16,7 +16,6 @@ describe('PasswordCheck', () => {
     title: 'title',
     content: 'content',
     username: 'user',
-    password: '1234'
   }
   it('renders correctly', () => {
     component = shallow(
@@ -43,7 +42,6 @@ describe('PasswordCheck', () => {
     component.find('Bootstrap(Modal)').simulate('hide')
     expect(global.window.location.pathname).toEqual('/')
   })
-
 })
 
 describe('ConnectedPasswordCheck', () => {
@@ -57,6 +55,12 @@ describe('ConnectedPasswordCheck', () => {
     building: {
       code: '301'
     }
+  }
+  const comment = {
+    id: "1",
+    content: "content",
+    username: "user",
+    post: "1"
   }
   const initialState = {
     showPasswordCheck: true,
@@ -80,10 +84,26 @@ describe('ConnectedPasswordCheck', () => {
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
   })
 
-  it('correct password', () => {
-    component.find('input').instance().value = '1234'
+  it('dispatches deletePost action', () => {
+    component.find('input').simulate('change', {target:{value: '1234'}})
     component.find('Button').simulate('click')
     expect(store.getActions()[0]).toEqual(actions.deletePost(post, '301', '1234'))
+  })
+
+  it('dispatches deleteComment action', () => {
+    const state = {
+      showPasswordCheck: true,
+      deleteTarget: comment
+    }
+    store = mockStore(state)
+    component = mount(
+      <Provider store = {store}>
+        <ConnectedPasswordCheck/>
+      </Provider>
+    )
+    component.find('input').simulate('change', {target:{value: '1234'}})
+    component.find('Button').simulate('click')
+    expect(store.getActions()[0]).toEqual(actions.deleteComment(comment, "1", '1234'))
   })
 
   // Should add saga test codes
