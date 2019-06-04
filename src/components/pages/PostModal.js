@@ -7,13 +7,11 @@ import WriteComment from '../../containers/WriteComment'
 import { historyPush, trimCreated } from '../../utils/Functions'
 import './PostModal.css'
 
-export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModal, onLike, onEditComment, onDeleteComment, onLikeComment}) => {
+export const PostModal = ({post, onShowWritePostModal, onEdit, onDelete, onLike, onEditComment, onDeleteComment, onLikeComment}) => {
   const handleBack = () => {
     if(post && post.building){
-      let boardNo = post.building.code
+      const boardNo = post.building.code
       historyPush(`/board/${boardNo}`)
-    } else {
-      historyPush('/')
     }
   }
   const handleEdit = () => {
@@ -21,7 +19,7 @@ export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModa
     onShowWritePostModal(post.building.code)
   }
   const handleDelete = () => {
-    onShowCheckPWModal(post)
+    onDelete(post)
   }
   const handleLike = () => {
     let liked = localStorage.getItem("likedPosts")
@@ -53,7 +51,7 @@ export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModa
   }
 
   let comments, body
-  if(post.comments){
+  if(post && post.comments){
     if(post.comments.length!==0){
       body = 
       <Card.Body className="commentsBody">
@@ -117,7 +115,7 @@ export const PostModal = ({post, onShowWritePostModal, onEdit, onShowCheckPWModa
     </Card>
   }
 
-  if(Object.keys(post).length>0){
+  if(post && Object.keys(post).length>0){
     return (
       <Modal
         show = {true}

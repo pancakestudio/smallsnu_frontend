@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ConnectedMain matches snapshot 1`] = `undefined`;
+exports[`ConnectedMain matches snapshot 1`] = `ReactWrapper {}`;
 
-exports[`Main matches snapshot 1`] = `undefined`;
+exports[`Main matches snapshot 1`] = `ShallowWrapper {}`;

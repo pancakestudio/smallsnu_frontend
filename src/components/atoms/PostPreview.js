@@ -16,7 +16,7 @@ export const PostPreview = ({title, content, created, username, like, comments, 
         <Card.Text className="content text-muted text-truncate">{content}</Card.Text>
       </Card.Body>
       <Card.Footer className="footer text-muted border-top-0">
-        {username} | {c} | 추천 {like} | 댓글 {comments.length}
+        {username} | {c} | 추천 {(like) ? like : 0} | 댓글 {(comments) ? comments.length : 0}
       </Card.Footer>
     </Card>
   )

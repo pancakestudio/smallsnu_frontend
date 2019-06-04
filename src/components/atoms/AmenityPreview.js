@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
-import './ResPreview.css'
+import './AmenityPreview.css'
 
-export const ResPreview = ({kr_name, operating_hours, onClick}) => {
+export const AmenityPreview = ({kr_name, operating_hours, onClick}) => {
   return(
     <Card className="resPreview">
       <Card.Header

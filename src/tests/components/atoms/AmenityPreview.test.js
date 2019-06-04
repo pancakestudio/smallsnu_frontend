@@ -1,5 +1,5 @@
 import React from 'react'
-import { ResPreview } from '../../../components/atoms/ResPreview'
+import { AmenityPreview } from '../../../components/atoms/AmenityPreview'
 import { shallow } from 'enzyme'
 
 describe('ResPreview', ()=>{
@@ -9,7 +9,7 @@ describe('ResPreview', ()=>{
 
   it('renders correctly', ()=>{
     component = shallow(
-      <ResPreview
+      <AmenityPreview
         kr_name={kr_name}
         operating_hours={operating_hours}
       />

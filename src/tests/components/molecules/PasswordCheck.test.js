@@ -2,14 +2,13 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
-import ConnectedPostPWCheck from '../../../containers/PostPWCheck'
+import ConnectedPasswordCheck from '../../../containers/PasswordCheck'
 import { createStore } from 'redux'
-import { PostPWCheck } from '../../../components/molecules/PostPWCheck'
+import { PasswordCheck } from '../../../components/molecules/PasswordCheck'
 import * as actions from '../../../store/actions'
 import reducers from '../../../store/reducers'
 
-describe('PostPWCheck', () => {
-  global.window = { location: { pathname: null } };
+describe('PasswordCheck', () => {
   let component
   const mockDelete = jest.fn()
   const post = {
@@ -21,7 +20,7 @@ describe('PostPWCheck', () => {
   }
   it('renders correctly', () => {
     component = shallow(
-      <PostPWCheck
+      <PasswordCheck
         show = {true}
         post = {post}
         bldgNo={'301'}
@@ -47,31 +46,30 @@ describe('PostPWCheck', () => {
 
 })
 
-describe('ConnectedPostPWCheck', () => {
+describe('ConnectedPasswordCheck', () => {
   const mockStore = configureStore()
   let store, component
-  const initialState = {
-    showPostPWCheck: true,
-    selectedPost: {
-      id: 1,
-      title: 'title',
-      content: 'content',
-      username: 'user',
-      password: '1234'
-    },
-    selectedBoardBldgNo: '301'
-  }
   const post = {
     id: 1,
     title: 'title',
     content: 'content',
     username: 'user',
-    password: '1234'
+    building: {
+      code: '301'
+    }
+  }
+  const initialState = {
+    showPasswordCheck: true,
+    deleteTarget: post
   }
 
   it('renders correctly', () => {
     store = mockStore(initialState)
-    component = mount(<Provider store = {store}><ConnectedPostPWCheck/></Provider>)
+    component = mount(
+      <Provider store = {store}>
+        <ConnectedPasswordCheck/>
+      </Provider>
+    )
   })
 
   it('matches snapshot', () => {
@@ -85,14 +83,8 @@ describe('ConnectedPostPWCheck', () => {
   it('correct password', () => {
     component.find('input').instance().value = '1234'
     component.find('Button').simulate('click')
-    expect(store.getActions()[0]).toEqual(actions.deletePost(post,'301'))
+    expect(store.getActions()[0]).toEqual(actions.deletePost(post, '301', '1234'))
   })
 
-  it('incorrect password', () => {
-    window.alert = jest.fn()
-    component.find('input').instance().value = '1'
-    component.find('Button').simulate('click')
-    expect(window.alert).toHaveBeenCalledWith('비밀번호가 틀렸습니다')
-  })
-
+  // Should add saga test codes
 })

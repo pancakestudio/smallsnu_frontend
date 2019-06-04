@@ -7,10 +7,10 @@ export const PasswordCheck = ({show, target, onHideModal, onDeletePost, onDelete
   const handleSubmit = (e) => {
     e.preventDefault()
     const password = passwordInput.value
-    if("building" in target){
+    if(target && "building" in target){
       const bldgNo = target.building.code
       onDeletePost(target, bldgNo, password)
-    } else {
+    } else if(target && "post" in target) {
       const postId = target.post
       onDeleteComment(target, postId, password)
     }

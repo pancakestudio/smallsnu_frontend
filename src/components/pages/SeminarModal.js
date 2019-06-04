@@ -10,12 +10,10 @@ export const SeminarModal = ({semi}) => {
     if(semi && semi.building){
       let bldgNo = semi.building.code
       historyPush(`/seminarlist/${bldgNo}`)
-    } else {
-      historyPush('/')
     }
   }
   let title, semiCard
-  if(Object.keys(semi).length>0){
+  if(semi && Object.keys(semi).length>0){
     title = semi.title.replace("[Seminar] ", "")
     semiCard = (
       <Card className="semiCard border-0">

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { BoardModal } from '../components/organisms/BoardModal'
+import { BoardModal } from '../components/pages/BoardModal'
 import { changeBoardPage, showWritePost } from '../store/actions'
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     onPaginationClick: (page) => {
       dispatch(changeBoardPage(page))
     },
-    onShowWritePostModal: (bldgNo) => {
+    onWrite: (bldgNo) => {
       dispatch(showWritePost(bldgNo))
     },
   }

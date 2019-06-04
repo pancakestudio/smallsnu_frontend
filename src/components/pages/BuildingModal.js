@@ -6,7 +6,7 @@ import { historyPush } from '../../utils/Functions'
 import './BuildingModal.css'
 
 export const BuildingModal = ({bldg}) => {
-  if(Object.keys(bldg).length>0){
+  if(bldg && Object.keys(bldg).length>0){
     return(
       <Modal
         show = {true}

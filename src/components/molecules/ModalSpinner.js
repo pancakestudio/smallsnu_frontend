@@ -2,10 +2,10 @@ import React from 'react'
 import { Modal, Spinner } from 'react-bootstrap'
 import './ModalSpinner.css'
 
-export const ModalSpinner = () => {
+export const ModalSpinner = ({show}) => {
   return (
     <Modal
-      show = {true}
+      show = {(show !== undefined) ? show : true}
       dialogClassName = "loadingModal"
       centered
     >

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { BuildingModal } from '../../../components/organisms/BuildingModal'
+import { BuildingModal } from '../../../components/pages/BuildingModal'
 import ConnectedBldgModal from '../../../containers/BuildingModal'
 import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
@@ -33,6 +33,11 @@ describe('BuildingModal', ()=>{
   it('calls functions', ()=>{
     component.find('Bootstrap(Modal)').simulate('hide')
     expect(global.window.location.pathname).toEqual('/')
+  })
+
+  it('handles undefined data correctly', ()=>{
+    component.setProps({bldg: undefined})
+    expect(component.find('ModalSpinner').exists()).toBe(true)
   })
 })
 

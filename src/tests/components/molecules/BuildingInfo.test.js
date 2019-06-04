@@ -51,7 +51,7 @@ describe('BuildingInfo', ()=>{
   })
 
   it('has respreviews, postpreviews, and semipreviews', ()=>{
-    expect(component.find('ResPreview').exists()).toBe(true)
+    expect(component.find('AmenityPreview').exists()).toBe(true)
     expect(component.find('PostPreview').exists()).toBe(true)
     expect(component.find('SemiPreview').exists()).toBe(true)
   })

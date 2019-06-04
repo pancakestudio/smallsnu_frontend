@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { SeminarListModal } from '../components/organisms/SeminarListModal'
+import { SeminarListModal } from '../components/pages/SeminarListModal'
 import { changeSeminarPage } from '../store/actions'
 
 const mapStateToProps = (state) => {

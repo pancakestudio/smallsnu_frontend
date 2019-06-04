@@ -35,7 +35,7 @@ export const AmenityModal = ({match, res, cafe, conv, bank, atm}) => {
     }
   }
 
-  if(Object.keys(data).length>0){
+  if(data && Object.keys(data).length>0){
     return (
       <Modal
         show = {true}
@@ -51,9 +51,9 @@ export const AmenityModal = ({match, res, cafe, conv, bank, atm}) => {
         <Modal.Body className="modalBody">
           <Card className="op_hours border-0">
             <ListGroup variant="flush">
-              <ListGroup.Item className="border-left-0 border-right-0 border-top-0"><strong>위치:</strong> {data.building.kr_name}</ListGroup.Item>
+              <ListGroup.Item className="border-left-0 border-right-0 border-top-0"><strong>위치:</strong> {(data.location) ? data.location : data.building.kr_name}</ListGroup.Item>
               <ListGroup.Item className="border-left-0 border-right-0 border-bottom-0">
-                <strong>운영 시간:</strong><br/>
+                <strong>운영 시간: </strong><br/>
                 {data.operating_hours.split('\n').map(line=>(
                   <span key={line}>{line}<br/></span>
                 ))}

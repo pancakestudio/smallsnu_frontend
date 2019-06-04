@@ -2,4 +2,4 @@
 
 exports[`BoardModal matches snapshot 1`] = `ShallowWrapper {}`;
 
-exports[`ConnectedBoardModal matches snapshot 1`] = `undefined`;
+exports[`ConnectedBoardModal matches snapshot 1`] = `ReactWrapper {}`;

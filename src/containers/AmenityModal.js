@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { AmenityModal } from '../components/organisms/AmenityModal'
+import { AmenityModal } from '../components/pages/AmenityModal'
 
 const mapStateToProps = (state) => {
   return{

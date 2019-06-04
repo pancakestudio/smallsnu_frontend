@@ -10,6 +10,7 @@ import * as actions from '../../../store/actions'
 
 describe('WritePostModal', ()=>{
   let component
+  const mockHide = jest.fn()
   const mockSavePost = jest.fn()
   const mockEditPost = jest.fn()
 
@@ -25,6 +26,7 @@ describe('WritePostModal', ()=>{
       <WritePostModal
       bldgNo = '301'
       show = {true}
+      onHide = {mockHide}
       isEdit = {false}
       onSavePost = {mockSavePost}
       onEditPost = {mockEditPost}
@@ -42,7 +44,7 @@ describe('WritePostModal', ()=>{
 
   it('calls functions', ()=>{
     component.find('Bootstrap(Modal)').simulate('hide')
-    expect(global.window.location.pathname).toEqual('/board/301')
+    expect(mockHide.mock.calls.length).toBe(1)
   })
 
   it('write new post', () => {

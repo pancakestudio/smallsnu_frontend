@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { SeminarListModal } from '../../../components/organisms/SeminarListModal'
+import { SeminarListModal } from '../../../components/pages/SeminarListModal'
 import ConnectedSeminarListModal from '../../../containers/SeminarListModal'
 import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
@@ -90,6 +90,11 @@ describe('SeminarListModal', ()=>{
     expect(global.window.location.pathname).toEqual('/')
     component.find('.back').simulate('click')
     expect(global.window.location.pathname).toEqual('/building/302')
+  })
+
+  it('handles undefined data correctly', ()=>{
+    component.setProps({semis: undefined})
+    expect(component.find('ModalSpinner').exists()).toBe(true)
   })
 })
 
