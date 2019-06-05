@@ -11,6 +11,8 @@
 - seminar
 - design
 - convenient
+- sportMaker
+  - for making spot for path finding... do not merge to the master
 
 ### Testing
 - using Travic ci
