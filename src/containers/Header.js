@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import { Header } from '../components/organisms/Header'
-import { toggleSideBar } from '../store/actions'
+import { toggleSidebar } from '../store/actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onMenuClick: (bldgNo) => {
-      dispatch(toggleSideBar())
+      dispatch(toggleSidebar())
     }
   }
 }

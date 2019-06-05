@@ -6,7 +6,7 @@ import Router from '../BrowserRouter'
 import { shallow, mount } from 'enzyme'
 
 describe('App', ()=>{
-  const initialState = {selectedBldg: {bldgNo: '300'}, error: ""}
+  const initialState = {selectedBldg: {bldgNo: '300'}, error: "", message: ""}
   const mockStore = configureStore()
   let store, component
 

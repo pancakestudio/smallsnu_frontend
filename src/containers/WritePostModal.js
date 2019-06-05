@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { WritePostModal } from '../components/organisms/WritePostModal'
-import { savePost, editPost } from '../store/actions'
+import { hideWritePost, savePost, editPost } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return{
@@ -13,6 +13,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
+    onHide: () => {
+      dispatch(hideWritePost())
+    },
     onSavePost : (post, bldgNo) => {
       dispatch(savePost(post, bldgNo))
     },

@@ -60,7 +60,7 @@ export const Map = ({
   let searchMarker, resMarkers, semiMarkers,
   cafeMarkers, convMarkers, atmMarkers, bankMarkers
   if(showSearchMarker){
-    searchMarker = <Marker className="searchMarker" icon={resIcon} position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
+    searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
 
   if(showSemiMarkers){
@@ -76,11 +76,18 @@ export const Map = ({
         } else {bldg.cnt++;}
       })
       semiMarkers = semiBldgs.map((bldg, index) => (
-        <Marker key = {bldg.code} className="semiMarker" icon = {semiIcon}
-	        position = {[bldg.spot.latitude, bldg.spot.longitude]}
+        <Marker
+          key = {bldg.code} className="semiMarker" icon = {semiIcon}
+  	      position = {[bldg.spot.latitude, bldg.spot.longitude]}
           onClick = {() =>{handleSeminarListClick(bldg.code)}}
         >
-          <Tooltip className="semiToolTip" permanent direction = 'left'>총 {bldg.cnt} 건</Tooltip>
+          <Tooltip
+            className="semiToolTip"
+            direction = 'left'
+            offset = {[-12,0]}
+          >
+            총 {bldg.cnt} 건
+          </Tooltip>
         </Marker>
       ))
     }
@@ -93,7 +100,13 @@ export const Map = ({
         position = {[res.building.spot.latitude, res.building.spot.longitude]}
         onClick = {() =>{handleResClick(res.id)}}
       >
-        <Tooltip className="resToolTip" direction = 'left'>{res.kr_name}</Tooltip>
+        <Tooltip
+          className="resToolTip"
+          direction = 'left'
+          offset = {[-12,0]}
+        >
+          {res.kr_name}
+        </Tooltip>
       </Marker>
     ))
   }
@@ -105,7 +118,13 @@ export const Map = ({
         position = {[cafe.building.spot.latitude, cafe.building.spot.longitude]}
         onClick = {() => {handleCafeClick(cafe.id)}}
       >
-        <Tooltip className="cafeToolTip" direction = 'left'>{cafe.kr_name}</Tooltip>
+        <Tooltip
+          className="cafeToolTip"
+          direction = 'left'
+          offset = {[-12,0]}
+        >
+          {cafe.kr_name}
+        </Tooltip>
       </Marker>
     ))
   }
@@ -117,7 +136,13 @@ export const Map = ({
         position = {[conv.building.spot.latitude, conv.building.spot.longitude]}
         onClick = {() => {handleConvClick(conv.id)}}
       >
-        <Tooltip className="convToolTip" direction = 'left'>{conv.kr_name}</Tooltip>
+        <Tooltip 
+          className="convToolTip"
+          direction = 'left'
+          offset = {[-12,0]}
+        >
+          {conv.kr_name}
+        </Tooltip>
       </Marker>
     ))
   }
@@ -129,7 +154,13 @@ export const Map = ({
         position = {[bank.building.spot.latitude, bank.building.spot.longitude]}
         onClick = {() => {handleBankClick(bank.id)}}
       >
-        <Tooltip className="bankToolTip" direction = 'left'>{bank.kr_name}</Tooltip>
+        <Tooltip
+          className="bankToolTip"
+          direction = 'left'
+          offset = {[-12,0]}
+        >
+          {bank.kr_name}
+        </Tooltip>
       </Marker>
     ))
   }
@@ -141,7 +172,13 @@ export const Map = ({
         position = {[atm.building.spot.latitude, atm.building.spot.longitude]}
         onClick = {() => {handleATMClick(atm.id)}}
       >
-        <Tooltip className="atmToolTip" direction = 'left'>{atm.kr_name}</Tooltip>
+        <Tooltip
+          className="atmToolTip"
+          direction = 'left'
+          offset = {[-12,0]}
+        >
+          {atm.kr_name}
+        </Tooltip>
       </Marker>
     ))
   }

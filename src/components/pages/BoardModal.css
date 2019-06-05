@@ -1,0 +1,20 @@
+.boardModal {
+  min-width: 80vw;
+}
+
+.boardModal .title{
+  margin: auto 0px;
+}
+
+.boardModal .center {
+  display: flex;
+  justify-content: center;
+}
+
+.boardModal .pagination {
+  margin: auto;
+}
+
+.boardModal .noPosts {
+  text-align: center;
+}

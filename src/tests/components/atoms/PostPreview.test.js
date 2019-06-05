@@ -25,16 +25,30 @@ describe('PostPreview', ()=>{
   })
 
   it('handles created date correctly', ()=>{
-    expect(component.find('CardFooter').text()).toBe('username | 방금')
+    expect(component.find('CardFooter').text()).toBe('username | 방금 | 추천 0 | 댓글 0')
     created = moment().add(-30, 'minutes')
     component.setProps({created: created})
-    expect(component.find('CardFooter').text()).toBe('username | 30분 전')
+    expect(component.find('CardFooter').text()).toBe('username | 30분 전 | 추천 0 | 댓글 0')
     created = moment().add(-4, 'hours')
     component.setProps({created: created})
-    expect(component.find('CardFooter').text()).toBe(`username | ${created.format('HH:mm')}`)
+    if(created.date() === moment().date()){
+      expect(component.find('CardFooter').text()).toBe(`username | ${created.format('HH:mm')} | 추천 0 | 댓글 0`)
+    } else {
+      expect(component.find('CardFooter').text()).toBe(`username | ${created.format('YYYY.MM.DD')} | 추천 0 | 댓글 0`)
+    }
     created = moment().add(-2, 'days')
     component.setProps({created: created})
-    expect(component.find('CardFooter').text()).toBe(`username | ${created.format('YYYY.MM.DD')}`)
+    expect(component.find('CardFooter').text()).toBe(`username | ${created.format('YYYY.MM.DD')} | 추천 0 | 댓글 0`)
+  })
+
+  it('handles like count correctly', ()=>{
+    component.setProps({like: 1})
+    expect(component.find('CardFooter').text()).toBe(`username | ${created.format('YYYY.MM.DD')} | 추천 1 | 댓글 0`)
+  })
+
+  it('handles comment count correctly', ()=>{
+    component.setProps({comments: [{content: "hello!"}]})
+    expect(component.find('CardFooter').text()).toBe(`username | ${created.format('YYYY.MM.DD')} | 추천 1 | 댓글 1`)
   })
 
   it('has a correct title and content', ()=>{

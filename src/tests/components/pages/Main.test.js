@@ -19,6 +19,7 @@ describe('Main', ()=>{
   const mockGetSeminarList = jest.fn()
   const mockGetBoard = jest.fn()
   const mockGetPost = jest.fn()
+  const mockRefresh = jest.fn()
   let component
   it('renders correctly', ()=>{
     component = shallow(
@@ -31,6 +32,7 @@ describe('Main', ()=>{
         getSeminarList={mockGetSeminarList}
         getBoard={mockGetBoard}
         getPost={mockGetPost}
+        refresh={mockRefresh}
       />
     )
   })
@@ -52,6 +54,8 @@ describe('Main', ()=>{
     expect(mockGetBoard.mock.calls.length).toBe(1)
     component.setProps({match: {params: {modal: "post", id: "4"}}})
     expect(mockGetPost.mock.calls.length).toBe(1)
+    component.setProps({match: {params: {}}})
+    expect(mockRefresh.mock.calls.length).toBe(2)
   })
 
 })

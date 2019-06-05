@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Tabs, Tab, Button } from 'react-bootstrap'
-import { ResPreview } from '../atoms/ResPreview'
+import { AmenityPreview } from '../atoms/AmenityPreview'
 import { PostPreview } from '../atoms/PostPreview'
 import { SemiPreview } from '../atoms/SemiPreview'
 import { historyPush } from '../../utils/Functions'
@@ -33,7 +33,7 @@ export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
     resList = (
       <Card className="resList">
         {rests.map((rest) => (
-          <ResPreview key={rest.id} {...rest} onClick={()=>{handleResClick(rest)}}/>
+          <AmenityPreview key={rest.id} {...rest} onClick={()=>{handleResClick(rest)}}/>
         ))}
       </Card>
     )
@@ -63,6 +63,7 @@ export const BuildingInfo = ({bldgNo, rests, semis, posts}) => {
         <Card.Body>
           <Card.Text>게시판에 글이 없습니다.</Card.Text>
         </Card.Body>
+        <Card.Footer> <Button className="postListButton" variant="link" onClick={()=>{handleBoardClick()}}>게시판 바로가기</Button> </Card.Footer>
       </Card>
     )
   }

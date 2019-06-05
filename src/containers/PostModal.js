@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { PostModal } from '../components/organisms/PostModal'
-import { showWritePost , editPostFlag, showPostPWCheck} from '../store/actions'
+import { PostModal } from '../components/pages/PostModal'
+import { showWritePost , editPostFlag, showPasswordCheck, postLike, showEditComment, commentLike } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -10,15 +10,27 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    onShowWritePostModal: () => {
-      dispatch(showWritePost())
+    onShowWritePostModal: (bldgNo) => {
+      dispatch(showWritePost(bldgNo))
     },
     onEdit: () => {
       dispatch(editPostFlag())
     },
-    onShowCheckPWModal: () => {
-      dispatch(showPostPWCheck())
+    onDelete: (post) => {
+      dispatch(showPasswordCheck(post))
     },
+    onLike: (postId) => {
+      dispatch(postLike(postId))
+    },
+    onEditComment: (comment) => {
+      dispatch(showEditComment(comment))
+    },
+    onDeleteComment: (comment) => {
+      dispatch(showPasswordCheck(comment))
+    },
+    onLikeComment: (commentId, postId) => {
+      dispatch(commentLike(commentId, postId))
+    }
   }
 }
 

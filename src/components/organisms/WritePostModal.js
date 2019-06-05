@@ -1,20 +1,30 @@
 import React from 'react'
-import { Modal, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
-import { FaAngleLeft } from 'react-icons/fa'
-import { historyPush } from '../../utils/Functions'
+import { Modal, Button, Form, Col } from 'react-bootstrap'
 import './WritePostModal.css'
 
-export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEditPost}) =>{
-  let titleInput, textInput, userNameInput, passwordInput
+export const WritePostModal = ({bldgNo, show, isEdit, onHide, onSavePost, editPost, onEditPost}) =>{
+  let titleInput, contentInput, usernameInput, passwordInput
+  const handleChangeTitle = (e) => {
+    titleInput = e.target.value
+  }
+  const handleChangeContent = (e) => {
+    contentInput = e.target.value
+  }
+  const handleChangeUsername = (e) => {
+    usernameInput = e.target.value
+  }
+  const handleChangePassword = (e) => {
+    passwordInput = e.target.value
+  }
   const handleBack = () => {
-    historyPush(`/board/${bldgNo}`)
+    onHide()
   }
   const handleSave = () => {
     let post = {
-      "title" : titleInput.value,
-      "content" : textInput.value,
-      "username" : userNameInput.value,
-      "password" : passwordInput.value
+      "title" : titleInput,
+      "content" : contentInput,
+      "username" : usernameInput,
+      "password" : passwordInput
     }
     if(post.title === "" || post.content === ""){
       alert("게시물에 내용이 없습니다.")
@@ -25,16 +35,13 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
     }
   }
   const handleEdit = () => {
-    if(passwordInput.value !== editPost.password){
-      alert("비밀번호가 올바르지 않습니다.")
-    }else{
-      editPost.title = titleInput.value
-      editPost.content = textInput.value
-      onEditPost(editPost, bldgNo)
-    }
+    editPost.title = (titleInput) ? titleInput : editPost.title
+    editPost.content = (contentInput) ? contentInput : editPost.content
+    editPost.password = passwordInput
+    onEditPost(editPost, bldgNo)
   }
 
-  let modalTitle, title, content, username, titlePlaceholder, contentPlaceholder, usernamePlaceholder, disabled, handler
+  let modalTitle, title, content, username, disabled, handler
 
   if(isEdit){
     modalTitle = "게시글 수정"
@@ -45,9 +52,6 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
     handler = handleEdit
   }else{
     modalTitle = "새로운 게시글"
-    titlePlaceholder = "제목"
-    contentPlaceholder = "내용"
-    usernamePlaceholder = "아이디"
     disabled = false
     handler = handleSave
   }
@@ -71,8 +75,8 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
               <Form.Control
                 type="title"
                 defaultValue={title}
-                placeholder={titlePlaceholder}
-                ref = {(ref) => (titleInput=ref)}
+                placeholder="제목"
+                onChange={handleChangeTitle}
               />
             </Form.Group>
 
@@ -81,8 +85,8 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
                 as = "textarea"
                 rows = "10"
                 defaultValue={content}
-                placehoder={contentPlaceholder}
-                ref = {(ref) => (textInput=ref)}
+                placeholder="내용"
+                onChange={handleChangeContent}
               />
             </Form.Group>
 
@@ -91,10 +95,11 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
                 <Form.Label></Form.Label>
                 <Form.Control
                   className ="userName"
+                  type="username"
                   disabled={disabled}
                   defaultValue={username}
                   placeholder="아이디"
-                  ref = {(ref) => (userNameInput=ref)}
+                  onChange={handleChangeUsername}
                 />
               </Form.Group>
 
@@ -102,8 +107,9 @@ export const WritePostModal = ({bldgNo, show, isEdit, onSavePost, editPost, onEd
                 <Form.Label></Form.Label>
                 <Form.Control
                   className="password"
+                  type="password"
                   placeholder="비밀번호"
-                  ref = {(ref) => (passwordInput=ref)}
+                  onChange={handleChangePassword}
                 />
               </Form.Group>
             </Form.Row>

@@ -51,12 +51,14 @@ describe('BuildingInfo', ()=>{
   })
 
   it('has respreviews, postpreviews, and semipreviews', ()=>{
-    expect(component.find('ResPreview').exists()).toBe(true)
+    expect(component.find('AmenityPreview').exists()).toBe(true)
     expect(component.find('PostPreview').exists()).toBe(true)
     expect(component.find('SemiPreview').exists()).toBe(true)
   })
 
   it('calls functions', ()=>{
+    component.find('AmenityPreview').prop('onClick')()
+    expect(global.window.location.pathname).toEqual('/restaurant/1')
     component.find('PostPreview').prop('onClick')()
     expect(global.window.location.pathname).toEqual('/post/1')
     component.find('SemiPreview').prop('onClick')()

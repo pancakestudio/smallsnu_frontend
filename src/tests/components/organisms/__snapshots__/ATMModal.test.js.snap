@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ATMModal matches snapshot 1`] = `ShallowWrapper {}`;
-
-exports[`ConnectedATMModal matches snapshot 1`] = `ReactWrapper {}`;

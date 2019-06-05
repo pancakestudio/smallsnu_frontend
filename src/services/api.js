@@ -68,7 +68,6 @@ export function getCafeInfo(id){
 }
 
 export function getAllCafesInfo(){
-  console.log("Cafe")
   return axios.get('cafe/')
     .catch(error => { return {error:error}})
 }
@@ -96,26 +95,85 @@ export function postWritePost(post, bldgNo){
 
 export function postEditPost(post){
   const option = {
-    headers: new Headers({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
   };
   return axios.post(`post/${post.id}/`, post, option)
   .catch(error => {return{error:error}})
 }
 
-export function postDeletePost(post){
-  let password = { "password" : post.password }
+export function postDeletePost(post, password){
+  let pw = { "password" : password }
   const option = {
     method: 'DELETE',
-    headers: new Headers({
+    headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-    }),
+    },
     mode : 'cors',
-    data : JSON.stringify(password)
+    data : JSON.stringify(pw)
   };
   return axios.delete(`post/${post.id}/`, option)
+  .catch(error => {return{error:error}})
+}
+
+export function postPostLike(postId){
+  const option = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+  }
+  return axios.post(`post/${postId}/like/`, option)
+  .catch(error => {return{error:error}})
+}
+
+export function postComment(comment, postId){
+  const option = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  };
+  return axios.post(`post/${postId}/comment/`, comment, option)
+  .catch(error => {return{error:error}})
+}
+
+export function postEditComment(comment){
+  const option = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  };
+  return axios.post(`comment/${comment.id}/`, comment, option)
+  .catch(error => {return{error:error}})
+}
+
+export function deleteComment(comment, password){
+  let pw = { "password" : password }
+  const option = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    mode : 'cors',
+    data : JSON.stringify(pw)
+  };
+  return axios.delete(`comment/${comment.id}/`, option)
+  .catch(error => {return{error:error}})
+}
+
+export function postCommentLike(commentId){
+  const option = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+  }
+  return axios.post(`comment/${commentId}/like/`, option)
   .catch(error => {return{error:error}})
 }

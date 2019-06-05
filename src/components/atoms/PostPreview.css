@@ -11,3 +11,13 @@
   background-color: rgba(0,0,0,0);
   font-size: 14px;
 }
+
+@media(max-width: 576px){
+  .postPreview .title {
+    font-size: calc(10px + 2vmin);
+  }
+
+  .postPreview .footer {
+    font-size: calc(10px + 0.7vmin);
+  }
+}

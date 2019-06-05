@@ -5,7 +5,8 @@ import {
   requestBoard, requestPost,
   requestRestaurant,
   requestSeminar, requestBldgSeminars,
-  requestATM, requestBank, requestCafe, requestConv
+  requestATM, requestBank, requestCafe, requestConv,
+  refreshData
 } from '../store/actions'
 
 const mapStateToProps = (state) => {
@@ -45,6 +46,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getPost: (id) => {
       dispatch(requestPost(id))
+    },
+    refresh: () => {
+      dispatch(refreshData())
     }
   }
 }

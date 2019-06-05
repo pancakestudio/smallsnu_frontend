@@ -3,36 +3,35 @@ import { Form, FormControl, Button } from 'react-bootstrap'
 import { getBldgCoord, getKeyword } from '../../utils/Functions'
 import './SearchBar.css'
 
-export const SearchBar = ({onSearchValueChange, onSearchBuilding,
-  onSearchRestaurant, onSearchSeminar, onSearchATM, onSearchCafe, onSearchBank, onSearchConv}) => {
+export const SearchBar = ({onSearchBuilding, onSearchRestaurant, onSearchSeminar, onSearchATM, onSearchCafe, onSearchBank, onSearchConv}) => {
   let input
   const handleChange = (e) => {
-    onSearchValueChange(e.target.value.trim())
+    input = e.target.value
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const bldgNo = input.value
+    const bldgNo = input
     const bldgPos = getBldgCoord(bldgNo)
     if(bldgPos !== undefined){
       onSearchBuilding(bldgNo, bldgPos)
     }
-    else if(getKeyword(input.value, "restaurant")==="restaurant"){
+    else if(getKeyword(input, "restaurant")==="restaurant"){
       onSearchRestaurant()
     }
-    else if(getKeyword(input.value, "seminar")==="seminar"){
+    else if(getKeyword(input, "seminar")==="seminar"){
       onSearchSeminar()
     }
-    else if(getKeyword(input.value, "atm")==="atm"){
+    else if(getKeyword(input, "atm")==="atm"){
       onSearchATM()
     }
-    else if(getKeyword(input.value, "bank")==="bank"){
+    else if(getKeyword(input, "bank")==="bank"){
       onSearchBank()
     }
-    else if(getKeyword(input.value, "cafe")==="cafe"){
+    else if(getKeyword(input, "cafe")==="cafe"){
       onSearchCafe()
     }
-    else if(getKeyword(input.value, "conv")==="conv"){
+    else if(getKeyword(input, "conv")==="conv"){
       onSearchConv()
     }
     else {
@@ -43,7 +42,6 @@ export const SearchBar = ({onSearchValueChange, onSearchBuilding,
   return (
     <Form className="searchBar pull-right" inline onSubmit={handleSubmit}>
       <FormControl
-        ref = {(ref)=>{input=ref}}
         onChange = {handleChange}
         type="text"
         placeholder="건물 번호 / 식당"

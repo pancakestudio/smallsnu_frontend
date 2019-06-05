@@ -1,0 +1,136 @@
+.postModal {
+  min-width: 80vw;
+}
+
+.postModal .title {
+  margin: auto 0px;
+}
+
+.postModal .postHeader {
+  display: flex;
+  font-size: calc(10px + 0.7vmin);
+  margin: -16px;
+  padding: 5px;
+}
+
+@media(max-width: 576px){
+  .postModal .postHeader {
+    overflow-x: hidden;
+    margin: -16px;
+  }
+}
+
+.postModal .headerLeft {
+  margin: auto;
+}
+
+.postModal .headerRight {
+  margin: auto;
+}
+
+@media(max-width: 576px){
+  .postModal .headerLeft {
+    margin: 5px 0px;
+  }
+
+  .postModal .headerRight {
+    margin: 2px 10px;
+  }
+}
+
+.postModal .postHeader Button {
+  margin: 0 0 0 5px;
+  font-size: calc(10px + 0.5vmin);
+  padding: 5px 7px;
+}
+
+.postModal .postContent {
+  margin-top: 30px;
+}
+
+.postModal .like {
+  min-width: 50px;
+  border-color: #FF007F;
+  color: #FF007F;
+  margin-top: 60px;
+}
+
+.postModal .like:hover {
+  border-color: #FF007F;
+  color: white;
+  background-color: #FF007F;
+}
+
+.postModal .like:focus {
+  border-color: #FF007F;
+  color: white;
+  background-color: #FF007F !important;
+}
+
+.postModal .like:active {
+  border-color: #FF007F;
+  color: white;
+  background-color: #FF007F !important;
+}
+
+.postModal .commentsHeader {
+  background-color: rgba(0,0,0,0);
+  margin: 0 -16px -16px -16px;
+}
+
+.postModal .commentsBody {
+  margin: 0 -16px -16px -16px; 
+}
+
+.postModal .commentIcon {
+  margin: auto 4px 1px auto;
+}
+
+.postModal .writeComment {
+  width: 100%;
+  margin-bottom: -16px;
+}
+
+.postModal .commentsBody .commenter {
+  margin-left: -16px;
+  font-size: calc(10px + 0.7vmin);
+}
+
+.postModal .commentsBody .configure {
+  font-size: calc(10px + 0.7vmin);
+}
+
+.postModal .commentsBody .configure Button {
+  margin-right: -32px;
+  font-size: calc(10px + 0.5vmin);
+  padding: 0.5px 7px;
+}
+
+.postModal .commentsBody .dropdown-menu {
+  min-width: 60px;
+  text-align: center;
+}
+
+.postModal .commentsBody .deleteComment {
+  color: red;
+}
+
+.postModal .commentsBody .likeComment {
+  border-color: rgba(0,0,0,0);
+  color: #FF007F;
+  background-color: rgba(0,0,0,0);
+  font-size: calc(10px + 0.5vmin);
+  padding: 2px 0px;
+}
+
+.postModal .commentsBody .likeComment:focus {
+  color: #FFC0CB !important;
+  background-color: rgba(0,0,0,0) !important;
+  border-color: rgba(0,0,0,0) !important;
+}
+
+.postModal .commentsBody .likeComment:active {
+  color: #FFC0CB !important;
+  background-color: rgba(0,0,0,0) !important;
+  border-color: rgba(0,0,0,0) !important;
+}

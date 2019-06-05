@@ -2,23 +2,20 @@ import React from 'react'
 import Map from '../../containers/Map'
 import Header from '../../containers/Header'
 import BuildingModal from '../../containers/BuildingModal'
-import RestaurantModal from '../../containers/RestaurantModal'
-import ATMModal from '../../containers/ATMModal'
-import BankModal from '../../containers/BankModal'
-import CafeModal from '../../containers/CafeModal'
-import ConvModal from '../../containers/ConvModal'
+import AmenityModal from '../../containers/AmenityModal'
 import SeminarModal from '../../containers/SeminarModal'
 import SeminarListModal from '../../containers/SeminarListModal'
 import BoardModal from '../../containers/BoardModal'
 import PostModal from '../../containers/PostModal'
 import WritePostModal from '../../containers/WritePostModal'
-import PostPWCheck from '../../containers/PostPWCheck'
+import PasswordCheck from '../../containers/PasswordCheck'
+import EditCommentModal from '../../containers/EditCommentModal'
 import Sidebar from '../../containers/Sidebar'
-import { Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import './Main.css'
 
 export const Main = ({match, error, getBuilding, getRestaurant,
-  getSeminar, getSeminarList, getBoard, getPost, getATM, getBank, getCafe, getConv}) => {
+  getSeminar, getSeminarList, getBoard, getPost, getATM, getBank, getCafe, getConv, refresh}) => {
   if(!error || error.length === 0){
     switch(match.params.modal){
       case "building":
@@ -52,6 +49,7 @@ export const Main = ({match, error, getBuilding, getRestaurant,
         getPost(match.params.id)
         break;
       default:
+        refresh()
     }
   }
   return (
@@ -59,18 +57,17 @@ export const Main = ({match, error, getBuilding, getRestaurant,
       <Sidebar />
       <Header />
       <Map />
-      <Route exact path="/building/:bldgNo" component={BuildingModal} />
-      <Route exact path="/restaurant/:id" component={RestaurantModal} />
-      <Route exact path="/atm/:id" component={ATMModal} />
-      <Route exact path="/bank/:id" component={BankModal} />
-      <Route exact path="/cafe/:id" component={CafeModal} />
-      <Route exact path="/conv/:id" component={ConvModal} />
-      <Route exact path="/seminar/:id" component={SeminarModal} />
-      <Route exact path="/seminarlist/:bldgNo" component={SeminarListModal} />
-      <Route exact path="/board/:bldgNo" component={BoardModal} />
-      <Route exact path="/post/:id" component={PostModal} />
+      <Switch>
+        <Route exact path="/building/:bldgNo" component={BuildingModal} />
+        <Route exact path="/seminar/:id" component={SeminarModal} />
+        <Route exact path="/seminarlist/:bldgNo" component={SeminarListModal} />
+        <Route exact path="/board/:bldgNo" component={BoardModal} />
+        <Route exact path="/post/:id" component={PostModal} />
+        <Route exact path="/:amenity/:id" component={AmenityModal} />
+      </Switch>
       <WritePostModal />
-      <PostPWCheck />
+      <PasswordCheck />
+      <EditCommentModal />
     </div>
   )
 }

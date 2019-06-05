@@ -5,7 +5,9 @@ import { requestAllRestaurants, toggleResMarker,
         requestAllCafes, toggleCafeMarker,
         requestAllBanks, toggleBankMarker,
         requestAllATMs, toggleATMMarker,
-        requestAllConves, toggleConvMarker} from '../store/actions'
+        requestAllConves, toggleConvMarker,
+        toggleSidebar
+} from '../store/actions'
 
 const mapStateToProps = (state) => {
   return{
@@ -38,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
     onATMClick: () => {
       dispatch(requestAllATMs())
       dispatch(toggleATMMarker())
+    },
+    hide: () => {
+      dispatch(toggleSidebar())
     }
   }
 }
