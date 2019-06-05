@@ -4,7 +4,7 @@ import { SearchBar } from '../../../components/molecules/SearchBar'
 import ConnectedSearchBar from '../../../containers/SearchBar'
 import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
-import { getBldgCoord } from '../../../utils/Functions'
+import { getBldgCoord, getKeyword } from '../../../utils/Functions'
 import * as actions from '../../../store/actions'
 import reducers from '../../../store/reducers'
 import { createStore } from 'redux'
@@ -13,12 +13,28 @@ describe('SearchBar', ()=>{
   let component
   const mockSearchValueChange = jest.fn()
   const mockSearch = jest.fn()
+  const mockSearchBuilding = jest.fn()
+  const mockSearchRestaurant = jest.fn()
+  const mockSearchSeminar = jest.fn()
+  const mockSearchATM = jest.fn()
+  const mockSearchCafe = jest.fn()
+  const mockSearchBank = jest.fn()
+  const mockSearchConv = jest.fn()
+  const mockpreventDefault = jest.fn()
 
   it('renders correctly', ()=>{
     component = shallow(
       <SearchBar
         onSearchValueChange={mockSearchValueChange}
-        onSearch={mockSearch}/>)
+        onSearch={mockSearch}
+        onSearchBuilding={mockSearchBuilding}
+        onSearchRestaurant={mockSearchRestaurant}
+        onSearchSeminar={mockSearchSeminar}
+        onSearchATM={mockSearchATM}
+        onSearchCafe={mockSearchCafe}
+        onSearchBank={mockSearchBank}
+        onSearchConv={mockSearchConv}
+      />)
   })
 
   it('has form, form control, and button', ()=>{
@@ -35,21 +51,31 @@ describe('SearchBar', ()=>{
     const input = component.find('FormControl')
     input.simulate('change', {target: {value: '301'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(1)
+    //expect(mockSearchBuilding.mock.calls.length).toBe(1)
 
     input.simulate('change', {target: {value: '식당'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(2)
+    //expect(mockSearchRestaurant.mock.calls.length).toBe(1)
 
     input.simulate('change', {target: {value: 'atm'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(3)
+    //expect(mockSearchATM.mock.calls.length).toBe(1)
 
     input.simulate('change', {target: {value: 'bank'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(4)
+    //expect(mockSearchBank.mock.calls.length).toBe(1)
 
     input.simulate('change', {target: {value: 'cafe'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(5)
+    //expect(mockSearchCafe.mock.calls.length).toBe(1)
 
     input.simulate('change', {target: {value: 'CU'}})
     expect(mockSearchValueChange.mock.calls.length).toBe(6)
+    //expect(mockSearchConv.mock.calls.length).toBe(1)
+
+    input.simulate('change', {target: {value: '세미나'}})
+    expect(mockSearchValueChange.mock.calls.length).toBe(7)
+    //expect(mockSearchSeminar.mock.calls.length).toBe(1)
   })
 })
 

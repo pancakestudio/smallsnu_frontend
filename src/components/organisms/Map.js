@@ -13,7 +13,7 @@ export const Map = ({
   atms, showATMMarkers,
   cafes, showCafeMarkers,
   conves, showConvMarkers,
-  onZoom, onBackgroundClick}) => {
+  onZoom, onBackgroundClick }) => {
 
   const handleMapClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
@@ -60,7 +60,7 @@ export const Map = ({
   let searchMarker, resMarkers, semiMarkers,
   cafeMarkers, convMarkers, atmMarkers, bankMarkers
   if(showSearchMarker){
-    searchMarker = <Marker className="searchMarker" icon={resIcon} position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
+    searchMarker = <Marker className="searchMarker"  position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
 
   if(showSemiMarkers){

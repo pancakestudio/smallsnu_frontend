@@ -35,7 +35,7 @@ export const ConvModal = ({conv}) => {
     header = (
       <Modal.Header closeButton>
         <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
-        <Modal.Title>은행 정보가 없습니다.</Modal.Title>
+        <Modal.Title>편의점 정보가 없습니다.</Modal.Title>
       </Modal.Header>
     )
     body = (

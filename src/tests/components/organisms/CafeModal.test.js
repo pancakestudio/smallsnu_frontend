@@ -18,12 +18,9 @@ describe('CafeModal', () => {
         building:{
           code: "60",
           kr_name: "행정관(60동)"}}}
+      show = {true}
       />
     )
-  })
-
-  it('has a correct Cafe name', ()=>{
-    expect(component.find('ModalTitle').text()).toBe('cafe')
   })
 
   it('matches snapshot', ()=>{
@@ -32,6 +29,19 @@ describe('CafeModal', () => {
 
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
+  })
+
+  it('has a correct Cafe name', ()=>{
+    expect(component.find('ModalTitle').text()).toBe('cafe')
+  })
+
+  it('has a correct building name', ()=>{
+    expect(component.find('Bootstrap(ListGroupItem)').at(0).text()).toBe('위치: 행정관(60동)')
+  })
+
+  it('data is given null', () => {
+    component.setProps({cafe: null})
+    expect(component.find('ModalTitle').text()).toBe('카페 정보가 없습니다.')
   })
 
   it('calls functions', ()=>{

@@ -16,6 +16,10 @@ function zoom(state = 17, action) {
   switch(action.type){
     case types.TOGGLE_RES_MARKER:
     case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
       return 15
     case types.ZOOM_CHANGED:
       return action.zoomLevel
@@ -145,6 +149,10 @@ function showSemiMarkers(state = false, action){
     case types.GET_ALL_SEMINARS_FAILURE:
     case types.HIDE_MARKERS:
     case types.TOGGLE_RES_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
       return false
     default:
       return state
@@ -308,7 +316,6 @@ function selectedATM(state = {}, action){
 function allCafes(state = [], action){
   switch(action.type){
     case types.GET_ALL_CAFES_SUCCESS:
-      console.log(action.cafes)
       return action.cafes
     default:
       return state

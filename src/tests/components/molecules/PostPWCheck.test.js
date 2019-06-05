@@ -12,6 +12,7 @@ describe('PostPWCheck', () => {
   global.window = { location: { pathname: null } };
   let component
   const mockDelete = jest.fn()
+  const mockHideModal = jest.fn()
   const post = {
     id: 1,
     title: 'title',
@@ -45,6 +46,9 @@ describe('PostPWCheck', () => {
     expect(global.window.location.pathname).toEqual('/')
   })
 
+  it('correct password', () => {
+
+  })
 })
 
 describe('ConnectedPostPWCheck', () => {
@@ -86,6 +90,7 @@ describe('ConnectedPostPWCheck', () => {
     component.find('input').instance().value = '1234'
     component.find('Button').simulate('click')
     expect(store.getActions()[0]).toEqual(actions.deletePost(post,'301'))
+    expect(store.getActions()[1]).toEqual(actions.hidePostPWCheck())
   })
 
   it('incorrect password', () => {

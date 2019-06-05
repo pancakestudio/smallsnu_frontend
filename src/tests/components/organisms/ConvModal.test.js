@@ -18,12 +18,9 @@ describe('ConvModal', () => {
         building:{
           code: "60",
           kr_name: "행정관(60동)"}}}
+      show = {true}
       />
     )
-  })
-
-  it('has a correct Conv name', ()=>{
-    expect(component.find('ModalTitle').text()).toBe('conv')
   })
 
   it('matches snapshot', ()=>{
@@ -32,6 +29,19 @@ describe('ConvModal', () => {
 
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
+  })
+
+  it('has a correct Conv name', ()=>{
+    expect(component.find('ModalTitle').text()).toBe('conv')
+  })
+
+  it('has a correct building name', ()=>{
+    expect(component.find('Bootstrap(ListGroupItem)').at(0).text()).toBe('위치: 행정관(60동)')
+  })
+
+  it('data is given null', () => {
+    component.setProps({conv: null})
+    expect(component.find('ModalTitle').text()).toBe('편의점 정보가 없습니다.')
   })
 
   it('calls functions', ()=>{

@@ -25,6 +25,19 @@ function* handleRequestBldgInfo(){
   }
 }
 
+function* handleRequestSearchBldg(){
+  while(true){
+    const action = yield take(types.SEARCH)
+    const {data, error} = yield call(api.getSearchBuilding, action.bldgNo)
+    if(data && !error){
+
+    }else{
+      const errormsg = '건물 정보를 받아오지 못했습니다. '
+      yield put(actions.getBuildingFailure(errormsg))
+    }
+  }
+}
+
 function* handleRequestBoardInfo(){
   while(true){
     const action = yield take(types.REQUEST_BOARD)
@@ -276,6 +289,8 @@ function* handleDelete(){
 
 export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
+  yield fork(handleRequestSearchBldg)
+
   yield fork(handleRequestBoardInfo)
   yield fork(handleRequestPostInfo)
 

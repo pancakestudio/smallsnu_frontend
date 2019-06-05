@@ -57,7 +57,6 @@ describe('WritePostModal', ()=>{
     // passwordInput.simulate('change', {target:{value:'1234'}})
     // component.find('Button').simulate('click')
     // expect(mockSavePost.mock.calls.length).toBe(1)
-
   })
 
 })

@@ -18,12 +18,9 @@ describe('ATMModal', () => {
         building:{
           code: "60",
           kr_name: "행정관(60동)"}}}
+      show = {true}
       />
     )
-  })
-
-  it('has a correct ATM name', ()=>{
-    expect(component.find('ModalTitle').text()).toBe('행정관 신한ATM(60동)')
   })
 
   it('matches snapshot', ()=>{
@@ -32,6 +29,19 @@ describe('ATMModal', () => {
 
   it('has a modal', ()=>{
     expect(component.find('Bootstrap(Modal)').exists()).toBe(true)
+  })
+
+  it('has a correct ATM name', ()=>{
+    expect(component.find('ModalTitle').text()).toBe('행정관 신한ATM(60동)')
+  })
+
+  it('has a correct building name', ()=>{
+    expect(component.find('Bootstrap(ListGroupItem)').at(0).text()).toBe('위치: 행정관(60동)')
+  })
+
+  it('data is given null', () => {
+    component.setProps({atm: null})
+    expect(component.find('ModalTitle').text()).toBe('ATM 정보가 없습니다.')
   })
 
   it('calls functions', ()=>{

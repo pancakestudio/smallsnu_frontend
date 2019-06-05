@@ -83,6 +83,11 @@ export function getAllConvesInfo(){
     .catch(error => { return {error:error}})
 }
 
+export function getSearchBuilding(bldgNo){
+  return axios.get(`search/?q=${bldgNo}`)
+    .catch(error => { return {error: error}})
+}
+
 export function postWritePost(post, bldgNo){
   const option = {
     headers: new Headers({
