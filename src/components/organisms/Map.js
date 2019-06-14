@@ -2,8 +2,10 @@ import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl, Polyline } from 'react-leaflet'
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon} from '../../utils/iconGroup'
 import './Map.css'
+import 'react-leaflet-markercluster/dist/styles.min.css';
 
 let center = {lat: 37.459, lng: 126.952}
 export const Map = ({
@@ -193,7 +195,7 @@ export const Map = ({
         position = {[conv.building.spot.latitude, conv.building.spot.longitude]}
         onClick = {() => {handleConvClick(conv.id)}}
       >
-        <Tooltip 
+        <Tooltip
           className="convToolTip"
           direction = 'left'
           offset = {[-12,0]}
@@ -238,6 +240,7 @@ export const Map = ({
         </Tooltip>
       </Marker>
     ))
+
   }
 
   return (
@@ -256,6 +259,13 @@ export const Map = ({
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+          <MarkerClusterGroup
+            spiderLegPolylineOptions={{
+            weight: 0,
+            opacity: 0,
+            }}
+          >
           { searchMarker }
           { srcMarker }
           { destMarker }
@@ -266,6 +276,7 @@ export const Map = ({
           { convMarkers }
           { bankMarkers }
           { atmMarkers }
+          </MarkerClusterGroup>
         <ZoomControl position = 'bottomright'/>
       </LeafletMap>
   )

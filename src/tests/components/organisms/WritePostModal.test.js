@@ -42,6 +42,22 @@ describe('WritePostModal', ()=>{
     component.find('Bootstrap(Modal)').simulate('hide')
     expect(mockHide.mock.calls.length).toBe(1)
   })
+
+  it('new post test', () => {
+    expect(component.find('ModalTitle').text()).toBe('새로운 게시글')
+  })
+
+  it('edit post test', () => {
+    component.setProps({
+      isEdit: true,
+      editPost:{
+        title: 'editPost'
+        content:
+      }
+    })
+    expect(component.find('ModalTitle').text()).toBe('게시글 수정')
+  })
+
 })
 
 describe('ConnectedWritePostModal', ()=>{
