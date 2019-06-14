@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { Sidebar } from '../components/organisms/Sidebar'
-import { requestAllRestaurants, toggleResMarker,
+import { showPathFind, hidePathFind,
+        requestAllRestaurants, toggleResMarker,
         requestAllSeminars, toggleSemiMarker,
         requestAllCafes, toggleCafeMarker,
         requestAllBanks, toggleBankMarker,
@@ -11,12 +12,19 @@ import { requestAllRestaurants, toggleResMarker,
 
 const mapStateToProps = (state) => {
   return{
-    show: state.showSideBar
+    show: state.showSideBar,
+    pathFind: state.showPathFind
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onBack: () => {
+      dispatch(hidePathFind())
+    },
+    onPathFindClick: () => {
+      dispatch(showPathFind())
+    },
     onResClick: () => {
       dispatch(requestAllRestaurants())
       dispatch(toggleResMarker())

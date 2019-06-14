@@ -183,6 +183,17 @@ function showSideBar(state = false, action){
   }
 }
 
+function showPathFind(state = false, action){
+  switch(action.type){
+    case types.SHOW_PATH_FIND:
+      return true
+    case types.HIDE_PATH_FIND:
+      return false
+    default:
+      return state
+  }
+}
+
 /******** Post ********/
 
 function showWritePostModal(state = false, action){
@@ -530,7 +541,7 @@ const reducers = combineReducers({
   showSemiMarkers, searchedBldg, showBankMarkers, showATMMarkers, showCafeMarkers,
   showConvMarkers,// Map
 
-  showSideBar, // SideBar
+  showSideBar, showPathFind, // SideBar
 
   showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
   isEdit, editingPost, showPasswordCheck, activeBoardPage, showEditComment, editingComment, deleteTarget, // Post

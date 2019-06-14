@@ -50,6 +50,18 @@ export function toggleSidebar(){
   }
 }
 
+export function showPathFind(){
+  return {
+    type: types.SHOW_PATH_FIND
+  }
+}
+
+export function hidePathFind(){
+  return {
+    type: types.HIDE_PATH_FIND
+  }
+}
+
 /******** SearchBar ********/
 
 export function search(bldgNo, bldgPos){

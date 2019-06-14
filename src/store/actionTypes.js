@@ -5,8 +5,10 @@ export const GET_BUILDING_FAILURE = "GET_BUILDING_FAILURE"
 export const ZOOM_CHANGED = "ZOOM_CHANGED"
 export const HIDE_MARKERS = "HIDE_MARKERS"
 
-/******** SearchBar ********/
+/******** SideBar ********/
 export const TOGGLE_SIDE_BAR = "TOGGLE_SIDE_BAR"
+export const SHOW_PATH_FIND = "SHOW_PATH_FIND"
+export const HIDE_PATH_FIND = "HIDE_PATH_FIND"
 
 /******** SearchBar ********/
 export const SEARCH = "SEARCH"

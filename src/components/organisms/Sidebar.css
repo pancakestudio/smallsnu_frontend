@@ -18,9 +18,99 @@
   left: 0;
 }
 
+#pathFind {
+  border-radius: 5px;
+  height: calc(100vh - 85px);
+  min-width: 400px;
+  max-width: 400px;
+  padding: 10px;
+  position: fixed;
+  top: 65px;
+  margin: 10px;
+  left: -500px;
+  z-index: 9999;
+  transition: all 0.3s;
+  overflow-y: scroll;
+  box-shadow: 0 0 5px 1.5px rgba(0,0,0,0.4);
+}
+
+#pathFind.active {
+  left: 0;
+}
+
+#pathFind .container-fluid {
+  min-height: 100%;
+  min-width: calc(100% + 20px);
+  margin-left: -10px;
+}
+
+#pathFind .wrapper {
+  margin-top: -10px;
+  height: calc(100% + 20px);
+}
+
+#pathFind .backWrapper {
+  min-height: 100%;
+}
+
+#pathFind .back {
+  height: 100%;
+  margin-right: -10px;
+}
+
+#pathFind .pick {
+  padding: 10px 0px 0px 0px;
+  height: 100px;
+}
+
+#pathFind .formWrapper {
+  margin: 10px 0px;
+  width: 100%;
+}
+
+#pathFind .searchForm {
+  width: calc(100% + 20px);
+}
+
+#pathFind .textInput {
+  width: 100%;
+}
+
+#pathFind .inputCol {
+  padding: 0px 10px;
+}
+
+#pathFind .buttonCol {
+  padding: 0px;
+}
+
+#pathFind .srcMarker {
+  margin-left: 10px;
+  color: green;
+  background-color: rgba(0,0,0,0);
+  border-color: rgba(0,0,0,0);
+}
+
+#pathFind .destMarker {
+  margin-left: 10px;
+  color: green;
+  background-color: rgba(0,0,0,0);
+  border-color: rgba(0,0,0,0);
+}
+
 @media(max-width: 575px){
   #sidebar {
     top: 110px;
     height: calc(100vh - 130px);
+  }
+
+  #pathFind {
+    top: 110px;
+    height: calc(100vh - 130px);
+    min-width: 275px;
+  }
+
+  #pathFind .back {
+    width: 22px !important;
   }
 }
