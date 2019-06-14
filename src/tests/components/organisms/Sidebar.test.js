@@ -13,6 +13,7 @@ import * as api from '../../../services/api'
 
 describe('Sidebar', ()=>{
   let component
+  const mockHide = jest.fn()
 
   it('renders correctly', ()=>{
     component = shallow(<Sidebar/>)
@@ -38,6 +39,14 @@ describe('Sidebar', ()=>{
     component.setProps({show: true})
     expect(component.find('.active').exists()).toBe(true)
   })
+
+  it('call functions', () =>{
+    // component.find('Bootstrap(ListGroupItem)').at(0).simulate('hide')
+    // expect(mockHide.mock.calls.length).toBe(1)
+    // component.find('Bootstrap(ListGroupItem)').at(1).simulate('hide')
+    // expect(mockHide.mock.calls.length).toBe(2)
+  })
+
 })
 
 describe('ConnectedSidebar', ()=>{
