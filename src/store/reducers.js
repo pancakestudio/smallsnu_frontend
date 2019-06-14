@@ -188,6 +188,7 @@ function showSideBar(state = false, action){
 function showWritePostModal(state = false, action){
   switch(action.type){
     case types.SHOW_WRITE_POST:
+    case types.SHOW_EDIT_POST:
       return true
     case types.HIDE_WRITE_POST:
     case types.SAVE_POST_SUCCESS:
@@ -233,11 +234,24 @@ function selectedPost(state = {}, action){
   }
 }
 
+function editingPost(state = {}, action){
+  switch(action.type){
+    case types.SHOW_EDIT_POST:
+    case types.EDIT_POST:
+      return action.post
+    case types.EDIT_POST_SUCCESS:
+      return {}
+    default:
+      return state
+  }
+}
+
 function isEdit(state = false, action){
   switch(action.type){
-    case types.EDIT_POST_FLAG:
+    case types.SHOW_EDIT_POST:
       return true
-    case types.GET_BOARD_SUCCESS:
+    case types.EDIT_POST_SUCCESS:
+    case types.SHOW_WRITE_POST:
       return false
     default:
       return state
@@ -495,6 +509,8 @@ function error(state = "", action){
 
 function message(state = "", action){
   switch(action.type){
+    case types.SAVE_POST_SUCCESS:
+      return "게시물이 등록되었습니다."
     case types.DELETE_POST_SUCCESS:
     case types.DELETE_COMMENT_SUCCESS:
       return "삭제되었습니다."
@@ -517,7 +533,7 @@ const reducers = combineReducers({
   showSideBar, // SideBar
 
   showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
-  isEdit, showPasswordCheck, activeBoardPage, showEditComment, editingComment, deleteTarget, // Post
+  isEdit, editingPost, showPasswordCheck, activeBoardPage, showEditComment, editingComment, deleteTarget, // Post
 
   allBanks,selectedBank, // Bank
   allATMs, selectedATM, // ATM

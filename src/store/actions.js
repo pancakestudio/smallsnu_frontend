@@ -149,9 +149,10 @@ export function editPostFailure(error){
   }
 }
 
-export function editPostFlag(){
+export function showEditPost(post){
   return{
-    type: types.EDIT_POST_FLAG,
+    type: types.SHOW_EDIT_POST,
+    post,
   }
 }
 
