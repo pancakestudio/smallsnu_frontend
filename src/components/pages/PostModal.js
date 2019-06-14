@@ -15,8 +15,7 @@ export const PostModal = ({post, onShowWritePostModal, onEdit, onDelete, onLike,
     }
   }
   const handleEdit = () => {
-    onEdit()
-    onShowWritePostModal(post.building.code)
+    onEdit(post, post.building.code)
   }
   const handleDelete = () => {
     onDelete(post)

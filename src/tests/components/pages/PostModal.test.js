@@ -131,24 +131,23 @@ describe('ConnectedPostModal', () => {
 
   it('dispatches showWritePostModal action and editPostFlag action correctly', ()=>{
     component.find('Button').at(1).prop('onClick')()
-    expect(store.getActions()[1]).toEqual(actions.showWritePost('301'))
-    expect(store.getActions()[0]).toEqual(actions.editPostFlag())
+    expect(store.getActions()[0]).toEqual(actions.showEditPost(post))
   })
 
   it('dispatches showPasswordCheck action correctly', ()=>{
     component.find('Button').at(2).prop('onClick')()
-    expect(store.getActions()[2]).toEqual(actions.showPasswordCheck(post))
+    expect(store.getActions()[1]).toEqual(actions.showPasswordCheck(post))
   })
 
   it('dispatches postLike action correctly', ()=>{
     component.find('Button').at(3).prop('onClick')()
-    expect(store.getActions()[3]).toEqual(actions.postLike('2'))
+    expect(store.getActions()[2]).toEqual(actions.postLike('2'))
   })
 
   it('dispatches showEditComment action correctly', ()=>{
     component.find('DropdownToggle').at(0).simulate('click')
     component.find('.editComment').at(0).prop('onClick')()
-    expect(store.getActions()[4]).toEqual(actions.showEditComment(
+    expect(store.getActions()[3]).toEqual(actions.showEditComment(
       {
         "id" : "3",
         "content": "comment1",
@@ -159,7 +158,7 @@ describe('ConnectedPostModal', () => {
 
   it('dispatches comment showPasswordCheck action correctly', ()=>{
     component.find('.deleteComment').at(0).prop('onClick')()
-    expect(store.getActions()[5]).toEqual(actions.showPasswordCheck(
+    expect(store.getActions()[4]).toEqual(actions.showPasswordCheck(
       {
         "id" : "3",
         "content": "comment1",
@@ -170,6 +169,6 @@ describe('ConnectedPostModal', () => {
 
   it('dispatches commentLike action correctly', ()=>{
     component.find('.likeComment').at(0).prop('onClick')()
-    expect(store.getActions()[6]).toEqual(actions.commentLike('3', '2'))
+    expect(store.getActions()[5]).toEqual(actions.commentLike('3', '2'))
   })
 })

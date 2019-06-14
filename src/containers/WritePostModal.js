@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
     show: state.showWritePostModal,
     bldgNo: state.selectedBoardBldgNo,
     isEdit: state.isEdit,
-    editPost: state.selectedPost,
+    editPost: state.editingPost,
   }
 }
 
