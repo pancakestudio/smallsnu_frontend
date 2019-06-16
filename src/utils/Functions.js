@@ -5,6 +5,7 @@ import moment from 'moment'
 // get the json Data about Buildings information
 var bldgCoords = require('./BuildingCoordinate.json');
 var keywords = require('./SearchKeywords.json');
+var spots = require('./spots.json')
 var info = []
 // get all the building info
 for(let i = 0; i<bldgCoords.length;i++){
@@ -52,6 +53,19 @@ export function getBldgCoord(bldgNo){
     return info[bldgNo].center;
   }
   return undefined;
+}
+
+export function getNearestSpot(pos){
+  let nearestSpot
+  let shortest=Number.MAX_VALUE
+  for(let i=0;i<spots.length;i++){
+    let dist = (spots[i].latlng.lat-pos.lat)*(spots[i].latlng.lat-pos.lat)+(spots[i].latlng.lng-pos.lng)*(spots[i].latlng.lng-pos.lng)
+    if(dist < shortest){
+      shortest = dist
+      nearestSpot = spots[i]
+    }
+  }
+  return nearestSpot
 }
 
 export function getKeyword(inputValue, subject){

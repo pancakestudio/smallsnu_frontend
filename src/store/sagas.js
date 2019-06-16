@@ -411,6 +411,22 @@ function* handleCommentLikeSuccess(){
   }
 }
 
+function* handleRequestRoute(){
+  while(true){
+    const action = yield take(types.FIND_PATH)
+    const { data, error } = yield call(api.getRoute, action.src.id, action.dest.id)
+    if(error){
+      const errormsg = "길찾기 중 오류가 발생했습니다."
+      yield put(actions.findPathFailure(errormsg))
+    } else {
+      const path = data
+      path.src = action.src.code
+      path.dest = action.dest.code
+      yield put(actions.findPathSuccess(path))
+    }
+  }
+}
+
 export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
   yield fork(handleRequestBoardInfo)
@@ -443,4 +459,6 @@ export default function* rootSaga(){
   yield fork(handleEditComment); yield fork(handleEditCommentSuccess)
   yield fork(handleDeleteComment); yield fork(handleDeleteCommentSuccess)
   yield fork(handleCommentLike); yield fork(handleCommentLikeSuccess)
+
+  yield fork(handleRequestRoute)
 }

@@ -51,10 +51,11 @@
 
 #pathFind .backWrapper {
   min-height: 100%;
+  background-color: black;
 }
 
 #pathFind .back {
-  height: 100%;
+  height: calc(100vh - 85px);
   margin-right: -10px;
 }
 
@@ -98,6 +99,30 @@
   border-color: rgba(0,0,0,0);
 }
 
+#pathFind .findWrapper {
+  margin: 10px;
+  width: calc(100% - 30px);
+}
+
+#pathFind .find {
+  width: 100%;
+}
+
+#pathFind .srcDestCard {
+  margin-top: 20px;
+  width: 100%;
+}
+
+#pathFind .pathCard {
+  width: 100%;
+  margin-top: -10px;
+}
+
+#pathFind .infoWrapper {
+  margin: 10px;
+  width: calc(100% - 30px);
+}
+
 @media(max-width: 575px){
   #sidebar {
     top: 110px;
@@ -108,6 +133,11 @@
     top: 110px;
     height: calc(100vh - 130px);
     min-width: 275px;
+  }
+
+  #pathFind .back {
+    height: calc(100vh - 130px);
+    margin-right: -10px;
   }
 
   #pathFind .back {

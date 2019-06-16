@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 import { Sidebar } from '../components/organisms/Sidebar'
 import { showPathFind, hidePathFind,
+        searchSrc, searchDest,
+        pickSrcPos, pickDestPos, findPath,
         requestAllRestaurants, toggleResMarker,
         requestAllSeminars, toggleSemiMarker,
         requestAllCafes, toggleCafeMarker,
@@ -13,7 +15,10 @@ import { showPathFind, hidePathFind,
 const mapStateToProps = (state) => {
   return{
     show: state.showSideBar,
-    pathFind: state.showPathFind
+    pathFind: state.showPathFind,
+    source: state.source,
+    destination: state.destination,
+    path: state.path,
   }
 }
 
@@ -21,6 +26,21 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onBack: () => {
       dispatch(hidePathFind())
+    },
+    onSearchSrc: (srcNo, srcPos) => {
+      dispatch(searchSrc(srcNo, srcPos))
+    },
+    onSearchDest: (destNo, destPos) => {
+      dispatch(searchDest(destNo, destPos))
+    },
+    onPickSrc: () => {
+      dispatch(pickSrcPos())
+    },
+    onPickDest: () => {
+      dispatch(pickDestPos())
+    },
+    onFind: (src, dest) => {
+      dispatch(findPath(src, dest))
     },
     onPathFindClick: () => {
       dispatch(showPathFind())

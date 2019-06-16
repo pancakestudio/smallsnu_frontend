@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { PostModal } from '../components/pages/PostModal'
-import { showWritePost , showEditPost, showPasswordCheck, postLike, showEditComment, commentLike } from '../store/actions'
+import { showEditPost, showPasswordCheck, postLike, showEditComment, commentLike } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return {

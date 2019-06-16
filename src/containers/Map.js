@@ -1,10 +1,13 @@
 import { connect } from 'react-redux'
 import { Map } from '../components/organisms/Map'
-import { zoomChanged, hideMarkers } from '../store/actions'
+import { setSrcPos, setDestPos, zoomChanged, hideMarkers } from '../store/actions'
 
 const mapStateToProps = (state) => {
   return {
     currentPos: state.currentPos,
+    source: state.source,
+    destination: state.destination,
+    path: state.path,
     resData : state.allRestaurants,
     semis: state.allSeminars,
     banks: state.allBanks,
@@ -26,6 +29,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onSrcDragEnd: (pos) => {
+      dispatch(setSrcPos(pos))
+    },
+    onDestDragEnd: (pos) => {
+      dispatch(setDestPos(pos))
+    },
     onZoom: (zoomLevel) => {
       dispatch(zoomChanged(zoomLevel))
     },

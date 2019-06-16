@@ -62,6 +62,70 @@ export function hidePathFind(){
   }
 }
 
+export function searchSrc(srcNo, srcPos){
+  return {
+    type: types.SEARCH_SRC,
+    srcNo,
+    srcPos
+  }
+}
+
+export function searchDest(destNo, destPos){
+  return {
+    type: types.SEARCH_DEST,
+    destNo,
+    destPos
+  }
+}
+
+export function pickSrcPos(){
+  return {
+    type: types.PICK_SRC_POS
+  }
+}
+
+export function setSrcPos(pos){
+  return {
+    type: types.SET_SRC_POS,
+    pos
+  }
+}
+
+export function pickDestPos(){
+  return {
+    type: types.PICK_DEST_POS
+  }
+}
+
+export function setDestPos(pos){
+  return {
+    type: types.SET_DEST_POS,
+    pos
+  }
+}
+
+export function findPath(src, dest){
+  return {
+    type: types.FIND_PATH,
+    src,
+    dest
+  }
+}
+
+export function findPathSuccess(path){
+  return {
+    type: types.FIND_PATH_SUCCESS,
+    path
+  }
+}
+
+export function findPathFailure(error){
+  return {
+    type: types.FIND_PATH_FAILURE,
+    error
+  }
+}
+
 /******** SearchBar ********/
 
 export function search(bldgNo, bldgPos){
