@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Map as LeafletMap, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, Marker, Tooltip, Popup, ZoomControl } from 'react-leaflet'
 import './Map.css'
 
 function download(content, fileName, contentType) {
@@ -18,7 +18,6 @@ const Map = () => {
   const handleMapClick = (e) => {
     spots.push({"id": id, "latlng": e.latlng})
     id++
-    download(JSON.stringify(spots), './spots.json', 'application/json')
     spots = require('./spots.json')
   }
   const origin = [37.459, 126.952]
@@ -34,6 +33,11 @@ const Map = () => {
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      { spots.map((s)=>(
+        <Marker sticky position={s.latlng}>
+          <Tooltip> {s.id} </Tooltip>
+        </Marker>
+      )) }
       <ZoomControl position = 'bottomright' />
     </LeafletMap>
   )
