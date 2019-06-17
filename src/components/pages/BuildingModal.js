@@ -7,6 +7,12 @@ import './BuildingModal.css'
 
 export const BuildingModal = ({bldg}) => {
   if(bldg && Object.keys(bldg).length>0){
+  let info
+  if(bldg.info){
+    info = bldg.info.split('\n').map(line =>(
+      <span key={line}>{line}<br/></span>
+    ))
+  }
     return(
       <Modal
         show = {true}
@@ -21,7 +27,7 @@ export const BuildingModal = ({bldg}) => {
 
         <Modal.Body>
           <h5>건물 정보</h5>
-          <p>{bldg.info}</p>
+          <p> {info} </p>
           <BuildingInfo
             bldgNo={bldg.bldgNo}
             rests={bldg.restaurants}
