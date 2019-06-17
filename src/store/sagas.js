@@ -27,24 +27,6 @@ function* handleRequestBldgInfo(){
   }
 }
 
-function * handleRequestAllShuttleInfo(){
-  while(true){
-    const action = yield take(types.REQUEST_ALL_SHUTTLE)
-    const stations = ShuttleStation.default;
-    yield put(actions.getAllShuttleSuccess(stations))
-  }
-}
-
-function * handleRequestAllRevShuttleInfo(){
-  while(true){
-    const action = yield take(types.REQUEST_ALL_REV_SHUTTLE)
-    const stations = RevShuttleStation.default;
-    console.log(stations)
-    yield put(actions.getAllRevShuttleSuccess(stations))
-  }
-}
-
-
 function* handleRequestBoardInfo(){
   while(true){
     const action = yield take(types.REQUEST_BOARD)
@@ -454,9 +436,6 @@ export default function* rootSaga(){
 
   yield fork(handleRequestResInfo)
   yield fork(handleRequestAllResInfo)
-
-  yield fork(handleRequestAllShuttleInfo)
-  yield fork(handleRequestAllRevShuttleInfo)
 
   yield fork(handleRequestSemiInfo)
   yield fork(handleRequestBldgSemiInfo)

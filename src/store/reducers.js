@@ -26,6 +26,9 @@ function zoom(state = 17, action) {
     case types.TOGGLE_CONV_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return 15
     case types.ZOOM_CHANGED:
       return action.zoomLevel
@@ -104,6 +107,9 @@ function showShuttleMarkers(state = false, action){
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -163,6 +169,75 @@ function showRevShuttleMarkers(state = false, action){
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showSchoolShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showMidShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showMidLibShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -182,6 +257,9 @@ function showResMarkers(state = false, action){
     case types.TOGGLE_CONV_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -203,6 +281,9 @@ function showBankMarkers(state = false, action){
     case types.TOGGLE_REV_SHUTTLE_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -224,6 +305,9 @@ function showATMMarkers(state = false, action){
     case types.TOGGLE_REV_SHUTTLE_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -243,6 +327,9 @@ function showCafeMarkers(state = false, action){
     case types.TOGGLE_CONV_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -262,6 +349,9 @@ function showConvMarkers(state = false, action){
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -281,6 +371,9 @@ function showSemiMarkers(state = false, action){
     case types.TOGGLE_CONV_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -325,6 +418,9 @@ function showShuttleSideBar(state = false, action){
     case types.REQUEST_ALL_REV_SHUTTLE:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
     case types.GET_ALL_SHUTTLE_SUCCESS:
     case types.GET_ALL_REV_SHUTTLE_SUCCESS:
       return true
@@ -466,27 +562,6 @@ function activeBoardPage(state = 1, action) {
       return state
   }
 }
-
-/******** Shuttle ********/
-
-function allShuttles(state = [], action){
-  switch(action.type){
-    case types.GET_ALL_SHUTTLE_SUCCESS:
-      return action.stations
-    default:
-      return state
-  }
-}
-
-function allRevShuttles(state = [], action){
-  switch(action.type){
-    case types.GET_ALL_REV_SHUTTLE_SUCCESS:
-      return action.stations
-    default:
-      return state
-  }
-}
-
 /******** Bank ********/
 
 function allBanks(state = [], action){
@@ -704,8 +779,8 @@ const reducers = combineReducers({
 
   showSideBar, showPathFind, showShuttleSideBar, // SideBar
 
-  showShuttleMarkers, showRevShuttleMarkers,
-  allShuttles, allRevShuttles, // Shuttle
+  showShuttleMarkers, showRevShuttleMarkers, // Shuttle
+  showSchoolShuttleMarkers, showMidShuttleMarkers, showMidLibShuttleMarkers,
 
   showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
   isEdit, editingPost, showPasswordCheck, activeBoardPage, showEditComment, editingComment, deleteTarget, // Post

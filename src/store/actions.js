@@ -143,18 +143,6 @@ export function search(bldgNo, bldgPos){
 }
 
 /******** Shuttle ********/
-export function requestAllShuttles(){
-  return{
-    type: types.REQUEST_ALL_SHUTTLE
-  }
-}
-
-export function getAllShuttleSuccess(stations){
-  return{
-    type: types.GET_ALL_SHUTTLE_SUCCESS,
-    stations
-  }
-}
 
 export function toggleShuttleMarker(){
   return{
@@ -162,22 +150,27 @@ export function toggleShuttleMarker(){
   }
 }
 
-export function requestAllRevShuttles(){
-  return{
-    type: types.REQUEST_ALL_REV_SHUTTLE
-  }
-}
-
-
-export function getAllRevShuttleSuccess(stations){
-  return{
-    type: types.GET_ALL_REV_SHUTTLE_SUCCESS,
-    stations
-  }
-}
 export function toggleRevShuttleMarker(){
   return{
     type: types.TOGGLE_REV_SHUTTLE_MARKER
+  }
+}
+
+export function toggleMidLibShuttleMarker(){
+  return{
+    type: types.TOGGLE_MID_LIB_SHUTTLE_MARKER
+  }
+}
+
+export function toggleMidShuttleMarker(){
+  return{
+    type: types.TOGGLE_MID_SHUTTLE_MARKER
+  }
+}
+
+export function toggleSchoolShuttleMarker(){
+  return{
+    type: types.TOGGLE_SCHOOL_SHUTTLE_MARKER
   }
 }
 

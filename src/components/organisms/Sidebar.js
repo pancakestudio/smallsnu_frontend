@@ -4,9 +4,12 @@ import { FaAngleRight, FaAngleLeft, FaSearch } from 'react-icons/fa'
 import { getBldgCoord, getBldgNo, getNearestSpot } from '../../utils/Functions'
 import './Sidebar.css'
 
-export const Sidebar = ({show, pathFind, onBack, onPathFindClick, onResClick,
+<<<<<<< HEAD
+export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, onResClick,
   source, destination, path, onSearchSrc, onSearchDest, onPickSrc, onPickDest, onFind,
-  onSemiClick, onCafeClick, onConvClick, onBankClick, onATMClick, hide}) => {
+  onSemiClick, onCafeClick, onConvClick, onBankClick, onATMClick,
+  onShuttleMenuClick, onShuttleClick, onRevShuttleClick,
+  onSchoolShuttleClick, onMidLibShuttleClick, onMidShuttleClick, hide}) => {
   let src, dest
   const handleBack = () => {
     onBack()
@@ -91,6 +94,24 @@ export const Sidebar = ({show, pathFind, onBack, onPathFindClick, onResClick,
   }
   const handleRevShuttleClick = () => {
     onRevShuttleClick()
+    if(window.innerWidth<=576){
+      hide()
+    }
+  }
+  const handleSchoolShuttleClick = () => {
+    onSchoolShuttleClick()
+    if(window.innerWidth<=576){
+      hide()
+    }
+  }
+  const handleMidLibShuttleClick = () => {
+    onMidLibShuttleClick()
+    if(window.innerWidth<=576){
+      hide()
+    }
+  }
+  const handleMidShuttleClick = () => {
+    onMidShuttleClick()
     if(window.innerWidth<=576){
       hide()
     }
@@ -240,7 +261,9 @@ export const Sidebar = ({show, pathFind, onBack, onPathFindClick, onResClick,
         <ListGroup variant="flush">
           <ListGroup.Item className="bg-light" action active={false} onClick={handleShuttleClick}>교내 순환 셔틀</ListGroup.Item>
           <ListGroup.Item className="bg-light" action active={false} onClick={handleRevShuttleClick}>역 순환 셔틀</ListGroup.Item>
-          <ListGroup.Item className="bg-light" action active={false}>통학 셔틀</ListGroup.Item>
+          <ListGroup.Item className="bg-light" action active={false} onClick={handleSchoolShuttleClick}>통학 셔틀</ListGroup.Item>
+          <ListGroup.Item className="bg-light" action active={false} onClick={handleMidLibShuttleClick}>야간 도서관 셔틀</ListGroup.Item>
+          <ListGroup.Item className="bg-light" action active={false} onClick={handleMidShuttleClick}>심야 셔틀</ListGroup.Item>
         </ListGroup>
       </Nav>
     )
