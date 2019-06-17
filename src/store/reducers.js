@@ -7,6 +7,10 @@ function currentPos(state = {lat: 37.459, lng: 126.952}, action){
   switch(action.type){
     case types.SEARCH:
       return action.bldgPos
+    case types.SEARCH_SRC:
+      return action.srcPos
+    case types.SEARCH_DEST:
+      return action.destPos
     default:
       return state
   }
@@ -56,6 +60,70 @@ function showSearchMarker(state = false, action){
       return true
     case types.HIDE_MARKERS:
       return false
+    default:
+      return state
+  }
+}
+
+function source(state = {}, action){
+  switch(action.type){
+    case types.SEARCH_SRC:
+      return Object.assign({}, {
+        pick: false,
+        bldgNo: action.srcNo,
+        pos: action.srcPos
+      })
+    case types.PICK_SRC_POS:
+      return Object.assign({}, state, {
+        pick: true
+      })
+    case types.SET_SRC_POS:
+      return Object.assign({}, state, {
+        pick: true,
+        pos: action.pos
+      })
+    case types.HIDE_PATH_FIND:
+      return {}
+    default:
+      return state
+  }
+}
+
+function destination(state = {}, action){
+  switch(action.type){
+    case types.SEARCH_DEST:
+      return Object.assign({}, {
+        pick: false,
+        bldgNo: action.destNo,
+        pos: action.destPos
+      })
+    case types.PICK_DEST_POS:
+      return Object.assign({}, state, {
+        pick: true
+      })
+    case types.SET_DEST_POS:
+      return Object.assign({}, state, {
+        pick: true,
+        pos: action.pos
+      })
+    case types.HIDE_PATH_FIND:
+      return {}
+    default:
+      return state
+  }
+}
+
+function path(state = {}, action){
+  switch(action.type){
+    case types.FIND_PATH_SUCCESS:
+      return action.path
+    case types.SET_SRC_POS:
+    case types.SET_DEST_POS:
+      return Object.assign({}, state, {
+        path: []
+      })
+    case types.HIDE_PATH_FIND:
+      return {}
     default:
       return state
   }
@@ -178,6 +246,17 @@ function showSideBar(state = false, action){
   switch(action.type){
     case types.TOGGLE_SIDE_BAR:
       return !state
+    default:
+      return state
+  }
+}
+
+function showPathFind(state = false, action){
+  switch(action.type){
+    case types.SHOW_PATH_FIND:
+      return true
+    case types.HIDE_PATH_FIND:
+      return false
     default:
       return state
   }
@@ -501,6 +580,7 @@ function error(state = "", action){
     case types.SAVE_COMMENT_FAILURE:
     case types.EDIT_COMMENT_FAILURE:
     case types.DELETE_COMMENT_FAILURE:
+    case types.FIND_PATH_FAILURE:
       return action.error
     default:
       return ""
@@ -526,11 +606,11 @@ function message(state = "", action){
 
 const reducers = combineReducers({
 
-  currentPos, zoom, selectedBldg, showSearchMarker, showResMarkers,
-  showSemiMarkers, searchedBldg, showBankMarkers, showATMMarkers, showCafeMarkers,
-  showConvMarkers,// Map
+  currentPos, zoom, selectedBldg, showSearchMarker, source, destination, path,
+  showResMarkers, showSemiMarkers, searchedBldg, showBankMarkers,
+  showATMMarkers, showCafeMarkers,  showConvMarkers, // Map
 
-  showSideBar, // SideBar
+  showSideBar, showPathFind, // SideBar
 
   showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
   isEdit, editingPost, showPasswordCheck, activeBoardPage, showEditComment, editingComment, deleteTarget, // Post

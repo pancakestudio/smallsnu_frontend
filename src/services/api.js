@@ -177,3 +177,8 @@ export function postCommentLike(commentId){
   return axios.post(`comment/${commentId}/like/`, option)
   .catch(error => {return{error:error}})
 }
+
+export function getRoute(src, dest){
+  return axios.get(`route/?from=${src}&to=${dest}`)
+    .catch(error => { return {error: error}})
+}

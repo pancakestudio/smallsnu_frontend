@@ -66,6 +66,10 @@
     font-size: calc(10px + 1.5vmin);
   }
 
+  .card-text {
+    font-size: calc(10px + 1vmin);
+  }
+
   .card-footer Button {
     font-size: calc(10px + 1vmin);
   }

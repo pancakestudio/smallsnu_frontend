@@ -1,12 +1,15 @@
 import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl} from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl, Polyline } from 'react-leaflet'
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
 import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon} from '../../utils/iconGroup'
 import './Map.css'
 
+let center = {lat: 37.459, lng: 126.952}
 export const Map = ({
   currentPos, zoom, searchedBldg, showSearchMarker,
+  source, destination, path,
+  onSrcDragEnd, onDestDragEnd,
   resData, showResMarkers,
   semis, showSemiMarkers,
   banks, showBankMarkers,
@@ -53,14 +56,68 @@ export const Map = ({
   }
 
   const handleZoomEnd = (e) => {
-    const zoomLevel = e.target._zoom
+    const zoomLevel = e.target.getZoom()
     onZoom(zoomLevel)
   }
 
-  let searchMarker, resMarkers, semiMarkers,
+  const handleMoveEnd = (e) => {
+    center = e.target.getCenter()
+  }
+
+  const handleSrcDragEnd = (e) => {
+    const pos = e.target.getLatLng()
+    onSrcDragEnd(pos)
+  }
+
+  const handleDestDragEnd = (e) => {
+    const pos = e.target.getLatLng()
+    onDestDragEnd(pos)
+  }
+
+  let searchMarker, srcMarker, destMarker, pathLine, resMarkers, semiMarkers,
   cafeMarkers, convMarkers, atmMarkers, bankMarkers
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
+  }
+
+  if(source && Object.keys(source).length!==0){
+    srcMarker =
+      <Marker
+        className="srcMarker"
+        draggable
+        autoPan
+        autoPanPadding={[100,100]}
+        autoPanSpeed={20}
+        onDragEnd={handleSrcDragEnd}
+        position={(source.pos) ? source.pos : center}
+      />
+  }
+
+  if(destination && Object.keys(destination).length!==0){
+    destMarker = 
+      <Marker
+        className="destMarker"
+        draggable
+        autoPan
+        autoPanPadding={[100,100]}
+        autoPanSpeed={20}
+        onDragEnd={handleDestDragEnd}
+        position={(destination.pos) ? destination.pos : center}
+      /> 
+  }
+
+  if(path && path.path){
+    let latlngs = []
+    path.path.forEach((p)=>{
+      const latlng = {lat: p.latitude, lng: p.longitude}
+      latlngs.push(latlng)
+    })
+    pathLine = (
+      <Polyline
+        positions={latlngs}
+        color="#0277BD"
+      />
+    )
   }
 
   if(showSemiMarkers){
@@ -192,6 +249,7 @@ export const Map = ({
         zoom = {zoom}
         zoomControl = {false}
         onZoomEnd = {handleZoomEnd}
+        onMoveEnd = {handleMoveEnd}
         onClick = {handleMapClick}
       >
         <TileLayer
@@ -199,6 +257,9 @@ export const Map = ({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
           { searchMarker }
+          { srcMarker }
+          { destMarker }
+          { pathLine }
           { resMarkers }
           { semiMarkers }
           { cafeMarkers }

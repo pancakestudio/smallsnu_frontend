@@ -4,7 +4,7 @@ import './WriteComment.css'
 
 export const WriteComment = ({edit, editingComment, postId, onSaveComment, onEditComment}) => {
   let contentInput, usernameInput, passwordInput
-  let contentDefault, usernameDefault, passwordDefault, disabled, handler
+  let contentDefault, usernameDefault, disabled, handler
 
   const handleChangeContent = (e) => {
     contentInput = e.target.value
