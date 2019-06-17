@@ -3,8 +3,7 @@ import * as actions from './actions'
 import * as types from './actionTypes'
 import * as api from '../services/api'
 import * as reducers from './reducers'
-import * as ShuttleStation from '../utils/ShuttleStation'
-import * as RevShuttleStation from '../utils/RevShuttleStation'
+import moment from 'moment'
 import { historyPush } from '../utils/Functions'
 
 function* handleRequestBldgInfo(){
@@ -16,7 +15,14 @@ function* handleRequestBldgInfo(){
       const bldgNo = data.code
       const info = data.info
       const rests = data.restaurants
-      const semis = data.seminars
+      const semis = data.seminars.map((s)=>{
+        if(moment(s.time.slice(0,10),"YYYY MM DD") - moment()>=0){
+          s.outdated = false 
+        } else {
+          s.outdated = true
+        }
+        return s
+      })
       const lecs = data.lectures
       const posts = data.posts.reverse()
       yield put(actions.getBuildingSuccess(krName, bldgNo, info, rests, semis, lecs, posts))
@@ -87,6 +93,11 @@ function* handleRequestSemiInfo(){
     const action = yield take(types.REQUEST_SEMINAR)
     const { data, error } = yield call(api.getSeminarInfo, action.id)
     if(data && !error){
+      if(moment(data.time.slice(0,10),"YYYY MM DD") - moment()>=0){
+        data.outdated = true
+      } else {
+        data.outdated = false
+      }
       yield put(actions.getSeminarSuccess(data))
     } else {
       const errormsg = '세미나 정보를 받아오지 못했습니다.'
@@ -100,7 +111,23 @@ function* handleRequestBldgSemiInfo(){
     const action = yield take(types.REQUEST_BLDG_SEMINARS)
     const { data, error } = yield call(api.getBldgSeminarInfo, action.bldgNo)
     if(data && !error){
-      const semis = data
+      const semis = data.map((s)=>{
+        if(moment(s.time.slice(0,10),"YYYY MM DD") - moment()>=0){
+          s.outdated = false 
+        } else {
+          s.outdated = true
+        }
+        return s
+      })
+      .sort((a,b)=>{
+        if(a.outdated === b.outdated){
+          return 0
+        } else if(a.outdated){
+          return 1
+        } else {
+          return -1
+        }
+      })
       const bldgNo = action.bldgNo
       yield put(actions.getBldgSeminarsSuccess(semis, bldgNo))
     } else {
@@ -115,7 +142,23 @@ function* handleRequestAllSemiInfo(){
     yield take(types.REQUEST_ALL_SEMINARS)
     const { data, error } = yield call(api.getAllSeminarsInfo)
     if(data && !error){
-      const semis = data
+      let semis = data.map((s)=>{
+        if(moment(s.time.slice(0,10),"YYYY MM DD") - moment()>=0){
+          s.outdated = false 
+        } else {
+          s.outdated = true
+        }
+        return s
+      })
+      .sort((a,b)=>{
+        if(a.outdated === b.outdated){
+          return 0
+        } else if(a.outdated){
+          return 1
+        } else {
+          return -1
+        }
+      })
       yield put(actions.getAllSeminarsSuccess(semis))
     } else {
       const errormsg = '세미나 정보를 받아오지 못했습니다.'

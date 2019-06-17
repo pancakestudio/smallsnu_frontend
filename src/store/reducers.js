@@ -279,8 +279,6 @@ function showBankMarkers(state = false, action){
     case types.TOGGLE_CONV_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
-    case types.TOGGLE_SHUTTLE_MARKER:
-    case types.TOGGLE_REV_SHUTTLE_MARKER:
     case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
     case types.TOGGLE_MID_SHUTTLE_MARKER:
     case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
@@ -301,8 +299,6 @@ function showATMMarkers(state = false, action){
     case types.TOGGLE_BANK_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
-    case types.TOGGLE_SHUTTLE_MARKER:
-    case types.TOGGLE_REV_SHUTTLE_MARKER:
     case types.TOGGLE_SHUTTLE_MARKER:
     case types.TOGGLE_REV_SHUTTLE_MARKER:
     case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:

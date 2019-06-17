@@ -4,7 +4,6 @@ import { FaAngleRight, FaAngleLeft, FaSearch } from 'react-icons/fa'
 import { getBldgCoord, getBldgNo, getNearestSpot } from '../../utils/Functions'
 import './Sidebar.css'
 
-<<<<<<< HEAD
 export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, onResClick,
   source, destination, path, onSearchSrc, onSearchDest, onPickSrc, onPickDest, onFind,
   onSemiClick, onCafeClick, onConvClick, onBankClick, onATMClick,
@@ -195,7 +194,7 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
       <Row className="infoWrapper">
         <Card body className="pathCard">
           <Card.Text>
-            약 {path.time.slice(0,3)+"분"} | {path.length.slice(0,3)+"km"}
+            약 {path.time.slice(0,3)+"분"} | {path.length.slice(0,3)+"m"}
           </Card.Text>
         </Card>
       </Row>
@@ -256,7 +255,7 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
       </Nav>
     )
   } else if(shuttleShow){
-    return(
+    sidebar = (
       <Nav id="sidebar" className={className}>
         <ListGroup variant="flush">
           <ListGroup.Item className="bg-light" action active={false} onClick={handleShuttleClick}>교내 순환 셔틀</ListGroup.Item>
@@ -272,7 +271,7 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
       <Nav id="sidebar" className={className}>
         <ListGroup variant="flush">
           <ListGroup.Item className="bg-light" action active={false} onClick={handlePathFindClick}>길찾기</ListGroup.Item>
-          <ListGroup.Item className="bg-light" action active={false}>셔틀 버스</ListGroup.Item>
+          <ListGroup.Item className="bg-light" action active={false} onClick={handleShuttleMenuClick}>셔틀 버스</ListGroup.Item>
           <ListGroup.Item className="bg-light" action active={false} onClick={handleSemiClick}>세미나</ListGroup.Item>
           <ListGroup.Item className="bg-light" action active={false} onClick={handleResClick}>식당</ListGroup.Item>
           <ListGroup.Item className="bg-light" action active={false} onClick={handleCafeClick}>카페</ListGroup.Item>

@@ -51,8 +51,8 @@ describe('WritePostModal', ()=>{
     component.setProps({
       isEdit: true,
       editPost:{
-        title: 'editPost'
-        content:
+        title: 'editPost',
+        content: 'content'
       }
     })
     expect(component.find('ModalTitle').text()).toBe('게시글 수정')

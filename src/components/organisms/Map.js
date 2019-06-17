@@ -77,17 +77,23 @@ export const Map = ({
 
   const handleSrcDragEnd = (e) => {
     const pos = e.target.getLatLng()
-    onSrcDragEnd(pos)
+    if(pos)
+      onSrcDragEnd(pos)
+    else
+      alert('다시 시도해주세요.')
   }
 
   const handleDestDragEnd = (e) => {
     const pos = e.target.getLatLng()
-    onDestDragEnd(pos)
+    if(pos)
+      onDestDragEnd(pos)
+    else
+      alert('다시 시도해주세요.')
   }
 
   let searchMarker, srcMarker, destMarker, pathLine, resMarkers, semiMarkers,
-  cafeMarkers, convMarkers, atmMarkers, bankMarkers, shuttleMarkers, revShuttleMarkers
-  schoolShuttleMarkers, midLibShuttleMarkers, midShuttleMarkers
+  cafeMarkers, convMarkers, atmMarkers, bankMarkers, shuttleMarkers, revShuttleMarkers,
+  schoolShuttleMarkers, midLibShuttleMarkers, midShuttleMarkers, shuttleLine
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
@@ -368,22 +374,23 @@ export const Map = ({
 
           <MarkerClusterGroup
             spiderLegPolylineOptions={{
-            weight: 0,
-            opacity: 0,
+              weight: 0,
+              opacity: 0,
             }}
           >
-          { searchMarker }
+            { searchMarker }
+            { resMarkers }
+            { semiMarkers }
+            { cafeMarkers }
+            { convMarkers }
+            { bankMarkers }
+            { atmMarkers }
+          </MarkerClusterGroup>
           { srcMarker }
           { destMarker }
           { pathLine }
-          { resMarkers }
-          { semiMarkers }
-          { cafeMarkers }
-          { convMarkers }
-          { bankMarkers }
-          { atmMarkers }
-          </MarkerClusterGroup>
           { shuttleMarkers }
+          { shuttleLine }
           { revShuttleMarkers }
           { midLibShuttleMarkers }
           { midShuttleMarkers }

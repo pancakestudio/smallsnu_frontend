@@ -2,11 +2,17 @@ import React from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
 import './SemiPreview.css'
 
-export const SemiPreview = ({title, talker, where, time, onClick}) => {
+export const SemiPreview = ({title, talker, where, time, onClick, outdated}) => {
+  let className
+  if(outdated) {
+    className = "cardHeader-outdated"
+  } else {
+    className = "cardHeader"
+  }
   return(
     <Card className="semiPreview"> 
       <Card.Header 
-        className="cardHeader"
+        className={className}
         onClick={onClick}
         style={{cursor: "pointer"}}
         as="h5"
