@@ -13,30 +13,29 @@ export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSea
     e.preventDefault()
     const bldgNo = input
     const bldgPos = getBldgCoord(bldgNo)
-    if(!onlyBldg){
-      if(getKeyword(input, "restaurant")==="restaurant"){
-        onSearchRestaurant()
-      }
-      else if(getKeyword(input, "seminar")==="seminar"){
-        onSearchSeminar()
-      }
-      else if(getKeyword(input, "atm")==="atm"){
-        onSearchATM()
-      }
-      else if(getKeyword(input, "bank")==="bank"){
-        onSearchBank()
-      }
-      else if(getKeyword(input, "cafe")==="cafe"){
-        onSearchCafe()
-      }
-      else if(getKeyword(input, "conv")==="conv"){
-        onSearchConv()
-      }
-      else {
-        sendQuery(input)
-      }
-    } else {
-      alert("해당 건물번호를 가진 건물이 없습니다.")
+    if(bldgPos !== undefined){
+      onSearchBuilding(bldgNo, bldgPos)
+    }
+    else if(getKeyword(input, "restaurant")==="restaurant"){
+      onSearchRestaurant()
+    }
+    else if(getKeyword(input, "seminar")==="seminar"){
+      onSearchSeminar()
+    }
+    else if(getKeyword(input, "atm")==="atm"){
+      onSearchATM()
+    }
+    else if(getKeyword(input, "bank")==="bank"){
+      onSearchBank()
+    }
+    else if(getKeyword(input, "cafe")==="cafe"){
+      onSearchCafe()
+    }
+    else if(getKeyword(input, "conv")==="conv"){
+      onSearchConv()
+    }
+    else {
+      sendQuery(input)
     }
   }
   if(onlyBldg){
