@@ -168,13 +168,13 @@ export function requestAllRevShuttles(){
   }
 }
 
+
 export function getAllRevShuttleSuccess(stations){
   return{
     type: types.GET_ALL_REV_SHUTTLE_SUCCESS,
     stations
   }
 }
-
 export function toggleRevShuttleMarker(){
   return{
     type: types.TOGGLE_REV_SHUTTLE_MARKER

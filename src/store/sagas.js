@@ -27,12 +27,6 @@ function* handleRequestBldgInfo(){
   }
 }
 
-function * handleRequestShuttleInfo(){
-  while(true){
-    const action = yield take(types.REQUEST_SHUTTLE)
-  }
-}
-
 function * handleRequestAllShuttleInfo(){
   while(true){
     const action = yield take(types.REQUEST_ALL_SHUTTLE)
@@ -461,7 +455,6 @@ export default function* rootSaga(){
   yield fork(handleRequestResInfo)
   yield fork(handleRequestAllResInfo)
 
-  yield fork(handleRequestShuttleInfo)
   yield fork(handleRequestAllShuttleInfo)
   yield fork(handleRequestAllRevShuttleInfo)
 

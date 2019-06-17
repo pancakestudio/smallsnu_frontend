@@ -2,6 +2,9 @@
   height: 100vh;
   z-index: -100;
 }
+.request-popup .leaflet-popup-content-wrapper {
+  border-radius: 0px;
+}
 
 @import url('~react-leaflet-markercluster/dist/styles.min.css');
 
