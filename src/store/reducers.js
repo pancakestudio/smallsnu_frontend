@@ -24,6 +24,11 @@ function zoom(state = 17, action) {
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return 15
     case types.ZOOM_CHANGED:
       return action.zoomLevel
@@ -89,6 +94,28 @@ function source(state = {}, action){
   }
 }
 
+function showShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
 function destination(state = {}, action){
   switch(action.type){
     case types.SEARCH_DEST:
@@ -129,6 +156,94 @@ function path(state = {}, action){
   }
 }
 
+function showRevShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showSchoolShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showMidShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
+function showMidLibShuttleMarkers(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+      return !state
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_RES_MARKER:
+    case types.GET_ALL_RESTAURANTS_FAILURE:
+    case types.HIDE_MARKERS:
+    case types.TOGGLE_SEMI_MARKER:
+    case types.TOGGLE_BANK_MARKER:
+    case types.TOGGLE_ATM_MARKER:
+    case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+      return false
+    default:
+      return state
+  }
+}
+
 function showResMarkers(state = false, action){
   switch(action.type){
     case types.TOGGLE_RES_MARKER:
@@ -140,6 +255,11 @@ function showResMarkers(state = false, action){
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -157,6 +277,11 @@ function showBankMarkers(state = false, action){
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -174,6 +299,11 @@ function showATMMarkers(state = false, action){
     case types.TOGGLE_BANK_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -191,6 +321,11 @@ function showCafeMarkers(state = false, action){
     case types.TOGGLE_BANK_MARKER:
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -208,6 +343,11 @@ function showConvMarkers(state = false, action){
     case types.TOGGLE_BANK_MARKER:
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CAFE_MARKER:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -225,6 +365,11 @@ function showSemiMarkers(state = false, action){
     case types.TOGGLE_ATM_MARKER:
     case types.TOGGLE_CAFE_MARKER:
     case types.TOGGLE_CONV_MARKER:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
       return false
     default:
       return state
@@ -262,6 +407,24 @@ function showPathFind(state = false, action){
   }
 }
 
+function showShuttleSideBar(state = false, action){
+  switch(action.type){
+    case types.TOGGLE_SHUTTLE_MENU_MARKER:
+    case types.REQUEST_ALL_SHUTTLE:
+    case types.REQUEST_ALL_REV_SHUTTLE:
+    case types.TOGGLE_SHUTTLE_MARKER:
+    case types.TOGGLE_REV_SHUTTLE_MARKER:
+    case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_SHUTTLE_MARKER:
+    case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+    case types.GET_ALL_SHUTTLE_SUCCESS:
+    case types.GET_ALL_REV_SHUTTLE_SUCCESS:
+      return true
+    default:
+      return false
+  }
+}
+
 /******** Post ********/
 
 function showWritePostModal(state = false, action){
@@ -274,7 +437,7 @@ function showWritePostModal(state = false, action){
     case types.EDIT_POST_SUCCESS:
       return false
     default:
-      return state 
+      return state
   }
 }
 
@@ -610,7 +773,10 @@ const reducers = combineReducers({
   showResMarkers, showSemiMarkers, searchedBldg, showBankMarkers,
   showATMMarkers, showCafeMarkers,  showConvMarkers, // Map
 
-  showSideBar, showPathFind, // SideBar
+  showSideBar, showPathFind, showShuttleSideBar, // SideBar
+
+  showShuttleMarkers, showRevShuttleMarkers, // Shuttle
+  showSchoolShuttleMarkers, showMidShuttleMarkers, showMidLibShuttleMarkers,
 
   showWritePostModal, selectedBoardBldgNo, selectedPostList, selectedPost,
   isEdit, editingPost, showPasswordCheck, activeBoardPage, showEditComment, editingComment, deleteTarget, // Post

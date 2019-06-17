@@ -126,6 +126,12 @@ export function findPathFailure(error){
   }
 }
 
+export function toggleShuttleMenuMarker(){
+  return{
+    type: types.TOGGLE_SHUTTLE_MENU_MARKER
+  }
+}
+
 /******** SearchBar ********/
 
 export function search(bldgNo, bldgPos){
@@ -133,6 +139,38 @@ export function search(bldgNo, bldgPos){
     type: types.SEARCH,
     bldgNo,
     bldgPos
+  }
+}
+
+/******** Shuttle ********/
+
+export function toggleShuttleMarker(){
+  return{
+    type: types.TOGGLE_SHUTTLE_MARKER
+  }
+}
+
+export function toggleRevShuttleMarker(){
+  return{
+    type: types.TOGGLE_REV_SHUTTLE_MARKER
+  }
+}
+
+export function toggleMidLibShuttleMarker(){
+  return{
+    type: types.TOGGLE_MID_LIB_SHUTTLE_MARKER
+  }
+}
+
+export function toggleMidShuttleMarker(){
+  return{
+    type: types.TOGGLE_MID_SHUTTLE_MARKER
+  }
+}
+
+export function toggleSchoolShuttleMarker(){
+  return{
+    type: types.TOGGLE_SCHOOL_SHUTTLE_MARKER
   }
 }
 

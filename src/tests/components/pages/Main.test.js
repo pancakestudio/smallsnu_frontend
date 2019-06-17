@@ -69,7 +69,7 @@ describe('ConnectedMain', ()=>{
         code: "62",
         info: "hello, world!",
         restaurants: ["rests"],
-        seminars: ["seminars"],
+        seminars: [{"name": "semi", "time": "2019 06 10"}],
         lectures: ["lecs"],
         posts: ["posts"]
       }
@@ -169,7 +169,7 @@ describe('ConnectedMain', ()=>{
     expect(store.getState().selectedBldg.bldgNo).toBe('62')
     expect(store.getState().selectedBldg.info).toBe('hello, world!')
     expect(store.getState().selectedBldg.restaurants).toEqual(['rests'])
-    expect(store.getState().selectedBldg.seminars).toEqual(['seminars'])
+    expect(store.getState().selectedBldg.seminars).toEqual([{"name": "semi", "time": "2019 06 10", "outdated": true}])
     expect(store.getState().selectedBldg.posts).toEqual(['posts'])
 
     store.dispatch(actions.requestBuilding(0))
@@ -184,24 +184,6 @@ describe('ConnectedMain', ()=>{
     store.dispatch(actions.requestRestaurant(0))
     await Promise.resolve()
     expect(store.getState().error).toBe('식당 정보를 받아오지 못했습니다.')
-
-    store.dispatch(actions.requestSeminar('2'))
-    await Promise.resolve()
-    expect(store.getState().selectedSemi.id).toBe('2')
-    expect(store.getState().selectedSemi.info).toBe('hello, world!')
-
-    store.dispatch(actions.requestSeminar(0))
-    await Promise.resolve()
-    expect(store.getState().error).toBe('세미나 정보를 받아오지 못했습니다.')
-
-    store.dispatch(actions.requestBldgSeminars('301'))
-    await Promise.resolve()
-    expect(store.getState().selectedSemiList[0].id).toBe('3')
-    expect(store.getState().selectedSemiList[0].info).toBe('hello, world!')
-
-    store.dispatch(actions.requestBldgSeminars(0))
-    await Promise.resolve()
-    expect(store.getState().error).toBe('세미나 정보를 받아오지 못했습니다.')
 
     store.dispatch(actions.requestBoard('300'))
     await Promise.resolve()

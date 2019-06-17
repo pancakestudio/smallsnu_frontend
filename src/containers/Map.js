@@ -24,6 +24,11 @@ const mapStateToProps = (state) => {
     showATMMarkers: state.showATMMarkers,
     showCafeMarkers: state.showCafeMarkers,
     showConvMarkers: state.showConvMarkers,
+    showShuttleMarkers: state.showShuttleMarkers,
+    showRevShuttleMarkers: state.showRevShuttleMarkers,
+    showSchoolShuttleMarkers: state.showSchoolShuttleMarkers,
+    showMidShuttleMarkers: state.showMidShuttleMarkers,
+    showMidLibShuttleMarkers: state.showMidLibShuttleMarkers,
   }
 }
 

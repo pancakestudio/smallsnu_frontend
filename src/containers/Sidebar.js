@@ -9,6 +9,10 @@ import { showPathFind, hidePathFind,
         requestAllBanks, toggleBankMarker,
         requestAllATMs, toggleATMMarker,
         requestAllConves, toggleConvMarker,
+        toggleShuttleMarker,toggleRevShuttleMarker,
+        toggleMidShuttleMarker, toggleMidLibShuttleMarker,
+        toggleSchoolShuttleMarker,
+        toggleShuttleMenuMarker,
         toggleSidebar
 } from '../store/actions'
 
@@ -19,6 +23,7 @@ const mapStateToProps = (state) => {
     source: state.source,
     destination: state.destination,
     path: state.path,
+    shuttleShow : state.showShuttleSideBar
   }
 }
 
@@ -48,6 +53,24 @@ const mapDispatchToProps = (dispatch) => {
     onResClick: () => {
       dispatch(requestAllRestaurants())
       dispatch(toggleResMarker())
+    },
+    onShuttleMenuClick: () => {
+      dispatch(toggleShuttleMenuMarker())
+    },
+    onShuttleClick: () => {
+      dispatch(toggleShuttleMarker())
+    },
+    onRevShuttleClick: () => {
+      dispatch(toggleRevShuttleMarker())
+    },
+    onSchoolShuttleClick: () => {
+      dispatch(toggleSchoolShuttleMarker())
+    },
+    onMidLibShuttleClick: () => {
+      dispatch(toggleMidLibShuttleMarker())
+    },
+    onMidShuttleClick: () => {
+      dispatch(toggleMidShuttleMarker())
     },
     onSemiClick: () => {
       dispatch(requestAllSeminars())

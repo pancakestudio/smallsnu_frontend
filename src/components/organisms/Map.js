@@ -1,9 +1,17 @@
 import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl, Polyline } from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, Marker, Tooltip, Popup, ZoomControl, Polyline } from 'react-leaflet'
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
-import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon} from '../../utils/iconGroup'
+import MarkerClusterGroup from 'react-leaflet-markercluster';
+import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon, shuttleIcon} from '../../utils/iconGroup'
 import './Map.css'
+import 'react-leaflet-markercluster/dist/styles.min.css';
+import { popupContent, popupHead, popupText, revPopupContent} from "./MapPopup";
+import ShuttleStation from '../../utils/ShuttleStation'
+import RevShuttleStation from '../../utils/RevShuttleStation'
+import MidLibShuttleStation from '../../utils/MidLibShuttleStation'
+import MidShuttleStation from '../../utils/MidShuttleStation'
+import SchoolShuttleStation from '../../utils/SchoolShuttleStation'
 
 let center = {lat: 37.459, lng: 126.952}
 export const Map = ({
@@ -16,7 +24,11 @@ export const Map = ({
   atms, showATMMarkers,
   cafes, showCafeMarkers,
   conves, showConvMarkers,
-  onZoom, onBackgroundClick}) => {
+  onZoom, onBackgroundClick,
+  showShuttleMarkers, showRevShuttleMarkers,
+  showSchoolShuttleMarkers, showMidShuttleMarkers,
+  showMidLibShuttleMarkers,
+}) => {
 
   const handleMapClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
@@ -30,7 +42,6 @@ export const Map = ({
   const handleSearchClick = (bldgNo) => {
     historyPush(`/building/${bldgNo}`)
   }
-
   const handleResClick = (resId) => {
     historyPush(`/restaurant/${resId}`)
   }
@@ -66,16 +77,23 @@ export const Map = ({
 
   const handleSrcDragEnd = (e) => {
     const pos = e.target.getLatLng()
-    onSrcDragEnd(pos)
+    if(pos)
+      onSrcDragEnd(pos)
+    else
+      alert('다시 시도해주세요.')
   }
 
   const handleDestDragEnd = (e) => {
     const pos = e.target.getLatLng()
-    onDestDragEnd(pos)
+    if(pos)
+      onDestDragEnd(pos)
+    else
+      alert('다시 시도해주세요.')
   }
 
   let searchMarker, srcMarker, destMarker, pathLine, resMarkers, semiMarkers,
-  cafeMarkers, convMarkers, atmMarkers, bankMarkers
+  cafeMarkers, convMarkers, atmMarkers, bankMarkers, shuttleMarkers, revShuttleMarkers,
+  schoolShuttleMarkers, midLibShuttleMarkers, midShuttleMarkers, shuttleLine
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
@@ -150,6 +168,102 @@ export const Map = ({
     }
   }
 
+  if(showShuttleMarkers){
+    shuttleMarkers = ShuttleStation.map((station)=> (
+      <Marker
+        key = {station.key} icon={shuttleIcon}
+        position = {[station.coord[0], station.coord[1]]}
+      >
+        <Popup className="request-popup">
+          <div style={popupContent}>
+          <div className="m-2" style={popupHead}>
+            {station.station_info}
+          </div>
+          <div style={popupText}>학기중 08:00 ~ 10:00 (4분 간격), 10:00 ~ 19:00 (5분 간격)</div>
+          <div style={popupText}>19:00 ~ 21:00 (15분 간격)</div>
+          <div style={popupText}>계절학기 08:00 ~ 10:00 (6분 간격), 10:00 ~ 18:00 (9분 간격)</div>
+          <div style={popupHead}>{"다음 정류장 : "+station.next}</div>
+
+          </div>
+      </Popup>
+    </Marker>
+    ))
+  }
+
+  if(showRevShuttleMarkers){
+    revShuttleMarkers = RevShuttleStation.map((station)=> (
+      <Marker
+        key = {station.key} icon={shuttleIcon}
+        position = {[station.coord[0], station.coord[1]]}
+      >
+      <Popup className="request-popup">
+        <div style={revPopupContent}>
+        <div className="m-2" style={popupHead}>
+          {station.station_info}{" (역방향)"}
+        </div>
+        <div style={popupText}>학기중 10:00 ~ 15:00 (30분 간격), 16:00 ~ 18:00 (30분 간격)</div>
+        </div>
+        <div style={popupHead}>{"다음 정류장 : "+station.next}</div>
+    </Popup>
+    </Marker>
+    ))
+  }
+
+  if(showMidLibShuttleMarkers){
+    midLibShuttleMarkers = MidLibShuttleStation.map((station)=> (
+      <Marker
+        key = {station.key} icon={shuttleIcon}
+        position = {[station.coord[0], station.coord[1]]}
+      >
+      <Popup className="request-popup">
+        <div style={popupContent}>
+        <div className="m-2" style={popupHead}>
+          {station.station_info}
+        </div>
+        <div style={popupText}>{station.content}</div>
+        </div>
+    </Popup>
+    </Marker>
+    ))
+  }
+
+  if(showMidShuttleMarkers){
+    midShuttleMarkers = MidShuttleStation.map((station)=> (
+      <Marker
+        key = {station.key} icon={shuttleIcon}
+        position = {[station.coord[0], station.coord[1]]}
+      >
+      <Popup className="request-popup">
+        <div style={popupContent}>
+        <div className="m-2" style={popupHead}>
+          {station.station_info}{" (심야 셔틀)"}
+        </div>
+        <div style={popupText}>{"24:00, 24:30, 01:00, 01:30, 02:30"}</div>
+        </div>
+        <div style={popupHead}>{"다음 정류장 : "+station.next}</div>
+    </Popup>
+    </Marker>
+    ))
+  }
+
+  if(showSchoolShuttleMarkers){
+    schoolShuttleMarkers = SchoolShuttleStation.map((station)=> (
+      <Marker
+        key = {station.key} icon={shuttleIcon}
+        position = {[station.coord[0], station.coord[1]]}
+      >
+      <Popup className="request-popup">
+        <div style={popupContent}>
+        <div className="m-2" style={popupHead}>
+          {station.station_info}{" (통학 셔틀)"}
+        </div>
+        <div style={popupText}>{station.content}</div>
+        </div>
+    </Popup>
+    </Marker>
+    ))
+  }
+
   if(showResMarkers && resData){
     resMarkers = resData.map((res) => (
       <Marker
@@ -193,7 +307,7 @@ export const Map = ({
         position = {[conv.building.spot.latitude, conv.building.spot.longitude]}
         onClick = {() => {handleConvClick(conv.id)}}
       >
-        <Tooltip 
+        <Tooltip
           className="convToolTip"
           direction = 'left'
           offset = {[-12,0]}
@@ -238,6 +352,7 @@ export const Map = ({
         </Tooltip>
       </Marker>
     ))
+
   }
 
   return (
@@ -256,16 +371,30 @@ export const Map = ({
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-          { searchMarker }
+
+          <MarkerClusterGroup
+            spiderLegPolylineOptions={{
+              weight: 0,
+              opacity: 0,
+            }}
+          >
+            { searchMarker }
+            { resMarkers }
+            { semiMarkers }
+            { cafeMarkers }
+            { convMarkers }
+            { bankMarkers }
+            { atmMarkers }
+          </MarkerClusterGroup>
           { srcMarker }
           { destMarker }
           { pathLine }
-          { resMarkers }
-          { semiMarkers }
-          { cafeMarkers }
-          { convMarkers }
-          { bankMarkers }
-          { atmMarkers }
+          { shuttleMarkers }
+          { shuttleLine }
+          { revShuttleMarkers }
+          { midLibShuttleMarkers }
+          { midShuttleMarkers }
+          { schoolShuttleMarkers }
         <ZoomControl position = 'bottomright'/>
       </LeafletMap>
   )

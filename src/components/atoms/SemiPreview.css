@@ -7,3 +7,13 @@
   background-color: lightgray;
   transition: all 0.2s;
 }
+
+.cardHeader-outdated {
+  background-color: gray !important;
+  color: white;
+}
+
+.cardHeader-outdated:hover {
+  background-color: lightgray !important;
+  transition: all 0.2s;
+}
