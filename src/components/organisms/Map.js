@@ -3,7 +3,7 @@ import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl, Polyline } 
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon} from '../../utils/iconGroup'
+import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon, shuttleIcon} from '../../utils/iconGroup'
 import './Map.css'
 import 'react-leaflet-markercluster/dist/styles.min.css';
 
@@ -18,7 +18,10 @@ export const Map = ({
   atms, showATMMarkers,
   cafes, showCafeMarkers,
   conves, showConvMarkers,
-  onZoom, onBackgroundClick}) => {
+  onZoom, onBackgroundClick,
+  shuttles, showShuttleMarkers,
+  revShuttles, showRevShuttleMarkers,
+}) => {
 
   const handleMapClick = (e) => {
     const bldgNo = getBldgNo(e.latlng)
@@ -77,7 +80,7 @@ export const Map = ({
   }
 
   let searchMarker, srcMarker, destMarker, pathLine, resMarkers, semiMarkers,
-  cafeMarkers, convMarkers, atmMarkers, bankMarkers
+  cafeMarkers, convMarkers, atmMarkers, bankMarkers, shuttleMarkers, revShuttleMarkers
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
   }
@@ -150,6 +153,40 @@ export const Map = ({
         </Marker>
       ))
     }
+  }
+
+  if(showShuttleMarkers && shuttles){
+    shuttleMarkers = shuttles.map((station)=> (
+      <Marker
+        key = {station.key} icon={shuttleIcon}
+        position = {[station.coord[0], station.coord[1]]}
+      >
+      <Tooltip
+        className="shuttleToolTip"
+        direction = 'left'
+        offset = {[-12,0]}
+      >
+        {station.station_info}
+      </Tooltip>
+    </Marker>
+    ))
+  }
+
+  if(showRevShuttleMarkers && revShuttles){
+    revShuttleMarkers = revShuttles.map((station)=> (
+      <Marker
+        key = {station.key} icon={shuttleIcon}
+        position = {[station.coord[0], station.coord[1]]}
+      >
+      <Tooltip
+        className="revShuttleToolTip"
+        direction = 'left'
+        offset = {[-12,0]}
+      >
+        {station.station_info}
+      </Tooltip>
+    </Marker>
+    ))
   }
 
   if(showResMarkers && resData){
@@ -277,6 +314,8 @@ export const Map = ({
           { bankMarkers }
           { atmMarkers }
           </MarkerClusterGroup>
+          { shuttleMarkers }
+          { revShuttleMarkers }
         <ZoomControl position = 'bottomright'/>
       </LeafletMap>
   )

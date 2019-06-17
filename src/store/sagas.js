@@ -3,6 +3,8 @@ import * as actions from './actions'
 import * as types from './actionTypes'
 import * as api from '../services/api'
 import * as reducers from './reducers'
+import * as ShuttleStation from '../utils/ShuttleStation'
+import * as RevShuttleStation from '../utils/RevShuttleStation'
 import { historyPush } from '../utils/Functions'
 
 function* handleRequestBldgInfo(){
@@ -24,6 +26,30 @@ function* handleRequestBldgInfo(){
     }
   }
 }
+
+function * handleRequestShuttleInfo(){
+  while(true){
+    const action = yield take(types.REQUEST_SHUTTLE)
+  }
+}
+
+function * handleRequestAllShuttleInfo(){
+  while(true){
+    const action = yield take(types.REQUEST_ALL_SHUTTLE)
+    const stations = ShuttleStation.default;
+    yield put(actions.getAllShuttleSuccess(stations))
+  }
+}
+
+function * handleRequestAllRevShuttleInfo(){
+  while(true){
+    const action = yield take(types.REQUEST_ALL_REV_SHUTTLE)
+    const stations = RevShuttleStation.default;
+    console.log(stations)
+    yield put(actions.getAllRevShuttleSuccess(stations))
+  }
+}
+
 
 function* handleRequestBoardInfo(){
   while(true){
@@ -434,6 +460,10 @@ export default function* rootSaga(){
 
   yield fork(handleRequestResInfo)
   yield fork(handleRequestAllResInfo)
+
+  yield fork(handleRequestShuttleInfo)
+  yield fork(handleRequestAllShuttleInfo)
+  yield fork(handleRequestAllRevShuttleInfo)
 
   yield fork(handleRequestSemiInfo)
   yield fork(handleRequestBldgSemiInfo)

@@ -14,6 +14,8 @@ const mapStateToProps = (state) => {
     atms: state.allATMs,
     cafes: state.allCafes,
     conves: state.allConves,
+    shuttles: state.allShuttles,
+    revShuttles: state.allRevShuttles,
 
     zoom: state.zoom,
     searchedBldg: state.searchedBldg,
@@ -24,6 +26,8 @@ const mapStateToProps = (state) => {
     showATMMarkers: state.showATMMarkers,
     showCafeMarkers: state.showCafeMarkers,
     showConvMarkers: state.showConvMarkers,
+    showShuttleMarkers: state.showShuttleMarkers,
+    showRevShuttleMarkers: state.showRevShuttleMarkers,
   }
 }
 

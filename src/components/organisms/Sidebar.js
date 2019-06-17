@@ -83,6 +83,24 @@ export const Sidebar = ({show, pathFind, onBack, onPathFindClick, onResClick,
       hide()
     }
   }
+  const handleShuttleClick = () => {
+    onShuttleClick()
+    if(window.innerWidth<=576){
+      hide()
+    }
+  }
+  const handleRevShuttleClick = () => {
+    onRevShuttleClick()
+    if(window.innerWidth<=576){
+      hide()
+    }
+  }
+  const handleShuttleMenuClick = () => {
+    onShuttleMenuClick()
+    if(window.innerWidth<=576){
+      hide()
+    }
+  }
   const handleResClick = () => {
     onResClick()
     if(window.innerWidth<=576){
@@ -214,6 +232,16 @@ export const Sidebar = ({show, pathFind, onBack, onPathFindClick, onResClick,
             <Button className="back" onClick={handleBack}><FaAngleLeft /></Button>
           </Row>
         </Container>
+      </Nav>
+    )
+  } else if(shuttleShow){
+    return(
+      <Nav id="sidebar" className={className}>
+        <ListGroup variant="flush">
+          <ListGroup.Item className="bg-light" action active={false} onClick={handleShuttleClick}>교내 순환 셔틀</ListGroup.Item>
+          <ListGroup.Item className="bg-light" action active={false} onClick={handleRevShuttleClick}>역 순환 셔틀</ListGroup.Item>
+          <ListGroup.Item className="bg-light" action active={false}>통학 셔틀</ListGroup.Item>
+        </ListGroup>
       </Nav>
     )
   } else {

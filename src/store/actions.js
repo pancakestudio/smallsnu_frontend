@@ -126,6 +126,12 @@ export function findPathFailure(error){
   }
 }
 
+export function toggleShuttleMenuMarker(){
+  return{
+    type: types.TOGGLE_SHUTTLE_MENU_MARKER
+  }
+}
+
 /******** SearchBar ********/
 
 export function search(bldgNo, bldgPos){
@@ -133,6 +139,45 @@ export function search(bldgNo, bldgPos){
     type: types.SEARCH,
     bldgNo,
     bldgPos
+  }
+}
+
+/******** Shuttle ********/
+export function requestAllShuttles(){
+  return{
+    type: types.REQUEST_ALL_SHUTTLE
+  }
+}
+
+export function getAllShuttleSuccess(stations){
+  return{
+    type: types.GET_ALL_SHUTTLE_SUCCESS,
+    stations
+  }
+}
+
+export function toggleShuttleMarker(){
+  return{
+    type: types.TOGGLE_SHUTTLE_MARKER
+  }
+}
+
+export function requestAllRevShuttles(){
+  return{
+    type: types.REQUEST_ALL_REV_SHUTTLE
+  }
+}
+
+export function getAllRevShuttleSuccess(stations){
+  return{
+    type: types.GET_ALL_REV_SHUTTLE_SUCCESS,
+    stations
+  }
+}
+
+export function toggleRevShuttleMarker(){
+  return{
+    type: types.TOGGLE_REV_SHUTTLE_MARKER
   }
 }
 

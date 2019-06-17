@@ -41,3 +41,10 @@ export const bankIcon = new L.Icon({
     iconAnchor: [15, 15],
     iconSize: [32, 32],
 })
+
+export const shuttleIcon = new L.Icon({
+    iconUrl: require('./marker_icon/shuttleIcon.png'),
+    iconRetinaUrl: require('./marker_icon/shuttleIcon.png'),
+    iconAnchor: [15, 15],
+    iconSize: [32, 32],
+})
