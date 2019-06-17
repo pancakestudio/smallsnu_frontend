@@ -16,7 +16,7 @@ import SchoolShuttleStation from '../../utils/SchoolShuttleStation'
 let center = {lat: 37.459, lng: 126.952}
 export const Map = ({
   currentPos, zoom, searchedBldg, showSearchMarker,
-  source, destination, path,
+  searchedBldgList, source, destination, path,
   onSrcDragEnd, onDestDragEnd,
   resData, showResMarkers,
   semis, showSemiMarkers,
@@ -91,11 +91,23 @@ export const Map = ({
       alert('다시 시도해주세요.')
   }
 
-  let searchMarker, srcMarker, destMarker, pathLine, resMarkers, semiMarkers,
+  let searchMarker, searchMarkers, srcMarker, destMarker, pathLine, resMarkers, semiMarkers,
   cafeMarkers, convMarkers, atmMarkers, bankMarkers, shuttleMarkers, revShuttleMarkers,
   schoolShuttleMarkers, midLibShuttleMarkers, midShuttleMarkers, shuttleLine
   if(showSearchMarker){
     searchMarker = <Marker className="searchMarker" position = {getBldgCoord(searchedBldg)} onClick={()=>handleSearchClick(searchedBldg)}> </Marker>
+  }
+
+  if(searchedBldgList && searchedBldgList.length!==0){
+    searchMarkers = searchedBldgList.map((b)=>(
+      <Marker
+        key={b.id}
+        className="searchMarker"
+        position={[b.spot.latitude, b.spot.longitude]}
+      >
+        <Tooltip> {b.kr_name} </Tooltip>
+      </Marker>
+    ))
   }
 
   if(source && Object.keys(source).length!==0){
@@ -378,7 +390,6 @@ export const Map = ({
               opacity: 0,
             }}
           >
-            { searchMarker }
             { resMarkers }
             { semiMarkers }
             { cafeMarkers }
@@ -386,6 +397,8 @@ export const Map = ({
             { bankMarkers }
             { atmMarkers }
           </MarkerClusterGroup>
+          { searchMarker }
+          { searchMarkers }
           { srcMarker }
           { destMarker }
           { pathLine }

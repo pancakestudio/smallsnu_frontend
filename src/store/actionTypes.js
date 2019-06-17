@@ -21,6 +21,9 @@ export const FIND_PATH_FAILURE = "FIND_PATH_FAILURE"
 
 /******** SearchBar ********/
 export const SEARCH = "SEARCH"
+export const REQUEST_QUERY = "REQUEST_QUERY"
+export const REQUEST_QUERY_SUCCESS = "REQUEST_QUERY_SUCCESS"
+export const REQUEST_QUERY_FAILURE = "REQUEST_QUERY_FAILURE"
 
 /******** Post ********/
 export const REQUEST_BOARD = "REQUEST_BOARD"

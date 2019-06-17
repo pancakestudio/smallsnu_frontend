@@ -3,8 +3,8 @@ import { SearchBar } from '../components/molecules/SearchBar'
 import { toggleResMarker, requestAllRestaurants,
     search, requestAllSeminars, toggleSemiMarker,
     requestAllATMs, toggleATMMarker, requestAllBanks, toggleBankMarker,
-    requestAllCafes, toggleCafeMarker, requestAllConves, toggleConvMarker
-
+    requestAllCafes, toggleCafeMarker, requestAllConves, toggleConvMarker,
+    requestQuery
 } from '../store/actions'
 
 const mapDispatchToProps = (dispatch) => {
@@ -35,6 +35,9 @@ const mapDispatchToProps = (dispatch) => {
     onSearchConv: () => {
       dispatch(requestAllConves())
       dispatch(toggleConvMarker())
+    },
+    sendQuery: (query) => {
+      dispatch(requestQuery(query))
     }
   }
 }

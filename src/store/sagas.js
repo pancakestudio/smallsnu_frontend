@@ -472,6 +472,24 @@ function* handleRequestRoute(){
   }
 }
 
+function* handleRequestQuery(){
+  while(true){
+    const action = yield take(types.REQUEST_QUERY)
+    const { data, error } = yield call(api.getQueryResult, action.query)
+    if(error){
+      const errormsg = "검색 중 오류가 발생했습니다."
+      yield put(actions.requestQueryFailure())
+    } else {
+      const bldgList = data
+      if(bldgList.length===0){
+        alert('검색결과가 없습니다.')
+      } else {
+        yield put(actions.requestQuerySuccess(bldgList))
+      }
+    }
+  }
+}
+
 export default function* rootSaga(){
   yield fork(handleRequestBldgInfo)
   yield fork(handleRequestBoardInfo)
@@ -506,4 +524,5 @@ export default function* rootSaga(){
   yield fork(handleCommentLike); yield fork(handleCommentLikeSuccess)
 
   yield fork(handleRequestRoute)
+  yield fork(handleRequestQuery)
 }

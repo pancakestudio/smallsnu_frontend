@@ -29,6 +29,7 @@ function zoom(state = 17, action) {
     case types.TOGGLE_SCHOOL_SHUTTLE_MARKER:
     case types.TOGGLE_MID_SHUTTLE_MARKER:
     case types.TOGGLE_MID_LIB_SHUTTLE_MARKER:
+    case types.REQUEST_QUERY_SUCCESS:
       return 15
     case types.ZOOM_CHANGED:
       return action.zoomLevel
@@ -64,7 +65,19 @@ function showSearchMarker(state = false, action){
     case types.SEARCH:
       return true
     case types.HIDE_MARKERS:
+    case types.REQUEST_QUERY_SUCCESS:
       return false
+    default:
+      return state
+  }
+}
+
+function searchedBldgList(state = [], action){
+  switch(action.type){
+    case types.REQUEST_QUERY_SUCCESS:
+      return action.bldgList
+    case types.HIDE_MARKERS:
+      return []
     default:
       return state
   }
@@ -744,6 +757,7 @@ function error(state = "", action){
     case types.EDIT_COMMENT_FAILURE:
     case types.DELETE_COMMENT_FAILURE:
     case types.FIND_PATH_FAILURE:
+    case types.REQUEST_QUERY_FAILURE:
       return action.error
     default:
       return ""
@@ -769,7 +783,8 @@ function message(state = "", action){
 
 const reducers = combineReducers({
 
-  currentPos, zoom, selectedBldg, showSearchMarker, source, destination, path,
+  currentPos, zoom, selectedBldg, showSearchMarker,
+  searchedBldgList, source, destination, path,
   showResMarkers, showSemiMarkers, searchedBldg, showBankMarkers,
   showATMMarkers, showCafeMarkers,  showConvMarkers, // Map
 

@@ -142,6 +142,27 @@ export function search(bldgNo, bldgPos){
   }
 }
 
+export function requestQuery(query){
+  return{
+    type: types.REQUEST_QUERY,
+    query
+  }
+}
+
+export function requestQuerySuccess(bldgList){
+  return {
+    type: types.REQUEST_QUERY_SUCCESS,
+    bldgList
+  }
+}
+
+export function requestQueryFailure(error){
+  return {
+    type: types.REQUEST_QUERY_FAILURE,
+    error
+  }
+}
+
 /******** Shuttle ********/
 
 export function toggleShuttleMarker(){

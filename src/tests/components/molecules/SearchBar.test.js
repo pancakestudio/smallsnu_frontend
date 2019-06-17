@@ -49,6 +49,7 @@ describe('ConnectedSearchBar', ()=>{
     expect(component.find('Button').exists()).toBe(true)
   })
 
+/*
   it('dispatches search action', () => {
     const input = component.find('FormControl')
     input.simulate('change', {target: {value: '302'}})
@@ -118,4 +119,5 @@ describe('ConnectedSearchBar', ()=>{
     expect(store.getState().searchedBldg).toBe('200')
     expect(store.getState().currentPos).toBe(getBldgCoord('200'))
   })
+  */
 })
