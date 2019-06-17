@@ -1,11 +1,12 @@
 import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Tooltip, ZoomControl} from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, Marker, Tooltip,Popup, ZoomControl} from 'react-leaflet'
 import { getBldgNo, getBldgCoord } from '../../utils/Functions'
 import { historyPush } from '../../utils/Functions'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { resIcon, semiIcon, convIcon, cafeIcon, atmIcon, bankIcon, shuttleIcon} from '../../utils/iconGroup'
 import './Map.css'
 import 'react-leaflet-markercluster/dist/styles.min.css';
+import { popupContent, popupHead, popupText, revPopupContent} from "./MapPopup";
 
 export const Map = ({
   currentPos, zoom, searchedBldg, showSearchMarker,
@@ -32,7 +33,6 @@ export const Map = ({
   const handleSearchClick = (bldgNo) => {
     historyPush(`/building/${bldgNo}`)
   }
-
   const handleResClick = (resId) => {
     historyPush(`/restaurant/${resId}`)
   }
@@ -104,13 +104,16 @@ export const Map = ({
         key = {station.key} icon={shuttleIcon}
         position = {[station.coord[0], station.coord[1]]}
       >
-      <Tooltip
-        className="shuttleToolTip"
-        direction = 'left'
-        offset = {[-12,0]}
-      >
-        {station.station_info}
-      </Tooltip>
+        <Popup className="request-popup">
+          <div style={popupContent}>
+          <div className="m-2" style={popupHead}>
+            {station.station_info}
+          </div>
+          <div style={popupText}>학기중 08:00 ~ 10:00 (4분 간격), 10:00 ~ 19:00 (5분 간격)</div>
+          <div style={popupText}>19:00 ~ 21:00 (15분 간격)</div>
+          <div style={popupText}>계절학기 08:00 ~ 10:00 (6분 간격), 10:00 ~ 18:00 (9분 간격)</div>
+          </div>
+      </Popup>
     </Marker>
     ))
   }
@@ -121,13 +124,14 @@ export const Map = ({
         key = {station.key} icon={shuttleIcon}
         position = {[station.coord[0], station.coord[1]]}
       >
-      <Tooltip
-        className="revShuttleToolTip"
-        direction = 'left'
-        offset = {[-12,0]}
-      >
-        {station.station_info}
-      </Tooltip>
+      <Popup className="request-popup">
+        <div style={revPopupContent}>
+        <div className="m-2" style={popupHead}>
+          {station.station_info}{" (역방향)"}
+        </div>
+        <div style={popupText}>학기중 10:00 ~ 15:00 (30분 간격), 16:00 ~ 18:00 (30분 간격)</div>
+        </div>
+    </Popup>
     </Marker>
     ))
   }
