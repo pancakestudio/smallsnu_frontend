@@ -25,13 +25,12 @@ describe('Sidebar', ()=>{
   it('has correct menu lists', ()=>{
     expect(component.find('Bootstrap(ListGroupItem)').at(0).text()).toBe('길찾기')
     expect(component.find('Bootstrap(ListGroupItem)').at(1).text()).toBe('셔틀 버스')
-    expect(component.find('Bootstrap(ListGroupItem)').at(2).text()).toBe('강의실 예약')
-    expect(component.find('Bootstrap(ListGroupItem)').at(3).text()).toBe('세미나')
-    expect(component.find('Bootstrap(ListGroupItem)').at(4).text()).toBe('식당')
-    expect(component.find('Bootstrap(ListGroupItem)').at(5).text()).toBe('카페')
-    expect(component.find('Bootstrap(ListGroupItem)').at(6).text()).toBe('편의점')
-    expect(component.find('Bootstrap(ListGroupItem)').at(7).text()).toBe('은행')
-    expect(component.find('Bootstrap(ListGroupItem)').at(8).text()).toBe('ATM')
+    expect(component.find('Bootstrap(ListGroupItem)').at(2).text()).toBe('세미나')
+    expect(component.find('Bootstrap(ListGroupItem)').at(3).text()).toBe('식당')
+    expect(component.find('Bootstrap(ListGroupItem)').at(4).text()).toBe('카페')
+    expect(component.find('Bootstrap(ListGroupItem)').at(5).text()).toBe('편의점')
+    expect(component.find('Bootstrap(ListGroupItem)').at(6).text()).toBe('은행')
+    expect(component.find('Bootstrap(ListGroupItem)').at(7).text()).toBe('ATM')
   })
 
   it('changes className properly', ()=>{
@@ -98,17 +97,16 @@ describe('ConnectedSidebar', ()=>{
   it('has correct menu lists', ()=>{
     expect(component.find('Bootstrap(ListGroupItem)').at(0).text()).toBe('길찾기')
     expect(component.find('Bootstrap(ListGroupItem)').at(1).text()).toBe('셔틀 버스')
-    expect(component.find('Bootstrap(ListGroupItem)').at(2).text()).toBe('강의실 예약')
-    expect(component.find('Bootstrap(ListGroupItem)').at(3).text()).toBe('세미나')
-    expect(component.find('Bootstrap(ListGroupItem)').at(4).text()).toBe('식당')
-    expect(component.find('Bootstrap(ListGroupItem)').at(5).text()).toBe('카페')
-    expect(component.find('Bootstrap(ListGroupItem)').at(6).text()).toBe('편의점')
-    expect(component.find('Bootstrap(ListGroupItem)').at(7).text()).toBe('은행')
-    expect(component.find('Bootstrap(ListGroupItem)').at(8).text()).toBe('ATM')
+    expect(component.find('Bootstrap(ListGroupItem)').at(2).text()).toBe('세미나')
+    expect(component.find('Bootstrap(ListGroupItem)').at(3).text()).toBe('식당')
+    expect(component.find('Bootstrap(ListGroupItem)').at(4).text()).toBe('카페')
+    expect(component.find('Bootstrap(ListGroupItem)').at(5).text()).toBe('편의점')
+    expect(component.find('Bootstrap(ListGroupItem)').at(6).text()).toBe('은행')
+    expect(component.find('Bootstrap(ListGroupItem)').at(7).text()).toBe('ATM')
   })
 
   it('dispatches reqeustAllSeminars and toggleSemiMarker action', ()=>{
-    component.find('Bootstrap(ListGroupItem)').at(3).prop('onClick')()
+    component.find('Bootstrap(ListGroupItem)').at(2).prop('onClick')()
     expect(store.getActions()[0]).toEqual(actions.requestAllSeminars())
     expect(store.getActions()[1]).toEqual(actions.toggleSemiMarker())
   })
@@ -118,7 +116,7 @@ describe('ConnectedSidebar', ()=>{
   })
 
   it('dispatches requestAllRestaurants and toggleResMarker action', ()=>{
-    component.find('Bootstrap(ListGroupItem)').at(4).prop('onClick')()
+    component.find('Bootstrap(ListGroupItem)').at(3).prop('onClick')()
     expect(store.getActions()[3]).toEqual(actions.requestAllRestaurants())
     expect(store.getActions()[4]).toEqual(actions.toggleResMarker())
   })
@@ -128,25 +126,25 @@ describe('ConnectedSidebar', ()=>{
   })
 
   it('dispatches requestAllCafes and toggleCafeMarker action', ()=>{
-    component.find('Bootstrap(ListGroupItem)').at(5).prop('onClick')()
+    component.find('Bootstrap(ListGroupItem)').at(4).prop('onClick')()
     expect(store.getActions()[6]).toEqual(actions.requestAllCafes())
     expect(store.getActions()[7]).toEqual(actions.toggleCafeMarker())
   })
 
   it('dispatches requestAllConves and toggleConvMarker action', ()=>{
-    component.find('Bootstrap(ListGroupItem)').at(6).prop('onClick')()
+    component.find('Bootstrap(ListGroupItem)').at(5).prop('onClick')()
     expect(store.getActions()[8]).toEqual(actions.requestAllConves())
     expect(store.getActions()[9]).toEqual(actions.toggleConvMarker())
   })
 
   it('dispatches requestAllBanks and toggleBankMarker action', ()=>{
-    component.find('Bootstrap(ListGroupItem)').at(7).prop('onClick')()
+    component.find('Bootstrap(ListGroupItem)').at(6).prop('onClick')()
     expect(store.getActions()[10]).toEqual(actions.requestAllBanks())
     expect(store.getActions()[11]).toEqual(actions.toggleBankMarker())
   })
 
   it('dispatches requestAllATMs and toggleATMMarker action', ()=>{
-    component.find('Bootstrap(ListGroupItem)').at(8).prop('onClick')()
+    component.find('Bootstrap(ListGroupItem)').at(7).prop('onClick')()
     expect(store.getActions()[12]).toEqual(actions.requestAllATMs())
     expect(store.getActions()[13]).toEqual(actions.toggleATMMarker())
   })

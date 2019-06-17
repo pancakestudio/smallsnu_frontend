@@ -136,7 +136,7 @@ describe('Map', ()=>{
   it('calls functions', ()=>{
     component.find('.leafletMap').simulate('click', {latlng: {lat:37.46445, lng:126.95626}})
     component.find('.leafletMap').simulate('click', {latlng: {lat:37.459, lng:126.952}})
-    component.find('.leafletMap').simulate('zoomEnd', {target: {_zoom: 18}})
+    component.find('.leafletMap').simulate('zoomEnd', {target: {getZoom: ()=>(18)}})
     component.find('.resMarker').simulate('click')
     expect(global.window.location.pathname).toEqual('/restaurant/1')
     component.find('.semiMarker').at(0).simulate('click')
@@ -175,9 +175,9 @@ describe('ConnectedMap',()=>{
   })
 
   it('dispatches zoomChanged action', ()=>{
-    const e = {target: {_zoom: 18}}
+    const e = {target: {getZoom: ()=>(18)}}
     component.find('Map').at(1).prop('onZoomEnd')(e)
-    expect(store.getActions()[0]).toEqual(actions.zoomChanged(e.target._zoom))
+    expect(store.getActions()[0]).toEqual(actions.zoomChanged(e.target.getZoom()))
   })
 
   it('dispatches hideMarkers action', ()=>{
