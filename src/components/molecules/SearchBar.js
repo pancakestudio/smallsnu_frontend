@@ -3,7 +3,7 @@ import { Form, FormControl, Button } from 'react-bootstrap'
 import { getBldgCoord, getKeyword } from '../../utils/Functions'
 import './SearchBar.css'
 
-export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSearchSeminar, onSearchATM, onSearchCafe, onSearchBank, onSearchConv}) => {
+export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSearchSeminar, onSearchATM, onSearchCafe, onSearchBank, onSearchConv, sendQuery}) => {
   let input, placeholder
   const handleChange = (e) => {
     input = e.target.value
@@ -13,9 +13,7 @@ export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSea
     e.preventDefault()
     const bldgNo = input
     const bldgPos = getBldgCoord(bldgNo)
-    if(bldgPos !== undefined){
-      onSearchBuilding(bldgNo, bldgPos)
-    } else if(!onlyBldg){
+    if(!onlyBldg){
       if(getKeyword(input, "restaurant")==="restaurant"){
         onSearchRestaurant()
       }
@@ -35,7 +33,7 @@ export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSea
         onSearchConv()
       }
       else {
-        alert("잘못된 검색어 형식입니다.")
+        sendQuery(input)
       }
     } else {
       alert("해당 건물번호를 가진 건물이 없습니다.")
@@ -44,7 +42,7 @@ export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSea
   if(onlyBldg){
     placeholder = "건물 번호"
   } else {
-    placeholder = "건물 번호 / 편의시설"
+    placeholder = "검색(건물, 편의 시설 등)"
   }
 
   return (

@@ -5,6 +5,7 @@ import { setSrcPos, setDestPos, zoomChanged, hideMarkers } from '../store/action
 const mapStateToProps = (state) => {
   return {
     currentPos: state.currentPos,
+    searchedBldgList: state.searchedBldgList,
     source: state.source,
     destination: state.destination,
     path: state.path,

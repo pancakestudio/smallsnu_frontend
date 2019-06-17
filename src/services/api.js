@@ -182,3 +182,8 @@ export function getRoute(src, dest){
   return axios.get(`route/?from=${src}&to=${dest}`)
     .catch(error => { return {error: error}})
 }
+
+export function getQueryResult(query){
+  return axios.get(`search/?q=${query}`)
+    .catch(error => { return {error: error}})
+}
