@@ -104,6 +104,7 @@ export const Map = ({
         key={b.id}
         className="searchMarker"
         position={[b.spot.latitude, b.spot.longitude]}
+        onClick={()=>handleSearchClick(b.code)}
       >
         <Tooltip> {b.kr_name} </Tooltip>
       </Marker>

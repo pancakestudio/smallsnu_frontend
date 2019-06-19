@@ -77,6 +77,7 @@ function searchedBldgList(state = [], action){
     case types.REQUEST_QUERY_SUCCESS:
       return action.bldgList
     case types.HIDE_MARKERS:
+    case types.SEARCH:
       return []
     default:
       return state

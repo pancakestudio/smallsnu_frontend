@@ -3,15 +3,18 @@ import { Form, FormControl, Button } from 'react-bootstrap'
 import { getBldgCoord, getKeyword } from '../../utils/Functions'
 import './SearchBar.css'
 
-export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSearchSeminar, onSearchATM, onSearchCafe, onSearchBank, onSearchConv, sendQuery}) => {
-  let input, placeholder
+export const SearchBar = ({onSearchBuilding, onSearchRestaurant, onSearchSeminar, onSearchATM, onSearchCafe, onSearchBank, onSearchConv, sendQuery}) => {
+  let input
   const handleChange = (e) => {
     input = e.target.value
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const bldgNo = input
+    let bldgNo = input
+    if(bldgNo.slice(-1)==="동"){
+      bldgNo = bldgNo.slice(0, -1)
+    }
     const bldgPos = getBldgCoord(bldgNo)
     if(bldgPos !== undefined){
       onSearchBuilding(bldgNo, bldgPos)
@@ -38,18 +41,13 @@ export const SearchBar = ({onlyBldg, onSearchBuilding, onSearchRestaurant, onSea
       sendQuery(input)
     }
   }
-  if(onlyBldg){
-    placeholder = "건물 번호"
-  } else {
-    placeholder = "검색(건물, 편의 시설 등)"
-  }
 
   return (
     <Form className="searchBar pull-right" inline onSubmit={handleSubmit}>
       <FormControl
         onChange = {handleChange}
         type="text"
-        placeholder={placeholder}
+        placeholder="검색(건물, 편의 시설 등)"
         className="search mr-sm-2"
       />
       <Button className="submitButton" variant="outline-secondary" type="submit">검색</Button>

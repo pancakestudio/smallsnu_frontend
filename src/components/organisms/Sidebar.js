@@ -10,24 +10,29 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
   onShuttleMenuClick, onShuttleClick, onRevShuttleClick,
   onSchoolShuttleClick, onMidLibShuttleClick, onMidShuttleClick, hide}) => {
   let src, dest
+  let sidebar, className = "flex-column bg-light"
+  let srcDefault, destDefault, srcDestInfo, pathInfo
   const handleBack = () => {
     onBack()
   }
   const srcSearch = (e) => {
     e.preventDefault()
     let srcNo = src
-    let coord = getBldgCoord(srcNo)
-    if(!coord){
-      srcNo = srcNo.slice(0,-1)
-      coord = getBldgCoord(srcNo)
-    }
-    if(coord){
-      const srcPos = {lat: coord[0], lng: coord[1]}
-      onSearchSrc(srcNo, srcPos)
-      e.target.reset()
-    } else {
-      alert("해당 건물번호를 가진 건물이 없습니다.")
-      e.target.reset()
+    if(srcNo){
+      if(srcNo.slice(-1)==="동"){
+        srcNo = srcNo.slice(0, -1)
+      }
+      const coord = getBldgCoord(srcNo)
+      if(coord){
+        const srcPos = {lat: coord[0], lng: coord[1]}
+        onSearchSrc(srcNo, srcPos)
+        e.target.reset()
+      } else {
+        alert("해당 건물번호를 가진 건물이 없습니다.")
+        e.target.reset()
+      }
+    } else if(!srcDefault) {
+      alert("건물 번호를 입력해주세요.")
     }
   }
   const handleSrcChange = (e) => {
@@ -42,18 +47,21 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
   const destSearch = (e) => {
     e.preventDefault()
     let destNo = dest
-    let coord = getBldgCoord(destNo)
-    if(!coord){
-      destNo = destNo.slice(0,-1)
-      coord = getBldgCoord(destNo)
-    }
-    if(coord){
-      const destPos = {lat: coord[0], lng: coord[1]}
-      onSearchDest(destNo, destPos)
-      e.target.reset()
-    } else {
-      alert("해당 건물번호를 가진 건물이 없습니다.")
-      e.target.reset()
+    if(destNo){
+      if(destNo.slice(-1)==="동"){
+        destNo = destNo.slice(0,-1)
+      }
+      const coord = getBldgCoord(destNo)
+      if(coord){
+        const destPos = {lat: coord[0], lng: coord[1]}
+        onSearchDest(destNo, destPos)
+        e.target.reset()
+      } else {
+        alert("해당 건물번호를 가진 건물이 없습니다.")
+        e.target.reset()
+      }
+    } else if(!destDefault) {
+      alert("건물 번호를 입력해주세요.")
     }
   }
   const handlePickDest = () => {
@@ -87,9 +95,6 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
   }
   const handleShuttleClick = () => {
     onShuttleClick()
-    if(window.innerWidth<=576){
-      hide()
-    }
   }
   const handleRevShuttleClick = () => {
     onRevShuttleClick()
@@ -151,8 +156,6 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
       hide()
     }
   }
-  let sidebar, className = "flex-column bg-light"
-  let srcDefault, destDefault, srcDestInfo, pathInfo
   if(show){
     className = "active " + className
   }
@@ -190,11 +193,17 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
         </Card>
       </Row>
     )
+    let length
+    if(path.length.charAt(3)==="."){
+      length = path.length.slice(0,3)
+    } else {
+      length = path.length.slice(0,4)
+    }
     pathInfo = (
       <Row className="infoWrapper">
         <Card body className="pathCard">
           <Card.Text>
-            약 {path.time.slice(0,3)+"분"} | {path.length.slice(0,3)+"m"}
+            약 {path.time.slice(0,3)+"분"} | {length+"m"}
           </Card.Text>
         </Card>
       </Row>

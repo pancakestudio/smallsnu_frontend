@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/'
+axios.defaults.baseURL = 'http://15.164.132.184:8080/'
 
 export function getBuildingInfo(bldgNo){
   return axios.get(`building/${bldgNo}`)

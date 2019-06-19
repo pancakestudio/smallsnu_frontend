@@ -9,11 +9,11 @@
 }
 
 .cardHeader-outdated {
-  background-color: gray !important;
+  background-color: lightgray !important;
   color: white;
 }
 
 .cardHeader-outdated:hover {
-  background-color: lightgray !important;
+  background-color: gray !important;
   transition: all 0.2s;
 }
