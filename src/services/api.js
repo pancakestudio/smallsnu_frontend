@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://15.164.132.184:8080/'
+axios.defaults.baseURL = 'https://snumap.info:8080/'
 
 export function getBuildingInfo(bldgNo){
   return axios.get(`building/${bldgNo}`)
