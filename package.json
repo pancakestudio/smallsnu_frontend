@@ -31,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "aws s3 sync ./build s3://smallsnu.com --profile=small_snu",
+    "invalidate": "aws cloudfront create-invalidation --profile=smallsnu.com --distribution-id E203JNHP6A3GXN --paths /index.html /index.html /service-worker.js /manifest.json /favicon.ico"
   },
   "eslintConfig": {
     "extends": "react-app"

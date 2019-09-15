@@ -273,6 +273,14 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
           <ListGroup.Item className="bg-light" action active={false} onClick={handleMidLibShuttleClick}>야간 도서관 셔틀</ListGroup.Item>
           <ListGroup.Item className="bg-light" action active={false} onClick={handleMidShuttleClick}>심야 셔틀</ListGroup.Item>
         </ListGroup>
+        <div class="spacer"></div>
+        <div class="credit">
+          <span class="title">Pancake Studio</span><br/>
+          Kim Sang Chul<br/>
+          Park Jong Seok<br/>
+          Kim Do Hyeon<br/>
+          Lee Dong Hak<br/>
+        </div>
       </Nav>
     )
   } else {
@@ -288,6 +296,14 @@ export const Sidebar = ({show, shuttleShow, pathFind, onBack, onPathFindClick, o
           <ListGroup.Item className="bg-light" action active={false} onClick={handleBankClick}>은행</ListGroup.Item>
           <ListGroup.Item className="bg-light" action active={false} onClick={handleATMClick}>ATM</ListGroup.Item>
         </ListGroup>
+        <div class="spacer"></div>
+        <div class="credit">
+          <span class="title">Pancake Studio</span><br/>
+          Kim Sang Chul<br/>
+          Park Jong Seok<br/>
+          Kim Do Hyeon<br/>
+          Lee Dong Hak<br/>
+        </div>
       </Nav>
     )
   }
