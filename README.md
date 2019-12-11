@@ -23,3 +23,17 @@
 ```bash
 npm test -- --coverage
 ```
+
+## Update AfterWork (2019.12.11)
+
+### Major Issues
+
+1. package update : vulnerability high
+
+2. structure change -> using component, container, service, reducer model
+
+3. css fix -> css to scss & Redesigning other features
+
+4. readme update
+
+5. code base change (js -> ts (easy to develop & manuplate))

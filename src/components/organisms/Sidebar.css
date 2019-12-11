@@ -144,3 +144,16 @@
     width: 22px !important;
   }
 }
+
+.spacer {
+  height: 10px;
+  margin: auto;
+}
+.credit {
+  font-size: 9px;
+}
+.credit .title {
+  font-weight: bold;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
